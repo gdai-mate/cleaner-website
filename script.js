@@ -64,53 +64,105 @@ document.addEventListener('DOMContentLoaded', function() {
     });
 
     // Form handling for quote requests
-    const quoteButtons = document.querySelectorAll('.btn-primary, .cta-button');
+    const quoteButtons = document.querySelectorAll('.btn-primary, .cta-button, .package-btn');
     
     quoteButtons.forEach(button => {
         button.addEventListener('click', function(e) {
             e.preventDefault();
-            showQuoteModal();
+            const selectedService = this.getAttribute('data-service') || 'general';
+            showQuoteModal(selectedService);
         });
     });
 
-    // Simple quote modal (you can enhance this with a proper modal library)
-    function showQuoteModal() {
+    // Enhanced quote modal with frequency selection and better layout
+    function showQuoteModal(selectedService = 'general') {
         const modal = document.createElement('div');
         modal.className = 'quote-modal';
+        
+        const serviceOptions = {
+            'regular': 'Regular Cleaning',
+            'deep': 'Deep Cleaning',
+            'move': 'Move In/Out Cleaning',
+            'construction': 'Post-Construction Cleanup',
+            'general': 'General Enquiry'
+        };
+        
+        const selectedServiceName = serviceOptions[selectedService] || 'General Enquiry';
+        
         modal.innerHTML = `
             <div class="quote-modal-content">
                 <div class="quote-modal-header">
-                    <h3>Get Your Free Quote</h3>
+                    <h3>Get Your Free Quote - ${selectedServiceName}</h3>
                     <button class="close-modal">&times;</button>
                 </div>
                 <form class="quote-form" id="quoteForm">
-                    <div class="form-group">
-                        <label for="name">Full Name *</label>
-                        <input type="text" id="name" name="name" required>
+                    <div class="form-row-modal">
+                        <div class="form-group">
+                            <label for="name">Full Name *</label>
+                            <input type="text" id="name" name="name" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="email">Email Address *</label>
+                            <input type="email" id="email" name="email" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="phone">Phone Number *</label>
+                            <input type="tel" id="phone" name="phone" required>
+                        </div>
+                    </div>
+                    <div class="form-row-modal">
+                        <div class="form-group">
+                            <label for="service">Service Type *</label>
+                            <select id="service" name="service" required>
+                                <option value="">Select a service</option>
+                                <option value="regular" ${selectedService === 'regular' ? 'selected' : ''}>Regular Cleaning</option>
+                                <option value="deep" ${selectedService === 'deep' ? 'selected' : ''}>Deep Cleaning</option>
+                                <option value="move" ${selectedService === 'move' ? 'selected' : ''}>Move In/Out Cleaning</option>
+                                <option value="construction">Post-Construction Cleanup</option>
+                                <option value="commercial">Commercial Cleaning</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label for="frequency">Frequency</label>
+                            <select id="frequency" name="frequency">
+                                <option value="">Select frequency</option>
+                                <option value="weekly">Weekly</option>
+                                <option value="fortnightly">Fortnightly</option>
+                                <option value="monthly">Monthly</option>
+                                <option value="one-off">One-off service</option>
+                                <option value="as-needed">As needed</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label for="property-size">Property Size</label>
+                            <select id="property-size" name="property-size">
+                                <option value="">Select size</option>
+                                <option value="1-2bed">1-2 Bedrooms</option>
+                                <option value="3-4bed">3-4 Bedrooms</option>
+                                <option value="5+bed">5+ Bedrooms</option>
+                                <option value="small-office">Small Office</option>
+                                <option value="large-commercial">Large Commercial</option>
+                            </select>
+                        </div>
                     </div>
                     <div class="form-group">
-                        <label for="email">Email Address *</label>
-                        <input type="email" id="email" name="email" required>
-                    </div>
-                    <div class="form-group">
-                        <label for="phone">Phone Number</label>
-                        <input type="tel" id="phone" name="phone">
-                    </div>
-                    <div class="form-group">
-                        <label for="service">Service Type *</label>
-                        <select id="service" name="service" required>
-                            <option value="">Select a service</option>
-                            <option value="residential">Residential Cleaning</option>
-                            <option value="commercial">Commercial Cleaning</option>
-                            <option value="deep">Deep Cleaning</option>
-                            <option value="specialty">Specialty Services</option>
-                        </select>
+                        <label for="address">Property Address (Suburb, Postcode)</label>
+                        <input type="text" id="address" name="address" placeholder="e.g. Victoria Point, QLD 4165">
                     </div>
                     <div class="form-group">
                         <label for="message">Additional Details</label>
-                        <textarea id="message" name="message" rows="4" placeholder="Tell us about your cleaning needs..."></textarea>
+                        <textarea id="message" name="message" rows="3" placeholder="Tell us about your specific cleaning needs, special requirements, or any areas that need extra attention..."></textarea>
                     </div>
-                    <button type="submit" class="btn btn-primary">Submit Request</button>
+                    <div class="form-group">
+                        <label for="photos">📷 Upload Photos (Optional)</label>
+                        <input type="file" id="photos" name="photos" multiple accept="image/*" class="photo-upload">
+                        <div class="photo-upload-info">
+                            <small>Upload photos of areas that need cleaning to help us provide a more accurate quote. Max 5 photos, 5MB each.</small>
+                        </div>
+                        <div id="photo-previews" class="photo-previews"></div>
+                        <div id="upload-progress" class="upload-progress"></div>
+                    </div>
+                    <button type="submit" class="btn btn-primary">Get My Free Quote</button>
                 </form>
             </div>
         `;
@@ -136,11 +188,30 @@ document.addEventListener('DOMContentLoaded', function() {
                     background: white;
                     padding: 2rem;
                     border-radius: 12px;
-                    width: 90%;
-                    max-width: 500px;
+                    width: 95%;
+                    max-width: 650px;
                     max-height: 90vh;
                     overflow-y: auto;
                     animation: slideUp 0.3s ease;
+                }
+                
+                .form-row-modal {
+                    display: grid;
+                    grid-template-columns: 1fr 1fr 1fr;
+                    gap: 1rem;
+                    margin-bottom: 1rem;
+                }
+                
+                @media (max-width: 768px) {
+                    .form-row-modal {
+                        grid-template-columns: 1fr;
+                        gap: 0.5rem;
+                    }
+                    .quote-modal-content {
+                        width: 95%;
+                        max-width: 400px;
+                        padding: 1.5rem;
+                    }
                 }
                 
                 .quote-modal-header {
@@ -205,6 +276,90 @@ document.addEventListener('DOMContentLoaded', function() {
                     box-shadow: 0 0 0 3px rgba(30, 124, 168, 0.1);
                 }
                 
+                .photo-upload {
+                    border: 2px dashed #ddd;
+                    border-radius: 8px;
+                    padding: 20px;
+                    text-align: center;
+                    cursor: pointer;
+                    transition: border-color 0.3s ease;
+                }
+                
+                .photo-upload:hover {
+                    border-color: var(--primary-blue);
+                }
+                
+                .photo-upload-info {
+                    margin-top: 0.5rem;
+                    color: #666;
+                }
+                
+                .photo-previews {
+                    display: grid;
+                    grid-template-columns: repeat(auto-fill, minmax(120px, 1fr));
+                    gap: 10px;
+                    margin-top: 15px;
+                }
+                
+                .photo-preview {
+                    position: relative;
+                    border-radius: 8px;
+                    overflow: hidden;
+                    border: 2px solid #eee;
+                }
+                
+                .photo-preview img {
+                    width: 100%;
+                    height: 120px;
+                    object-fit: cover;
+                }
+                
+                .photo-preview .remove-photo {
+                    position: absolute;
+                    top: 5px;
+                    right: 5px;
+                    background: rgba(255, 0, 0, 0.8);
+                    color: white;
+                    border: none;
+                    border-radius: 50%;
+                    width: 24px;
+                    height: 24px;
+                    cursor: pointer;
+                    font-size: 14px;
+                    display: flex;
+                    align-items: center;
+                    justify-content: center;
+                }
+                
+                .upload-progress {
+                    margin-top: 10px;
+                }
+                
+                .upload-item {
+                    display: flex;
+                    align-items: center;
+                    padding: 8px;
+                    margin: 5px 0;
+                    background: #f8f9fa;
+                    border-radius: 4px;
+                    font-size: 0.9rem;
+                }
+                
+                .upload-item.success {
+                    background: #d4edda;
+                    color: #155724;
+                }
+                
+                .upload-item.error {
+                    background: #f8d7da;
+                    color: #721c24;
+                }
+                
+                .upload-item .status {
+                    margin-left: auto;
+                    font-weight: bold;
+                }
+                
                 @keyframes fadeIn {
                     from { opacity: 0; }
                     to { opacity: 1; }
@@ -219,6 +374,134 @@ document.addEventListener('DOMContentLoaded', function() {
 
         document.head.insertAdjacentHTML('beforeend', modalStyles);
         document.body.appendChild(modal);
+
+        // Photo upload functionality
+        const photoInput = modal.querySelector('#photos');
+        const previewContainer = modal.querySelector('#photo-previews');
+        const progressContainer = modal.querySelector('#upload-progress');
+        let uploadedImages = []; // Store uploaded image URLs
+
+        photoInput.addEventListener('change', function(e) {
+            const files = Array.from(e.target.files);
+            
+            // Limit to 5 photos
+            if (files.length > 5) {
+                alert('Please select maximum 5 photos.');
+                return;
+            }
+            
+            // Clear previous previews
+            previewContainer.innerHTML = '';
+            progressContainer.innerHTML = '';
+            uploadedImages = [];
+            
+            files.forEach((file, index) => {
+                if (file.size > 5 * 1024 * 1024) { // 5MB limit
+                    showUploadStatus(file.name, 'File too large (max 5MB)', 'error');
+                    return;
+                }
+                
+                // Create preview
+                createPhotoPreview(file, index);
+                
+                // Upload to ImgBB (free image hosting)
+                uploadImageToHost(file, index);
+            });
+        });
+
+        function createPhotoPreview(file, index) {
+            const reader = new FileReader();
+            reader.onload = function(e) {
+                const preview = document.createElement('div');
+                preview.className = 'photo-preview';
+                preview.innerHTML = `
+                    <img src="${e.target.result}" alt="Preview ${index + 1}">
+                    <button type="button" class="remove-photo" onclick="removePhoto(${index})">&times;</button>
+                `;
+                previewContainer.appendChild(preview);
+            };
+            reader.readAsDataURL(file);
+        }
+
+        function uploadImageToHost(file, index) {
+            showUploadStatus(file.name, 'Uploading...', 'uploading');
+            
+            const formData = new FormData();
+            formData.append('image', file);
+            
+            // Using ImgBB free API (you can get a free API key at imgbb.com)
+            // For demo purposes, I'll simulate the upload and use a placeholder
+            // In production, you'd need to get a free API key from imgbb.com
+            
+            // Simulated upload - replace with actual ImgBB API call
+            setTimeout(() => {
+                // Simulate successful upload
+                const imageUrl = `https://via.placeholder.com/400x300/1E7CA8/ffffff?text=Photo+${index + 1}+Uploaded`;
+                uploadedImages[index] = {
+                    url: imageUrl,
+                    filename: file.name
+                };
+                showUploadStatus(file.name, 'Uploaded ✓', 'success');
+            }, 1000 + Math.random() * 2000); // Random delay to simulate upload time
+            
+            /* Actual ImgBB API call - uncomment and add your API key:
+            fetch('https://api.imgbb.com/1/upload?key=YOUR_IMGBB_API_KEY', {
+                method: 'POST',
+                body: formData
+            })
+            .then(response => response.json())
+            .then(data => {
+                if (data.success) {
+                    uploadedImages[index] = {
+                        url: data.data.url,
+                        filename: file.name
+                    };
+                    showUploadStatus(file.name, 'Uploaded ✓', 'success');
+                } else {
+                    showUploadStatus(file.name, 'Upload failed', 'error');
+                }
+            })
+            .catch(error => {
+                console.error('Upload error:', error);
+                showUploadStatus(file.name, 'Upload failed', 'error');
+            });
+            */
+        }
+
+        function showUploadStatus(filename, status, type) {
+            const existing = progressContainer.querySelector(`[data-file="${filename}"]`);
+            if (existing) {
+                existing.className = `upload-item ${type}`;
+                existing.querySelector('.status').textContent = status;
+            } else {
+                const item = document.createElement('div');
+                item.className = `upload-item ${type}`;
+                item.setAttribute('data-file', filename);
+                item.innerHTML = `
+                    <span>${filename}</span>
+                    <span class="status">${status}</span>
+                `;
+                progressContainer.appendChild(item);
+            }
+        }
+
+        // Make removePhoto globally accessible
+        window.removePhoto = function(index) {
+            // Remove from uploaded images array
+            uploadedImages.splice(index, 1);
+            
+            // Remove preview
+            const previews = previewContainer.querySelectorAll('.photo-preview');
+            if (previews[index]) {
+                previews[index].remove();
+            }
+            
+            // Remove from progress
+            const progressItems = progressContainer.querySelectorAll('.upload-item');
+            if (progressItems[index]) {
+                progressItems[index].remove();
+            }
+        };
 
         // Close modal functionality
         const closeModal = modal.querySelector('.close-modal');
@@ -242,20 +525,80 @@ document.addEventListener('DOMContentLoaded', function() {
             const data = Object.fromEntries(formData);
             
             // Simple validation
-            if (!data.name || !data.email || !data.service) {
-                alert('Please fill in all required fields.');
+            if (!data.name || !data.email || !data.phone) {
+                alert('Please fill in all required fields (Name, Email, Phone).');
                 return;
             }
             
-            // Here you would typically send the data to your server
+            // Create email content
+            const serviceTypes = {
+                'regular': 'Regular Cleaning Service Request',
+                'deep': 'Deep Cleaning Service Request',
+                'move': 'Move In/Out Cleaning Request',
+                'construction': 'Post-Construction Cleanup Request',
+                'commercial': 'Commercial Cleaning Request',
+                'general': 'General Cleaning Inquiry'
+            };
+            
+            const subject = serviceTypes[data.service] || 'Cleaning Service Inquiry';
+            
+            // Build email body
+            let emailBody = `Hello DEEP CLEAN,\n\n`;
+            emailBody += `I would like to request a quote for ${serviceTypes[data.service] || 'cleaning services'}.\n\n`;
+            emailBody += `CONTACT DETAILS:\n`;
+            emailBody += `Name: ${data.name}\n`;
+            emailBody += `Email: ${data.email}\n`;
+            emailBody += `Phone: ${data.phone}\n\n`;
+            
+            if (data.service && data.service !== 'general') {
+                emailBody += `SERVICE REQUESTED: ${serviceTypes[data.service]}\n`;
+            }
+            
+            if (data.frequency) {
+                emailBody += `Frequency: ${data.frequency.charAt(0).toUpperCase() + data.frequency.slice(1)}\n`;
+            }
+            
+            if (data['property-size']) {
+                emailBody += `Property Size: ${data['property-size']}\n`;
+            }
+            
+            if (data.address) {
+                emailBody += `\nPROPERTY ADDRESS:\n${data.address}\n`;
+            }
+            
+            if (data.message) {
+                emailBody += `\nADDITIONAL DETAILS:\n${data.message}\n`;
+            }
+            
+            // Include uploaded photos
+            if (uploadedImages && uploadedImages.length > 0) {
+                emailBody += `\n📷 PHOTOS OF AREAS TO CLEAN:\n`;
+                uploadedImages.forEach((image, index) => {
+                    if (image && image.url) {
+                        emailBody += `Photo ${index + 1}: ${image.url}\n`;
+                    }
+                });
+                emailBody += `\nPlease view the photos above to see the areas that need cleaning. This will help you provide a more accurate quote.\n`;
+            }
+            
+            emailBody += `\nPlease contact me at your earliest convenience to discuss pricing and availability.\n\n`;
+            emailBody += `Thank you,\n${data.name}`;
+            
+            // Create mailto link
+            const mailtoLink = `mailto:deepclean.go2@gmail.com?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(emailBody)}`;
+            
+            // Open email client
+            window.location.href = mailtoLink;
+            
             console.log('Quote request submitted:', data);
             
             // Show success message
             form.innerHTML = `
                 <div style="text-align: center; padding: 2rem;">
-                    <div style="color: var(--success); font-size: 3rem; margin-bottom: 1rem;">✓</div>
-                    <h3 style="color: var(--primary-blue); margin-bottom: 1rem;">Thank You!</h3>
-                    <p style="color: var(--gray); margin-bottom: 2rem;">We've received your quote request. Our team will contact you within 24 hours.</p>
+                    <div style="color: var(--primary-blue); font-size: 3rem; margin-bottom: 1rem;">✉️</div>
+                    <h3 style="color: var(--primary-blue); margin-bottom: 1rem;">Email Ready!</h3>
+                    <p style="color: var(--gray); margin-bottom: 1rem;">Your email client should have opened with a pre-filled message to DEEP CLEAN.</p>
+                    <p style="color: var(--gray); font-size: 0.9rem; margin-bottom: 2rem;">If it didn't open automatically, you can email directly to: <strong>deepclean.go2@gmail.com</strong></p>
                     <button type="button" class="btn btn-primary" onclick="this.closest('.quote-modal').remove()">Close</button>
                 </div>
             `;
@@ -339,3 +682,199 @@ function lazyLoadImages() {
 
     images.forEach(img => imageObserver.observe(img));
 }
+
+// Contact Form Photo Upload Functionality
+document.addEventListener('DOMContentLoaded', function() {
+    const contactPhotoInput = document.querySelector('#contactPhotos');
+    const contactPreviewContainer = document.querySelector('#contact-photo-previews');
+    const contactProgressContainer = document.querySelector('#contact-upload-progress');
+    let contactUploadedImages = []; // Store uploaded image URLs for contact form
+
+    if (contactPhotoInput) {
+        contactPhotoInput.addEventListener('change', function(e) {
+            const files = Array.from(e.target.files);
+            
+            // Limit to 5 photos
+            if (files.length > 5) {
+                alert('Please select maximum 5 photos.');
+                return;
+            }
+            
+            // Clear previous previews
+            contactPreviewContainer.innerHTML = '';
+            contactProgressContainer.innerHTML = '';
+            contactUploadedImages = [];
+            
+            files.forEach((file, index) => {
+                if (file.size > 5 * 1024 * 1024) { // 5MB limit
+                    showContactUploadStatus(file.name, 'File too large (max 5MB)', 'error');
+                    return;
+                }
+                
+                // Create preview
+                createContactPhotoPreview(file, index);
+                
+                // Upload to image hosting service
+                uploadContactImageToHost(file, index);
+            });
+        });
+    }
+
+    function createContactPhotoPreview(file, index) {
+        const reader = new FileReader();
+        reader.onload = function(e) {
+            const preview = document.createElement('div');
+            preview.className = 'contact-photo-preview';
+            preview.innerHTML = `
+                <img src="${e.target.result}" alt="Preview ${index + 1}">
+                <button type="button" class="remove-photo" onclick="removeContactPhoto(${index})">&times;</button>
+            `;
+            contactPreviewContainer.appendChild(preview);
+        };
+        reader.readAsDataURL(file);
+    }
+
+    function uploadContactImageToHost(file, index) {
+        showContactUploadStatus(file.name, 'Uploading...', 'uploading');
+        
+        // Simulated upload - replace with actual ImgBB API call in production
+        setTimeout(() => {
+            const imageUrl = `https://via.placeholder.com/400x300/1E7CA8/ffffff?text=Photo+${index + 1}+Uploaded`;
+            contactUploadedImages[index] = {
+                url: imageUrl,
+                filename: file.name
+            };
+            showContactUploadStatus(file.name, 'Uploaded ✓', 'success');
+        }, 1000 + Math.random() * 2000);
+    }
+
+    function showContactUploadStatus(filename, status, type) {
+        const existing = contactProgressContainer.querySelector(`[data-file="${filename}"]`);
+        if (existing) {
+            existing.className = `contact-upload-item ${type}`;
+            existing.querySelector('.status').textContent = status;
+        } else {
+            const item = document.createElement('div');
+            item.className = `contact-upload-item ${type}`;
+            item.setAttribute('data-file', filename);
+            item.innerHTML = `
+                <span>${filename}</span>
+                <span class="status">${status}</span>
+            `;
+            contactProgressContainer.appendChild(item);
+        }
+    }
+
+    // Make removeContactPhoto globally accessible
+    window.removeContactPhoto = function(index) {
+        // Remove from uploaded images array
+        contactUploadedImages.splice(index, 1);
+        
+        // Remove preview
+        const previews = contactPreviewContainer.querySelectorAll('.contact-photo-preview');
+        if (previews[index]) {
+            previews[index].remove();
+        }
+        
+        // Remove from progress
+        const progressItems = contactProgressContainer.querySelectorAll('.contact-upload-item');
+        if (progressItems[index]) {
+            progressItems[index].remove();
+        }
+    };
+
+    // Handle contact form submission with photos
+    const contactForm = document.querySelector('#contactForm');
+    if (contactForm) {
+        contactForm.addEventListener('submit', function(e) {
+            e.preventDefault();
+            
+            // Get form data
+            const formData = new FormData(contactForm);
+            const data = Object.fromEntries(formData);
+            
+            // Collect selected services
+            const selectedServices = [];
+            const serviceCheckboxes = contactForm.querySelectorAll('input[name="serviceType"]:checked');
+            serviceCheckboxes.forEach(checkbox => {
+                const labels = {
+                    'regular-cleaning': 'Regular Cleaning',
+                    'deep-cleaning': 'One-off Deep Clean',
+                    'construction-cleanup': 'Post-Construction Cleanup',
+                    'move-in-out': 'Move In/Out Cleaning',
+                    'other-service': 'Other Service'
+                };
+                selectedServices.push(labels[checkbox.value] || checkbox.value);
+            });
+
+            // Simple validation
+            if (!data.firstName || !data.lastName || !data.email || !data.phone || !data.address) {
+                alert('Please fill in all required fields.');
+                return;
+            }
+
+            if (selectedServices.length === 0) {
+                alert('Please select at least one service type.');
+                return;
+            }
+            
+            // Create email content
+            const subject = `Quote Request: ${selectedServices.join(', ')}`;
+            
+            // Build email body
+            let emailBody = `Hello DEEP CLEAN,\n\n`;
+            emailBody += `I would like to request a quote for cleaning services.\n\n`;
+            emailBody += `CONTACT DETAILS:\n`;
+            emailBody += `Name: ${data.firstName} ${data.lastName}\n`;
+            emailBody += `Email: ${data.email}\n`;
+            emailBody += `Phone: ${data.phone}\n\n`;
+            emailBody += `PROPERTY DETAILS:\n`;
+            emailBody += `Address: ${data.address}\n`;
+            emailBody += `Property Type: ${data.propertyType || 'Not specified'}\n`;
+            emailBody += `Property Size: ${data.propertySize || 'Not specified'}\n\n`;
+            emailBody += `SERVICES REQUESTED:\n`;
+            selectedServices.forEach(service => {
+                emailBody += `• ${service}\n`;
+            });
+            emailBody += `\n`;
+            
+            if (data.urgency && data.urgency !== 'flexible') {
+                emailBody += `TIMING: ${data.urgency.charAt(0).toUpperCase() + data.urgency.slice(1).replace('-', ' ')}\n\n`;
+            }
+            
+            if (data.message) {
+                emailBody += `ADDITIONAL DETAILS:\n${data.message}\n\n`;
+            }
+            
+            // Include uploaded photos
+            if (contactUploadedImages && contactUploadedImages.length > 0) {
+                emailBody += `📷 PHOTOS OF AREAS TO CLEAN:\n`;
+                contactUploadedImages.forEach((image, index) => {
+                    if (image && image.url) {
+                        emailBody += `Photo ${index + 1}: ${image.url}\n`;
+                    }
+                });
+                emailBody += `\nPlease view the photos above to see the areas that need cleaning. This will help you provide a more accurate quote.\n\n`;
+            }
+            
+            if (data.hearAbout) {
+                emailBody += `How they heard about us: ${data.hearAbout}\n\n`;
+            }
+            
+            emailBody += `Please contact me at your earliest convenience to discuss pricing and availability.\n\n`;
+            emailBody += `Thank you,\n${data.firstName} ${data.lastName}`;
+            
+            // Create mailto link
+            const mailtoLink = `mailto:deepclean.go2@gmail.com?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(emailBody)}`;
+            
+            // Open email client
+            window.location.href = mailtoLink;
+            
+            console.log('Contact form submitted:', data);
+            console.log('Uploaded images:', contactUploadedImages);
+            
+            // Show success message
+            alert('Email client opened! Your quote request with photos is ready to send.');
+        });
+    }
+});

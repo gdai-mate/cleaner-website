@@ -1,0 +1,177 @@
+{
+  "heroImages": {
+    "image1": {
+      "src": "assets/images/hero/hero-1.jpg",
+      "alt": "DEEP CLEAN team professional cleaning service",
+      "description": "Professional cleaning team in action"
+    },
+    "image2": {
+      "src": "assets/images/hero/hero-2.jpg", 
+      "alt": "DEEP CLEAN professional cleaning results",
+      "description": "Beautiful cleaning results showcase"
+    },
+    "image3": {
+      "src": "assets/images/hero/hero-3.jpg",
+      "alt": "DEEP CLEAN residential cleaning Brisbane",
+      "description": "Residential cleaning excellence"
+    }
+  },
+  "galleryImages": [
+    {
+      "src": "assets/images/gallery/20231119_211008_edited.jpg",
+      "alt": "Professional cleaning results - Brisbane home",
+      "title": "Sparkling Clean Kitchen"
+    },
+    {
+      "src": "assets/images/gallery/20231125_185319_edited.jpg",
+      "alt": "Deep cleaning service - residential Brisbane",
+      "title": "Bathroom Perfection"
+    },
+    {
+      "src": "assets/images/gallery/PXL_20250115_025611985.jpg",
+      "alt": "DEEP CLEAN professional results",
+      "title": "Living Space Excellence"
+    },
+    {
+      "src": "assets/images/gallery/PXL_20250115_050424550.jpg",
+      "alt": "High-end residential cleaning",
+      "title": "Pristine Home Environment"
+    },
+    {
+      "src": "assets/images/gallery/PXL_20250115_050439129.jpg",
+      "alt": "Professional cleaning Brisbane Bayside",
+      "title": "Attention to Detail"
+    },
+    {
+      "src": "assets/images/gallery/PXL_20250115_120328112.jpg",
+      "alt": "Residential cleaning excellence",
+      "title": "Spotless Results"
+    },
+    {
+      "src": "assets/images/gallery/PXL_20250226_125230027.jpg",
+      "alt": "DEEP CLEAN quality service",
+      "title": "Professional Standards"
+    },
+    {
+      "src": "assets/images/gallery/PXL_20250226_125356275.jpg",
+      "alt": "Brisbane cleaning specialists",
+      "title": "Immaculate Finish"
+    },
+    {
+      "src": "assets/images/gallery/PXL_20250226_125401816.jpg",
+      "alt": "Home cleaning transformation",
+      "title": "Beautiful Clean Spaces"
+    },
+    {
+      "src": "assets/images/gallery/PXL_20250226_130220053.jpg",
+      "alt": "Professional residential cleaning",
+      "title": "Flawless Execution"
+    },
+    {
+      "src": "assets/images/gallery/PXL_20250226_130849535.jpg",
+      "alt": "DEEP CLEAN Brisbane service",
+      "title": "Quality You Can Trust"
+    },
+    {
+      "src": "assets/images/gallery/PXL_20250226_131118170.jpg",
+      "alt": "High-quality cleaning results",
+      "title": "Exceptional Standards"
+    },
+    {
+      "src": "assets/images/gallery/PXL_20250226_131807143.jpg",
+      "alt": "Professional cleaning team Brisbane",
+      "title": "Superior Service"
+    },
+    {
+      "src": "assets/images/gallery/PXL_20250505_015244068.jpg",
+      "alt": "Residential cleaning experts",
+      "title": "Thorough Clean"
+    },
+    {
+      "src": "assets/images/gallery/PXL_20250505_015410625.jpg",
+      "alt": "Brisbane Bayside cleaning service",
+      "title": "Meticulous Care"
+    },
+    {
+      "src": "assets/images/gallery/PXL_20250505_015422791.jpg",
+      "alt": "DEEP CLEAN professional results",
+      "title": "Pristine Perfection"
+    },
+    {
+      "src": "assets/images/gallery/PXL_20250505_020634040.jpg",
+      "alt": "Quality home cleaning Brisbane",
+      "title": "Spotless Standards"
+    },
+    {
+      "src": "assets/images/gallery/PXL_20250508_102035354.jpg",
+      "alt": "Professional cleaning excellence",
+      "title": "Beautiful Results"
+    },
+    {
+      "src": "assets/images/gallery/PXL_20250508_102138422.jpg",
+      "alt": "Residential cleaning Brisbane",
+      "title": "Exceptional Quality"
+    },
+    {
+      "src": "assets/images/gallery/received_1421590198421920.jpeg",
+      "alt": "DEEP CLEAN quality service",
+      "title": "Professional Clean"
+    },
+    {
+      "src": "assets/images/gallery/received_1469230137199632.jpeg",
+      "alt": "Brisbane cleaning specialists",
+      "title": "Superior Standards"
+    },
+    {
+      "src": "assets/images/gallery/received_1485238925664252.jpeg",
+      "alt": "High-end cleaning results",
+      "title": "Flawless Finish"
+    }
+  ],
+  "aboutImages": {
+    "team": {
+      "src": "assets/images/team/team-photo.jpg",
+      "alt": "Amie and Kath - DEEP CLEAN team",
+      "description": "Professional photo of Amie Eckhardt and Kath Duell Boardman"
+    },
+    "amie": {
+      "src": "assets/images/team/amie.jpg",
+      "alt": "Amie Eckhardt - Founder & Cleaning Supervisor",
+      "description": "Professional photo of Amie Eckhardt"
+    },
+    "kath": {
+      "src": "assets/images/team/kath.jpg", 
+      "alt": "Kath Duell Boardman - Cleaning Specialist",
+      "description": "Professional photo of Kath Duell Boardman"
+    }
+  },
+  "businessInfo": {
+    "owners": ["Amy Eckhardt", "Kath Duell Boardman"],
+    "phone": "0433 147 018",
+    "email": "deepclean.go2@gmail.com",
+    "abn": "57 805 931 28",
+    "slogan": "The difference is in the detail",
+    "serviceAreas": [
+      "Brisbane Bayside",
+      "Redland Bay", 
+      "Southeast Brisbane suburbs"
+    ],
+    "specialties": [
+      "High-end residential cleaning",
+      "Post-construction cleanup", 
+      "Renovation cleaning"
+    ],
+    "credentials": [
+      "Fully insured",
+      "Police checked",
+      "30+ years combined experience",
+      "Locally owned boutique service"
+    ]
+  },
+  "instructions": {
+    "heroImages": "To change hero images: 1) Upload your images to /assets/images/ folder, 2) Update the 'src' paths above, 3) Update 'alt' text to describe your images",
+    "galleryImages": "To manage gallery: 1) Upload images to /assets/images/gallery/ folder, 2) Add/remove entries in the arrays above, 3) Use categories: 'kitchen', 'bathroom', 'living', 'construction', 'residential'",
+    "aboutImages": "For about page: 1) Upload team photo and service photos to /assets/images/, 2) Update paths above",
+    "businessInfo": "Update any business details in the businessInfo section above"
+  }
+}
