@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>DEEP CLEAN Favicon Generator</title>
+    <style>
+        body { font-family: Arial, sans-serif; padding: 20px; text-align: center; }
+        .favicon-preview { 
+            width: 32px; 
+            height: 32px; 
+            background: #1E7CA8; 
+            color: white; 
+            display: inline-block; 
+            border-radius: 4px; 
+            line-height: 32px; 
+            font-weight: bold; 
+            font-size: 18px; 
+            margin: 10px; 
+        }
+        .instruction {
+            background: #e3f2fd;
+            padding: 20px;
+            border-radius: 8px;
+            margin: 20px 0;
+            border-left: 4px solid #1E7CA8;
+        }
+    </style>
+</head>
+<body>
+    <h1>DEEP CLEAN Favicon</h1>
+    
+    <div class="instruction">
+        <h3>📎 Favicon Creation Instructions</h3>
+        <p><strong>Option 1: Use Current Logo</strong><br>
+        The existing logo "DEEP CLEAN Logo.png" can be resized to create favicons</p>
+        
+        <p><strong>Option 2: Simple Text Favicon</strong><br>
+        Create a simple "DC" favicon with DEEP CLEAN brand colors:</p>
+        
+        <div class="favicon-preview">DC</div>
+        
+        <p><strong>Recommended Favicon Sizes:</strong></p>
+        <ul style="text-align: left; max-width: 400px; margin: 0 auto;">
+            <li>16x16 pixels (browser tab)</li>
+            <li>32x32 pixels (taskbar)</li>
+            <li>180x180 pixels (Apple touch icon)</li>
+            <li>192x192 pixels (Android icon)</li>
+            <li>512x512 pixels (PWA icon)</li>
+        </ul>
+    </div>
+
+    <div class="instruction">
+        <h3>🔧 Implementation</h3>
+        <p>Add this to the &lt;head&gt; section of all HTML pages:</p>
+        <pre style="text-align: left; background: #f5f5f5; padding: 10px;">
+&lt;link rel="icon" type="image/x-icon" href="assets/favicon.ico"&gt;
+&lt;link rel="icon" type="image/png" sizes="32x32" href="assets/favicon-32x32.png"&gt;
+&lt;link rel="icon" type="image/png" sizes="16x16" href="assets/favicon-16x16.png"&gt;
+&lt;link rel="apple-touch-icon" sizes="180x180" href="assets/apple-touch-icon.png"&gt;
+        </pre>
+    </div>
+
+    <div class="instruction">
+        <h3>✅ For Wix Deployment</h3>
+        <p>Wix has built-in favicon management. Simply:</p>
+        <ol style="text-align: left; max-width: 400px; margin: 0 auto;">
+            <li>Upload your logo to Wix media library</li>
+            <li>Go to Site Settings → Favicon</li>
+            <li>Select your uploaded logo</li>
+            <li>Wix will automatically generate all required sizes</li>
+        </ol>
+    </div>
+</body>
+</html>
