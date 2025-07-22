@@ -122,6 +122,36 @@ body {
     width: 100%;
 }
 
+.header-cta-buttons {
+    display: flex;
+    gap: var(--spacing-sm);
+    align-items: center;
+}
+
+.call-button {
+    background: var(--accent-yellow);
+    color: var(--dark-gray);
+    border: none;
+    padding: 12px 20px;
+    border-radius: var(--radius-md);
+    font-weight: var(--font-weight-semibold);
+    font-size: 0.9rem;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    text-decoration: none;
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    box-shadow: 0 2px 4px rgba(249, 231, 30, 0.3);
+}
+
+.call-button:hover {
+    background: #f0d000;
+    transform: translateY(-1px);
+    box-shadow: 0 4px 8px rgba(249, 231, 30, 0.4);
+    color: var(--dark-gray);
+}
+
 .cta-button {
     background: linear-gradient(135deg, var(--primary-blue), var(--secondary-teal));
     color: var(--white);
@@ -718,7 +748,7 @@ body {
         display: flex;
     }
 
-    .cta-button {
+    .header-cta-buttons {
         display: none;
     }
 
