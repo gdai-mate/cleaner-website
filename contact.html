@@ -124,6 +124,9 @@
                         <form class="quote-form" id="contactForm">
                             <h3>Request Your Free Quote</h3>
                             <p class="form-intro">Tell us about your cleaning needs and we'll provide a personalised quote.</p>
+                            <div class="quote-info">
+                                <p>Please include as much detail as possible about the spaces you would like cleaned. Include images and descriptions - we will do our best to provide you with an accurate quote, but please be aware that this is just an estimate and we require a walk-through with you before we give an exact quote.</p>
+                            </div>
 
                             <div class="form-row">
                                 <div class="form-group">
@@ -183,24 +186,29 @@
                                 <label for="serviceType">Service Required *</label>
                                 <div class="checkbox-group">
                                     <label class="checkbox-item">
-                                        <input type="checkbox" name="serviceType" value="regular-cleaning">
-                                        <span class="checkmark"></span>
-                                        Regular Cleaning (weekly/fortnightly/monthly)
-                                    </label>
-                                    <label class="checkbox-item">
-                                        <input type="checkbox" name="serviceType" value="deep-cleaning">
+                                        <input type="checkbox" name="serviceType" value="one-off-deep-clean">
                                         <span class="checkmark"></span>
                                         One-off Deep Clean
                                     </label>
                                     <label class="checkbox-item">
-                                        <input type="checkbox" name="serviceType" value="construction-cleanup">
+                                        <input type="checkbox" name="serviceType" value="recurring-domestic-clean">
                                         <span class="checkmark"></span>
-                                        Post-Construction Cleanup
+                                        Recurring Domestic Clean
                                     </label>
                                     <label class="checkbox-item">
-                                        <input type="checkbox" name="serviceType" value="move-in-out">
+                                        <input type="checkbox" name="serviceType" value="post-construction-clean">
                                         <span class="checkmark"></span>
-                                        Move In/Out Cleaning
+                                        Post Construction Clean
+                                    </label>
+                                    <label class="checkbox-item">
+                                        <input type="checkbox" name="serviceType" value="post-renovation-clean">
+                                        <span class="checkmark"></span>
+                                        Post Renovation Clean
+                                    </label>
+                                    <label class="checkbox-item">
+                                        <input type="checkbox" name="serviceType" value="niisq-ndis-funded">
+                                        <span class="checkmark"></span>
+                                        NIISQ, NDIS or other externally funded Clean
                                     </label>
                                     <label class="checkbox-item">
                                         <input type="checkbox" name="serviceType" value="other-service">
@@ -223,7 +231,7 @@
 
                             <div class="form-group">
                                 <label for="message">Additional Details</label>
-                                <textarea id="message" name="message" rows="4" placeholder="Tell us about any specific requirements, areas of focus, or special instructions..."></textarea>
+                                <textarea id="message" name="message" rows="4" placeholder="Include details about spaces to be cleaned, special requirements, and upload photos above. Note: This is an estimate - a walk-through is required for exact pricing."></textarea>
                             </div>
 
                             <div class="form-group">
@@ -342,10 +350,10 @@
                 <div class="footer-section">
                     <h4>Services</h4>
                     <ul>
-                        <li><a href="services.html">High-End Residential</a></li>
-                        <li><a href="services.html">Post-Construction</a></li>
-                        <li><a href="services.html">Deep Cleaning</a></li>
-                        <li><a href="services.html">Specialty Services</a></li>
+                        <li><a href="services.html">One-off Deep Clean</a></li>
+                        <li><a href="services.html">Recurring Domestic Clean</a></li>
+                        <li><a href="services.html">Post Construction Clean</a></li>
+                        <li><a href="services.html">NIISQ/NDIS Services</a></li>
                     </ul>
                 </div>
                 <div class="footer-section">

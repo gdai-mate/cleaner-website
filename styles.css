@@ -1885,6 +1885,20 @@ img {
     line-height: 1.6;
 }
 
+.quote-info {
+    background: #f8f9fa;
+    padding: 1rem;
+    border-radius: 8px;
+    margin-bottom: 1.5rem;
+}
+
+.quote-info p {
+    margin: 0;
+    color: #666;
+    font-size: 0.9rem;
+    line-height: 1.5;
+}
+
 .form-row {
     display: grid;
     grid-template-columns: 1fr 1fr;

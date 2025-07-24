@@ -80,10 +80,11 @@ document.addEventListener('DOMContentLoaded', function() {
         modal.className = 'quote-modal';
         
         const serviceOptions = {
-            'regular': 'Regular Cleaning',
-            'deep': 'Deep Cleaning',
-            'move': 'Move In/Out Cleaning',
-            'construction': 'Post-Construction Cleanup',
+            'deep': 'One-off Deep Clean',
+            'recurring': 'Recurring Domestic Clean',
+            'construction': 'Post Construction Clean',
+            'renovation': 'Post Renovation Clean',
+            'funded': 'NIISQ, NDIS or other externally funded Clean',
             'general': 'General Enquiry'
         };
         
@@ -94,6 +95,9 @@ document.addEventListener('DOMContentLoaded', function() {
                 <div class="quote-modal-header">
                     <h3>Get Your Free Quote - ${selectedServiceName}</h3>
                     <button class="close-modal">&times;</button>
+                </div>
+                <div class="quote-modal-info">
+                    <p>Please include as much detail as possible about the spaces you would like cleaned. Include images and descriptions - we will do our best to provide you with an accurate quote, but please be aware that this is just an estimate and we require a walk-through with you before we give an exact quote.</p>
                 </div>
                 <form class="quote-form" id="quoteForm">
                     <div class="form-row-modal">
@@ -115,11 +119,12 @@ document.addEventListener('DOMContentLoaded', function() {
                             <label for="service">Service Type *</label>
                             <select id="service" name="service" required>
                                 <option value="">Select a service</option>
-                                <option value="regular" ${selectedService === 'regular' ? 'selected' : ''}>Regular Cleaning</option>
-                                <option value="deep" ${selectedService === 'deep' ? 'selected' : ''}>Deep Cleaning</option>
-                                <option value="move" ${selectedService === 'move' ? 'selected' : ''}>Move In/Out Cleaning</option>
-                                <option value="construction">Post-Construction Cleanup</option>
-                                <option value="commercial">Commercial Cleaning</option>
+                                <option value="deep" ${selectedService === 'deep' ? 'selected' : ''}>One-off Deep Clean</option>
+                                <option value="recurring" ${selectedService === 'recurring' ? 'selected' : ''}>Recurring Domestic Clean</option>
+                                <option value="construction" ${selectedService === 'construction' ? 'selected' : ''}>Post Construction Clean</option>
+                                <option value="renovation" ${selectedService === 'renovation' ? 'selected' : ''}>Post Renovation Clean</option>
+                                <option value="funded" ${selectedService === 'funded' ? 'selected' : ''}>NIISQ, NDIS or other externally funded Clean</option>
+                                <option value="other">Other</option>
                             </select>
                         </div>
                         <div class="form-group">
@@ -151,7 +156,7 @@ document.addEventListener('DOMContentLoaded', function() {
                     </div>
                     <div class="form-group">
                         <label for="message">Additional Details</label>
-                        <textarea id="message" name="message" rows="3" placeholder="Tell us about your specific cleaning needs, special requirements, or any areas that need extra attention..."></textarea>
+                        <textarea id="message" name="message" rows="3" placeholder="Include details about spaces to be cleaned, special requirements, and upload photos above. Note: This is an estimate - a walk-through is required for exact pricing."></textarea>
                     </div>
                     <div class="form-group">
                         <label for="photos">📷 Upload Photos (Optional)</label>
@@ -226,6 +231,20 @@ document.addEventListener('DOMContentLoaded', function() {
                 .quote-modal-header h3 {
                     margin: 0;
                     color: var(--primary-blue);
+                }
+                
+                .quote-modal-info {
+                    background: #f8f9fa;
+                    padding: 1rem;
+                    border-radius: 8px;
+                    margin-bottom: 1.5rem;
+                }
+                
+                .quote-modal-info p {
+                    margin: 0;
+                    color: #666;
+                    font-size: 0.9rem;
+                    line-height: 1.5;
                 }
                 
                 .close-modal {
@@ -532,11 +551,12 @@ document.addEventListener('DOMContentLoaded', function() {
             
             // Create email content
             const serviceTypes = {
-                'regular': 'Regular Cleaning Service Request',
-                'deep': 'Deep Cleaning Service Request',
-                'move': 'Move In/Out Cleaning Request',
-                'construction': 'Post-Construction Cleanup Request',
-                'commercial': 'Commercial Cleaning Request',
+                'deep': 'One-off Deep Clean Request',
+                'recurring': 'Recurring Domestic Clean Request',
+                'construction': 'Post Construction Clean Request',
+                'renovation': 'Post Renovation Clean Request',
+                'funded': 'NIISQ, NDIS or other externally funded Clean Request',
+                'other': 'Other Cleaning Service Request',
                 'general': 'General Cleaning Inquiry'
             };
             
@@ -798,10 +818,11 @@ document.addEventListener('DOMContentLoaded', function() {
             const serviceCheckboxes = contactForm.querySelectorAll('input[name="serviceType"]:checked');
             serviceCheckboxes.forEach(checkbox => {
                 const labels = {
-                    'regular-cleaning': 'Regular Cleaning',
-                    'deep-cleaning': 'One-off Deep Clean',
-                    'construction-cleanup': 'Post-Construction Cleanup',
-                    'move-in-out': 'Move In/Out Cleaning',
+                    'one-off-deep-clean': 'One-off Deep Clean',
+                    'recurring-domestic-clean': 'Recurring Domestic Clean',
+                    'post-construction-clean': 'Post Construction Clean',
+                    'post-renovation-clean': 'Post Renovation Clean',
+                    'niisq-ndis-funded': 'NIISQ, NDIS or other externally funded Clean',
                     'other-service': 'Other Service'
                 };
                 selectedServices.push(labels[checkbox.value] || checkbox.value);
