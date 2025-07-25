@@ -451,17 +451,17 @@ body {
     justify-content: center;
     align-items: center;
     order: 1;
-    margin-bottom: var(--spacing-sm);
+    margin-bottom: var(--spacing-xs);
 }
 
 .hero-logo-mobile-img {
-    height: 120px;
+    height: 140px;
     width: auto;
     filter: drop-shadow(0 4px 8px rgba(0, 0, 0, 0.1));
 }
 
 .hero-logo {
-    height: 336px;
+    height: 286px;
     width: auto;
     filter: drop-shadow(0 8px 16px rgba(0, 0, 0, 0.1));
     transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
