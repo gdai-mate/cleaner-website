@@ -713,9 +713,11 @@ document.addEventListener('DOMContentLoaded', function() {
     }
 
     // Enhanced scroll animations for elements coming into view
+    // More responsive settings for mobile
+    const isMobile = window.innerWidth <= 768;
     const observerOptions = {
-        threshold: 0.1,
-        rootMargin: '0px 0px -50px 0px'
+        threshold: isMobile ? 0.05 : 0.1,
+        rootMargin: isMobile ? '0px 0px 20px 0px' : '0px 0px -50px 0px'
     };
 
     const observer = new IntersectionObserver(function(entries) {
@@ -738,8 +740,13 @@ document.addEventListener('DOMContentLoaded', function() {
             el.classList.add('slide-in-right');
         }
         
-        // Add delay for staggered animations
-        el.style.transitionDelay = `${index * 0.1}s`;
+        // Reduce delay for team-intro-content on mobile for faster response
+        let delay = index * 0.1;
+        if (isMobile && el.classList.contains('team-intro-content')) {
+            delay = 0.05; // Much faster on mobile
+        }
+        
+        el.style.transitionDelay = `${delay}s`;
         observer.observe(el);
     });
 
