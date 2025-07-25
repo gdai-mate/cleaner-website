@@ -102,7 +102,7 @@ document.addEventListener('DOMContentLoaded', function() {
     window.addEventListener('scroll', requestTick);
 
     // Form handling for quote requests
-    const quoteButtons = document.querySelectorAll('.btn-primary, .cta-button, .package-btn');
+    const quoteButtons = document.querySelectorAll('.btn-primary, .cta-button, .package-btn, .service-cta .btn');
     
     quoteButtons.forEach(button => {
         button.addEventListener('click', function(e) {
@@ -118,11 +118,15 @@ document.addEventListener('DOMContentLoaded', function() {
         modal.className = 'quote-modal';
         
         const serviceOptions = {
-            'deep': 'One-off Deep Clean',
-            'recurring': 'Recurring Domestic Clean',
-            'construction': 'Post Construction Clean',
-            'renovation': 'Post Renovation Clean',
-            'funded': 'NIISQ, NDIS or other externally funded Clean',
+            'deep-clean': 'One-off Deep Clean',
+            'recurring-basic': 'Recurring Domestic Clean - Basic',
+            'recurring-premium': 'Recurring Domestic Clean - Premium',
+            'post-construction': 'Post Construction Clean',
+            'ndis-funded': 'NDIS & Externally Funded Services',
+            'deep': 'One-off Deep Clean', // legacy support
+            'recurring': 'Recurring Domestic Clean', // legacy support
+            'construction': 'Post Construction Clean', // legacy support
+            'funded': 'NDIS & Externally Funded Services', // legacy support
             'general': 'General Enquiry'
         };
         
@@ -157,11 +161,11 @@ document.addEventListener('DOMContentLoaded', function() {
                             <label for="service">Service Type *</label>
                             <select id="service" name="service" required>
                                 <option value="">Select a service</option>
-                                <option value="deep" ${selectedService === 'deep' ? 'selected' : ''}>One-off Deep Clean</option>
-                                <option value="recurring" ${selectedService === 'recurring' ? 'selected' : ''}>Recurring Domestic Clean</option>
-                                <option value="construction" ${selectedService === 'construction' ? 'selected' : ''}>Post Construction Clean</option>
-                                <option value="renovation" ${selectedService === 'renovation' ? 'selected' : ''}>Post Renovation Clean</option>
-                                <option value="funded" ${selectedService === 'funded' ? 'selected' : ''}>NIISQ, NDIS or other externally funded Clean</option>
+                                <option value="deep-clean" ${selectedService === 'deep-clean' || selectedService === 'deep' ? 'selected' : ''}>One-off Deep Clean</option>
+                                <option value="recurring-basic" ${selectedService === 'recurring-basic' ? 'selected' : ''}>Recurring Domestic Clean - Basic</option>
+                                <option value="recurring-premium" ${selectedService === 'recurring-premium' || selectedService === 'recurring' ? 'selected' : ''}>Recurring Domestic Clean - Premium</option>
+                                <option value="post-construction" ${selectedService === 'post-construction' || selectedService === 'construction' ? 'selected' : ''}>Post Construction Clean</option>
+                                <option value="ndis-funded" ${selectedService === 'ndis-funded' || selectedService === 'funded' ? 'selected' : ''}>NDIS & Externally Funded Services</option>
                                 <option value="other">Other</option>
                             </select>
                         </div>
@@ -624,11 +628,16 @@ document.addEventListener('DOMContentLoaded', function() {
             
             // Create email content
             const serviceTypes = {
-                'deep': 'One-off Deep Clean Request',
-                'recurring': 'Recurring Domestic Clean Request',
-                'construction': 'Post Construction Clean Request',
-                'renovation': 'Post Renovation Clean Request',
-                'funded': 'NIISQ, NDIS or other externally funded Clean Request',
+                'deep-clean': 'One-off Deep Clean Request',
+                'recurring-basic': 'Recurring Domestic Clean - Basic Request',
+                'recurring-premium': 'Recurring Domestic Clean - Premium Request',
+                'post-construction': 'Post Construction Clean Request',
+                'ndis-funded': 'NDIS & Externally Funded Services Request',
+                'deep': 'One-off Deep Clean Request', // legacy support
+                'recurring': 'Recurring Domestic Clean Request', // legacy support
+                'construction': 'Post Construction Clean Request', // legacy support
+                'renovation': 'Post Renovation Clean Request', // legacy support
+                'funded': 'NDIS & Externally Funded Services Request', // legacy support
                 'other': 'Other Cleaning Service Request',
                 'general': 'General Cleaning Inquiry'
             };
@@ -986,6 +995,152 @@ document.addEventListener('DOMContentLoaded', function() {
             
             // Show success message
             alert('Email client opened! Your quote request with photos is ready to send.');
+        });
+    }
+
+    // Expandable Service Cards Functionality
+    const serviceCards = document.querySelectorAll('.service-card');
+    
+    function lockToService(targetCard) {
+        // Get the current position of the target card
+        const cardRect = targetCard.getBoundingClientRect();
+        const cardTop = cardRect.top + window.pageYOffset;
+        const headerHeight = 80;
+        const targetScrollTop = cardTop - headerHeight;
+        
+        // Smoothly scroll to keep the clicked service in view
+        window.scrollTo({
+            top: targetScrollTop,
+            behavior: 'smooth'
+        });
+    }
+    
+    serviceCards.forEach(card => {
+        const header = card.querySelector('.service-header');
+        const details = card.querySelector('.service-details');
+        const closeBtn = card.querySelector('.service-close-btn');
+        
+        // Expand on header click
+        header.addEventListener('click', function() {
+            // Store current scroll position and card position
+            const currentScrollY = window.pageYOffset;
+            const cardRect = card.getBoundingClientRect();
+            const cardTopBeforeExpansion = cardRect.top + currentScrollY;
+            
+            // Close all other cards first (without animation to prevent jumping)
+            serviceCards.forEach(otherCard => {
+                if (otherCard !== card && otherCard.classList.contains('expanded')) {
+                    const otherDetails = otherCard.querySelector('.service-details');
+                    otherCard.classList.remove('expanded');
+                    otherDetails.style.transition = 'none'; // Disable transition temporarily
+                    otherDetails.style.maxHeight = '0';
+                    // Re-enable transition after a brief moment
+                    setTimeout(() => {
+                        otherDetails.style.transition = 'max-height 0.4s ease';
+                    }, 50);
+                }
+            });
+            
+            // Brief delay to let the DOM settle, then expand current card
+            setTimeout(() => {
+                card.classList.add('expanded');
+                const scrollHeight = details.scrollHeight;
+                details.style.maxHeight = scrollHeight + 'px';
+                
+                // After expansion starts, lock to this service
+                setTimeout(() => {
+                    lockToService(card);
+                }, 50);
+            }, 100);
+        });
+        
+        // Close on close button click
+        if (closeBtn) {
+            closeBtn.addEventListener('click', function(e) {
+                e.stopPropagation(); // Prevent header click from triggering
+                
+                // Store position before closing
+                const currentScrollY = window.pageYOffset;
+                const cardRect = card.getBoundingClientRect();
+                const cardTopBeforeCollapse = cardRect.top + currentScrollY;
+                
+                // Collapse the card
+                card.classList.remove('expanded');
+                details.style.maxHeight = '0';
+                
+                // After collapse animation, ensure we stay focused on this card
+                setTimeout(() => {
+                    lockToService(card);
+                }, 200);
+            });
+        }
+    });
+
+    // Handle window resize for service cards
+    let resizeTimeout;
+    window.addEventListener('resize', function() {
+        // Debounce resize events to prevent excessive calculations
+        clearTimeout(resizeTimeout);
+        resizeTimeout = setTimeout(() => {
+            serviceCards.forEach(card => {
+                if (card.classList.contains('expanded')) {
+                    const details = card.querySelector('.service-details');
+                    // Temporarily disable transition during resize
+                    details.style.transition = 'none';
+                    details.style.maxHeight = 'auto';
+                    const scrollHeight = details.scrollHeight;
+                    details.style.maxHeight = scrollHeight + 'px';
+                    // Re-enable transition
+                    setTimeout(() => {
+                        details.style.transition = 'max-height 0.4s ease';
+                    }, 50);
+                }
+            });
+        }, 150);
+    });
+
+    // Gallery Modal Functionality
+    const modal = document.getElementById('imageModal');
+    const modalImg = document.getElementById('modalImage');
+    const modalCaption = document.getElementById('modalCaption');
+    const close = document.getElementsByClassName('close')[0];
+    
+    if (modal && modalImg && modalCaption && close) {
+        // Add click event to all gallery items
+        document.querySelectorAll('.gallery-item').forEach(item => {
+            item.addEventListener('click', function() {
+                const img = this.querySelector('.gallery-image img');
+                const overlay = this.querySelector('.overlay-content');
+                
+                if (img && overlay) {
+                    modal.style.display = 'block';
+                    modalImg.src = img.src;
+                    modalImg.alt = img.alt;
+                    
+                    const title = overlay.querySelector('h3')?.textContent || '';
+                    const description = overlay.querySelector('p')?.textContent || '';
+                    modalCaption.innerHTML = `<strong>${title}</strong><br>${description}`;
+                }
+            });
+        });
+        
+        // Close modal when clicking X
+        close.addEventListener('click', function() {
+            modal.style.display = 'none';
+        });
+        
+        // Close modal when clicking outside the image
+        modal.addEventListener('click', function(e) {
+            if (e.target === modal) {
+                modal.style.display = 'none';
+            }
+        });
+        
+        // Close modal with Escape key
+        document.addEventListener('keydown', function(e) {
+            if (e.key === 'Escape' && modal.style.display === 'block') {
+                modal.style.display = 'none';
+            }
         });
     }
 });

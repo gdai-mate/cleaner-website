@@ -49,184 +49,499 @@
             </div>
         </section>
 
-        <section class="services-detailed">
+        <section class="services-expandable">
             <div class="container">
-                <div class="service-category">
-                    <div class="service-header">
-                        <div class="service-icon">
-                            <svg width="64" height="64" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
-                                <path d="M3 9l9-7 9 7v11a2 2 0 01-2 2H5a2 2 0 01-2-2z"/>
-                                <polyline points="9,22 9,12 15,12 15,22"/>
-                            </svg>
-                        </div>
-                        <div class="service-info">
-                            <h2>Residential Cleaning</h2>
-                            <p>Complete home cleaning services designed to keep your living space pristine and healthy.</p>
-                        </div>
-                    </div>
-                    
-                    <div class="service-packages">
-                        <div class="package-card">
-                            <div class="package-header">
-                                <h3>Recurring Domestic Clean</h3>
-                                <div class="package-price">
-                                    <span class="price">Starting at $140</span>
-                                    <span class="frequency">per visit</span>
-                                </div>
+                <div class="service-intro">
+                    <h2>Our Cleaning Services</h2>
+                    <p>Click on any service below to see detailed information about what's included.</p>
+                </div>
+                
+                <div class="expandable-services">
+                    <!-- One-off Deep Clean -->
+                    <div class="service-card" data-service="deep-clean">
+                        <div class="service-header">
+                            <div class="service-icon">
+                                <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                    <path d="M9 12l2 2 4-4"/>
+                                    <circle cx="12" cy="12" r="9"/>
+                                </svg>
                             </div>
-                            <ul class="package-features">
-                                <li>Dusting all surfaces</li>
-                                <li>Vacuuming carpets and rugs</li>
-                                <li>Mopping hard floors</li>
-                                <li>Bathroom cleaning and sanitizing</li>
-                                <li>Kitchen counters and appliances</li>
-                                <li>Rubbish removal</li>
-                                <li>Making beds</li>
-                            </ul>
-                            <div class="package-schedule">
-                                <strong>Available:</strong> Weekly, Fortnightly, Monthly
-                            </div>
-                            <button class="btn btn-primary package-btn" data-service="recurring">Choose This Package</button>
-                        </div>
-
-                        <div class="package-card featured">
-                            <div class="package-badge">Most Popular</div>
-                            <div class="package-header">
+                            <div class="service-info">
                                 <h3>One-off Deep Clean</h3>
-                                <div class="package-price">
-                                    <span class="price">Starting at $320</span>
-                                    <span class="frequency">per visit</span>
-                                </div>
+                                <p>Comprehensive deep cleaning service for thorough home refresh</p>
                             </div>
-                            <ul class="package-features">
-                                <li>Everything in Recurring Domestic Clean</li>
-                                <li>Inside oven and refrigerator</li>
-                                <li>Cabinet fronts and interiors</li>
-                                <li>Skirting boards and window sills</li>
-                                <li>Light fixtures and ceiling fans</li>
-                                <li>Behind/under furniture</li>
-                                <li>Detailed bathroom deep clean</li>
-                                <li>Wardrobe organisation</li>
-                            </ul>
-                            <div class="package-schedule">
-                                <strong>Available:</strong> One-time service
+                            <div class="expand-arrow">
+                                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                    <polyline points="6,9 12,15 18,9"/>
+                                </svg>
                             </div>
-                            <button class="btn btn-primary package-btn" data-service="deep">Choose This Package</button>
                         </div>
-
-                        <div class="package-card">
-                            <div class="package-header">
-                                <h3>Post Renovation Clean</h3>
-                                <div class="package-price">
-                                    <span class="price">Starting at $380</span>
-                                    <span class="frequency">per visit</span>
-                                </div>
+                        <div class="service-details">
+                            <div class="service-close-btn">
+                                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                    <line x1="18" y1="6" x2="6" y2="18"></line>
+                                    <line x1="6" y1="6" x2="18" y2="18"></line>
+                                </svg>
                             </div>
-                            <ul class="package-features">
-                                <li>Complete post-renovation cleaning</li>
-                                <li>Dust and debris removal</li>
-                                <li>Paint splatter cleanup</li>
-                                <li>Window and surface cleaning</li>
-                                <li>Complete carpet vacuuming</li>
-                                <li>Cabinet and fixture cleaning</li>
-                                <li>Final polish and detailing</li>
-                            </ul>
-                            <div class="package-schedule">
-                                <strong>Availability:</strong> Schedule your booking
+                            <div class="details-section">
+                                <h4>General Areas</h4>
+                                <ul>
+                                    <li>Dusting all surfaces from ceiling to floor*</li>
+                                    <li>General tidying*</li>
+                                    <li>Stairs & balustrades cleaned & polished</li>
+                                    <li>Floors vacuumed & mopped throughout</li>
+                                    <li>Skirting boards dusted</li>
+                                    <li>Ceiling fans cleaned</li>
+                                    <li>Scuff marks removed from walls</li>
+                                    <li>Bins emptied, sanitised & liner replaced*</li>
+                                    <li>Air conditioner filters cleaned, dried & returned</li>
+                                </ul>
+                                <p class="note">* (excluding ornaments and artwork to avoid breakages. Please discuss if you would like this included)</p>
+                                <p class="note">* (to ensure the best value & use of our time, we ask that you do a general pick up & put away before we arrive)</p>
+                                <p class="note">* (if rubbish is minimal, we will just empty to save on use of plastic bags)</p>
                             </div>
-                            <button class="btn btn-primary package-btn" data-service="renovation">Choose This Package</button>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="service-category">
-                    <div class="service-header">
-                        <div class="service-icon">
-                            <svg width="64" height="64" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
-                                <rect x="2" y="6" width="20" height="12" rx="2"/>
-                                <path d="M12 12h.01"/>
-                                <path d="M17 12h.01"/>
-                                <path d="M7 12h.01"/>
-                            </svg>
-                        </div>
-                        <div class="service-info">
-                            <h2>Specialty Services</h2>
-                            <p>Specialized cleaning services for construction sites, renovations, and externally funded programs.</p>
+                            
+                            <div class="details-section">
+                                <h4>Kitchen & Dining</h4>
+                                <ul>
+                                    <li>All surfaces sanitised & polished</li>
+                                    <li>Dining table cleaned & polished with timber polish</li>
+                                    <li>Dining chairs brushed</li>
+                                    <li>Oven fascia sanitised & polished</li>
+                                    <li>Microwaves sanitised & polished (inside & out)</li>
+                                    <li>Fridge fascia sanitised & polished (top & sides inc)</li>
+                                    <li>Countertops & window ledges sanitised & polished</li>
+                                    <li>Cupboard doors & drawer facias sanitised & polished</li>
+                                    <li>Tops of cupboards cleaned</li>
+                                    <li>Sinks tidied*, sanitised & polished</li>
+                                    <li>Tapware sanitised & polished</li>
+                                </ul>
+                                <p class="note">* (we will wash or stack any dishes that are present but to ensure the best use of our time, we ask that you please do the dishes before we arrive)</p>
+                            </div>
+                            
+                            <div class="details-section">
+                                <h4>Bathrooms</h4>
+                                <ul>
+                                    <li>Vanity, shower, WC & bath sanitised & polished*</li>
+                                    <li>All toiletries cleaned & dried before returning</li>
+                                    <li>Mirrors & tapware polished</li>
+                                    <li>Window ledges & skirting boards dusted</li>
+                                    <li>Shelving dusted/cleaned</li>
+                                    <li>Scuff marks removed from walls</li>
+                                    <li>Drains cleaned & unclogged</li>
+                                    <li>Exhaust fans dusted</li>
+                                    <li>Towels, hand towels & mats folded*</li>
+                                    <li>Hair removed from brushes</li>
+                                    <li>Toothbrush caddies cleaned</li>
+                                </ul>
+                                <p class="note">* (mould removal available upon request)</p>
+                                <p class="note">* (if provided)</p>
+                            </div>
+                            
+                            <div class="details-section">
+                                <h4>Laundry</h4>
+                                <ul>
+                                    <li>All surfaces sanitised & polished</li>
+                                    <li>Splash back cleaned & polished & tapware cleaned & polished</li>
+                                    <li>Washer & dryer fascia dusted inc sides & top if accessible</li>
+                                </ul>
+                            </div>
+                            
+                            <div class="details-section">
+                                <h4>Bedrooms</h4>
+                                <ul>
+                                    <li>All surfaces dusted inc window sills</li>
+                                    <li>Bed sheets straightened*</li>
+                                    <li>Mirrors polished</li>
+                                    <li>Scuff marks removed from walls</li>
+                                </ul>
+                                <p class="note">* (bed sheets can be changed upon request for an extra fee)</p>
+                            </div>
+                            
+                            <div class="details-section">
+                                <h4>Living Areas</h4>
+                                <ul>
+                                    <li>All surfaces dusted</li>
+                                    <li>Scuff marks removed from walls</li>
+                                    <li>Lounge brushed & cushions arranged</li>
+                                    <li>Coffee tables tidied & cleaned</li>
+                                </ul>
+                            </div>
+                            
+                            <div class="details-section">
+                                <h4>Thoroughfares</h4>
+                                <ul>
+                                    <li>All surfaces dusted</li>
+                                    <li>Scuff marks removed from walls</li>
+                                </ul>
+                            </div>
+                            
+                            <div class="details-section">
+                                <h4>Extras upon request*</h4>
+                                <ul>
+                                    <li>Internal clean & organisation of fridge</li>
+                                    <li>Internal clean of oven</li>
+                                    <li>Window & tracks cleaned including screens</li>
+                                    <li>Timber furniture & tables polished</li>
+                                    <li>Descaling of tapware, toilet & drains</li>
+                                    <li>Blinds cleaned</li>
+                                    <li>Outdoor areas</li>
+                                </ul>
+                                <p class="note">* (any extras incur a charge. Price upon individual request & evaluation)</p>
+                            </div>
+                            
+                            <div class="service-cta">
+                                <button class="btn btn-primary" data-service="deep-clean">Get Quote for Deep Clean</button>
+                            </div>
                         </div>
                     </div>
                     
-                    <div class="service-packages">
-                        <div class="package-card">
-                            <div class="package-header">
+                    <!-- Recurring Basic -->
+                    <div class="service-card" data-service="recurring-basic">
+                        <div class="service-header">
+                            <div class="service-icon">
+                                <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                    <path d="M3 9l9-7 9 7v11a2 2 0 01-2 2H5a2 2 0 01-2-2z"/>
+                                    <polyline points="9,22 9,12 15,12 15,22"/>
+                                </svg>
+                            </div>
+                            <div class="service-info">
+                                <h3>Recurring Domestic Clean - Basic</h3>
+                                <p>Essential cleaning maintenance for your home on a regular schedule</p>
+                            </div>
+                            <div class="expand-arrow">
+                                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                    <polyline points="6,9 12,15 18,9"/>
+                                </svg>
+                            </div>
+                        </div>
+                        <div class="service-details">
+                            <div class="service-close-btn">
+                                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                    <line x1="18" y1="6" x2="6" y2="18"></line>
+                                    <line x1="6" y1="6" x2="18" y2="18"></line>
+                                </svg>
+                            </div>
+                            <div class="details-section">
+                                <h4>General</h4>
+                                <ul>
+                                    <li>Dusting of general surfaces*</li>
+                                    <li>Floors vacuumed & mopped throughout*</li>
+                                </ul>
+                                <p class="note">* (excluding ornaments and artwork to avoid breakages. Please discuss if you would like this included)</p>
+                                <p class="note">* (to ensure the best value & use of our time, we ask that you do a general pick up & put away before we arrive)</p>
+                            </div>
+                            
+                            <div class="details-section">
+                                <h4>Kitchen</h4>
+                                <ul>
+                                    <li>All benchtops cleaned incl stovetop*, oven fascia, microwave fascia & fridge door handle</li>
+                                    <li>Sinks tidied*</li>
+                                    <li>Tapware sanitised & polished</li>
+                                </ul>
+                                <p class="note">* (gas hobs & grills not included, please discuss to include)</p>
+                                <p class="note">* (we will wash & put away any dishes that are present but to ensure the best use of our time, we ask that you please do the dishes before we arrive)</p>
+                            </div>
+                            
+                            <div class="details-section">
+                                <h4>Bathrooms</h4>
+                                <ul>
+                                    <li>Vanity, shower, WC & bath sanitised*</li>
+                                    <li>Mirrors & tapware polished</li>
+                                    <li>Window ledges dusted</li>
+                                    <li>Towels, hand towels & mats folded*</li>
+                                    <li>Hair removed from brushes</li>
+                                    <li>Toothbrush caddies cleaned</li>
+                                </ul>
+                                <p class="note">* (mould removal available upon request for an additional charge)</p>
+                                <p class="note">* (if provided)</p>
+                            </div>
+                            
+                            <div class="details-section">
+                                <h4>Laundry</h4>
+                                <ul>
+                                    <li>All benchtops cleaned*</li>
+                                    <li>Sink & tapware sanitised & polished*</li>
+                                </ul>
+                                <p class="note">* (where accessible)</p>
+                            </div>
+                            
+                            <div class="details-section">
+                                <h4>Bedrooms</h4>
+                                <ul>
+                                    <li>General tidying & dusting*</li>
+                                    <li>Mirrors polished</li>
+                                </ul>
+                                <p class="note">* (to ensure the best value & use of our time, we ask that you do a general pick up & put away before we arrive)</p>
+                            </div>
+                            
+                            <div class="details-section">
+                                <h4>Living Areas</h4>
+                                <ul>
+                                    <li>Lounge brushed & cushions arranged</li>
+                                    <li>Coffee tables tidied & cleaned</li>
+                                </ul>
+                            </div>
+                            
+                            <div class="details-section">
+                                <h4>Extras upon request*</h4>
+                                <ul>
+                                    <li>Internal clean & sort of fridge</li>
+                                    <li>Internal clean of oven</li>
+                                    <li>Window & tracks cleaned</li>
+                                    <li>Timber furniture polished</li>
+                                    <li>Descaling of tapware, toilet & drains</li>
+                                    <li>Under furniture dusted</li>
+                                    <li>Blinds cleaned</li>
+                                    <li>Outdoor area</li>
+                                    <li>Any items off the Premium Package</li>
+                                    <li>Any extra cleaning requests</li>
+                                </ul>
+                                <p class="note">* (any extras incur a charge. Price upon individual request & evaluation)</p>
+                            </div>
+                            
+                            <div class="service-schedule">
+                                <p><strong>Available:</strong> Weekly, Fortnightly, Monthly</p>
+                            </div>
+                            
+                            <div class="service-cta">
+                                <button class="btn btn-primary" data-service="recurring-basic">Get Quote for Basic Recurring</button>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Recurring Premium -->
+                    <div class="service-card featured" data-service="recurring-premium">
+                        <div class="service-badge">Most Popular</div>
+                        <div class="service-header">
+                            <div class="service-icon">
+                                <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                    <path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/>
+                                </svg>
+                            </div>
+                            <div class="service-info">
+                                <h3>Recurring Domestic Clean - Premium</h3>
+                                <p>Comprehensive regular cleaning with enhanced attention to detail</p>
+                            </div>
+                            <div class="expand-arrow">
+                                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                    <polyline points="6,9 12,15 18,9"/>
+                                </svg>
+                            </div>
+                        </div>
+                        <div class="service-details">
+                            <div class="service-close-btn">
+                                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                    <line x1="18" y1="6" x2="6" y2="18"></line>
+                                    <line x1="6" y1="6" x2="18" y2="18"></line>
+                                </svg>
+                            </div>
+                            <div class="details-section">
+                                <h4>General</h4>
+                                <ul>
+                                    <li>Dusting all surfaces from ceiling to floor*</li>
+                                    <li>General tidying*</li>
+                                    <li>Floors vacuumed & mopped throughout</li>
+                                    <li>Skirting boards dusted</li>
+                                    <li>Bins emptied, sanitised & liner replaced*</li>
+                                </ul>
+                                <p class="note">* (excluding ornaments and artwork to avoid breakages. Please discuss if you would like this included)</p>
+                                <p class="note">* (to ensure the best value & use of our time, we ask that you do a general pick up & put away before we arrive)</p>
+                                <p class="note">* (if rubbish is minimal, we will just empty to save on use of plastic bags)</p>
+                            </div>
+                            
+                            <div class="details-section">
+                                <h4>Kitchen</h4>
+                                <ul>
+                                    <li>All surfaces sanitised & polished incl stovetop*, splash back, oven fascia, microwave (inside & out), fridge fascia (top & sides), countertops & window ledges, cupboard doors & drawer facias</li>
+                                    <li>Sinks tidied*, sanitised & polished</li>
+                                    <li>Tapware sanitised & polished</li>
+                                </ul>
+                                <p class="note">* (gas hobs & grills not included, please discuss to include)</p>
+                                <p class="note">* (we will wash or stack any dishes that are present but to ensure the best use of our time, we ask that you please do the dishes before we arrive)</p>
+                            </div>
+                            
+                            <div class="details-section">
+                                <h4>Bathrooms</h4>
+                                <ul>
+                                    <li>Vanity, shower, WC & bath sanitised & polished*</li>
+                                    <li>All toiletries cleaned & dried before returning</li>
+                                    <li>Mirrors & tapware polished</li>
+                                    <li>Window ledges & skirting boards dusted</li>
+                                    <li>Towels, hand towels & mats folded*</li>
+                                    <li>Hair removed from brushes</li>
+                                    <li>Toothbrush caddies cleaned</li>
+                                </ul>
+                                <p class="note">* (mould removal available upon request)</p>
+                                <p class="note">* (if provided)</p>
+                            </div>
+                            
+                            <div class="details-section">
+                                <h4>Laundry</h4>
+                                <ul>
+                                    <li>All surfaces sanitised & polished</li>
+                                    <li>Splash back & tapware polished</li>
+                                    <li>Washer & dryer fascia dusted inc sides & top if accessible</li>
+                                </ul>
+                            </div>
+                            
+                            <div class="details-section">
+                                <h4>Bedrooms</h4>
+                                <ul>
+                                    <li>All surfaces dusted inc fans & window sills</li>
+                                    <li>Bed sheets straightened*</li>
+                                    <li>Mirrors polished</li>
+                                </ul>
+                                <p class="note">* (bed sheets can be changed upon request)</p>
+                            </div>
+                            
+                            <div class="details-section">
+                                <h4>Living Areas</h4>
+                                <ul>
+                                    <li>All surfaces dusted</li>
+                                    <li>Lounge brushed & cushions arranged</li>
+                                    <li>Coffee tables tidied & cleaned</li>
+                                </ul>
+                            </div>
+                            
+                            <div class="details-section">
+                                <h4>Thoroughfares</h4>
+                                <ul>
+                                    <li>All surfaces dusted</li>
+                                </ul>
+                            </div>
+                            
+                            <div class="details-section">
+                                <h4>Extras upon request*</h4>
+                                <ul>
+                                    <li>Internal clean & organisation of fridge</li>
+                                    <li>Internal clean of oven</li>
+                                    <li>Window & tracks cleaned including screens</li>
+                                    <li>Timber furniture & tables polished</li>
+                                    <li>Descaling of tapware, toilet & drains</li>
+                                    <li>Under furniture dusted</li>
+                                    <li>Blinds cleaned</li>
+                                    <li>Outdoor areas</li>
+                                </ul>
+                                <p class="note">* (any extras incur a charge. Price upon individual request & evaluation)</p>
+                            </div>
+                            
+                            <div class="service-schedule">
+                                <p><strong>Available:</strong> Weekly, Fortnightly, Monthly</p>
+                            </div>
+                            
+                            <div class="service-cta">
+                                <button class="btn btn-primary" data-service="recurring-premium">Get Quote for Premium Recurring</button>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Post Construction -->
+                    <div class="service-card" data-service="post-construction">
+                        <div class="service-header">
+                            <div class="service-icon">
+                                <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                    <rect x="2" y="6" width="20" height="12" rx="2"/>
+                                    <path d="M12 12h.01"/>
+                                    <path d="M17 12h.01"/>
+                                    <path d="M7 12h.01"/>
+                                </svg>
+                            </div>
+                            <div class="service-info">
                                 <h3>Post Construction Clean</h3>
-                                <div class="package-price">
-                                    <span class="price">Custom</span>
-                                    <span class="frequency">pricing</span>
-                                </div>
+                                <p>Specialized cleaning for construction sites, renovations, and new builds</p>
                             </div>
-                            <ul class="package-features">
-                                <li>Dust and debris removal</li>
-                                <li>Paint splatter cleanup</li>
-                                <li>Window and fixture cleaning</li>
-                                <li>Floor polishing and sealing</li>
-                                <li>HVAC system cleaning</li>
-                                <li>Final walkthrough preparation</li>
-                                <li>Safety compliance cleanup</li>
-                            </ul>
-                            <div class="package-schedule">
-                                <strong>Schedule:</strong> Flexible scheduling available
+                            <div class="expand-arrow">
+                                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                    <polyline points="6,9 12,15 18,9"/>
+                                </svg>
                             </div>
-                            <button class="btn btn-primary package-btn" data-service="construction">Get Custom Quote</button>
                         </div>
-
-                        <div class="package-card">
-                            <div class="package-header">
-                                <h3>NIISQ, NDIS & Externally Funded Clean</h3>
-                                <div class="package-price">
-                                    <span class="price">Funded</span>
-                                    <span class="frequency">services</span>
-                                </div>
+                        <div class="service-details">
+                            <div class="service-close-btn">
+                                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                    <line x1="18" y1="6" x2="6" y2="18"></line>
+                                    <line x1="6" y1="6" x2="18" y2="18"></line>
+                                </svg>
                             </div>
-                            <ul class="package-features">
-                                <li>NIISQ qualified cleaning services</li>
-                                <li>NDIS approved cleaning support</li>
-                                <li>Government funded programs</li>
-                                <li>Tailored to individual needs</li>
-                                <li>Regular maintenance cleaning</li>
-                                <li>Detailed care and attention</li>
-                                <li>Compliance with funding requirements</li>
-                            </ul>
-                            <div class="package-schedule">
-                                <strong>Schedule:</strong> As per funding approval
+                            <div class="details-section">
+                                <h4>Comprehensive Construction Cleanup</h4>
+                                <ul>
+                                    <li>Complete dust and debris removal</li>
+                                    <li>Paint splatter and adhesive cleanup</li>
+                                    <li>Window and fixture deep cleaning</li>
+                                    <li>Floor polishing and protective sealing</li>
+                                    <li>HVAC system cleaning and filter replacement</li>
+                                    <li>Final walkthrough preparation</li>
+                                    <li>Safety compliance cleanup</li>
+                                    <li>Detailed surface sanitization</li>
+                                </ul>
                             </div>
-                            <button class="btn btn-primary package-btn" data-service="funded">Get Custom Quote</button>
+                            
+                            <div class="service-schedule">
+                                <p><strong>Scheduling:</strong> Flexible scheduling available to meet project deadlines</p>
+                                <p><strong>Pricing:</strong> Custom quotes based on project size and requirements</p>
+                            </div>
+                            
+                            <div class="service-cta">
+                                <button class="btn btn-primary" data-service="post-construction">Get Custom Construction Quote</button>
+                            </div>
                         </div>
-
-                        <div class="package-card">
-                            <div class="package-header">
-                                <h3>Other Services</h3>
-                                <div class="package-price">
-                                    <span class="price">Custom</span>
-                                    <span class="frequency">rates</span>
-                                </div>
+                    </div>
+                    
+                    <!-- NDIS & Funded Services -->
+                    <div class="service-card" data-service="ndis-funded">
+                        <div class="service-header">
+                            <div class="service-icon">
+                                <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                    <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/>
+                                    <circle cx="9" cy="7" r="4"/>
+                                    <path d="M23 21v-2a4 4 0 0 0-3-3.87"/>
+                                    <path d="M16 3.13a4 4 0 0 1 0 7.75"/>
+                                </svg>
                             </div>
-                            <ul class="package-features">
-                                <li>Custom cleaning requirements</li>
-                                <li>One-off special projects</li>
-                                <li>Emergency cleaning services</li>
-                                <li>Property maintenance cleaning</li>
-                                <li>Move-in/move-out assistance</li>
-                                <li>Holiday cleaning services</li>
-                                <li>Tailored solutions</li>
-                            </ul>
-                            <div class="package-schedule">
-                                <strong>Timing:</strong> Flexible scheduling available
+                            <div class="service-info">
+                                <h3>NDIS & Externally Funded Services</h3>
+                                <p>Qualified cleaning services for NDIS participants and government-funded programs</p>
                             </div>
-                            <button class="btn btn-primary package-btn" data-service="other">Get Custom Quote</button>
+                            <div class="expand-arrow">
+                                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                    <polyline points="6,9 12,15 18,9"/>
+                                </svg>
+                            </div>
+                        </div>
+                        <div class="service-details">
+                            <div class="service-close-btn">
+                                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                    <line x1="18" y1="6" x2="6" y2="18"></line>
+                                    <line x1="6" y1="6" x2="18" y2="18"></line>
+                                </svg>
+                            </div>
+                            <div class="details-section">
+                                <h4>Funded Cleaning Support</h4>
+                                <ul>
+                                    <li>NDIS approved cleaning support services</li>
+                                    <li>NIISQ qualified cleaning professionals</li>
+                                    <li>Government funded program compliance</li>
+                                    <li>Individualized service plans</li>
+                                    <li>Regular maintenance cleaning schedules</li>
+                                    <li>Detailed care and attention to participant needs</li>
+                                    <li>Full compliance with funding requirements</li>
+                                    <li>Professional reporting and documentation</li>
+                                </ul>
+                            </div>
+                            
+                            <div class="service-schedule">
+                                <p><strong>Scheduling:</strong> As per individual funding approval and participant needs</p>
+                                <p><strong>Funding:</strong> Direct billing available for approved participants</p>
+                            </div>
+                            
+                            <div class="service-cta">
+                                <button class="btn btn-primary" data-service="ndis-funded">Contact for NDIS Assessment</button>
+                            </div>
                         </div>
                     </div>
                 </div>
-
             </div>
         </section>
 
