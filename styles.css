@@ -254,6 +254,42 @@ body {
     }
 }
 
+@keyframes gentle-float-1 {
+    0%, 100% { 
+        transform: translateY(0px) translateX(0px) rotate(0deg); 
+    }
+    33% { 
+        transform: translateY(-4px) translateX(2px) rotate(0.3deg); 
+    }
+    66% { 
+        transform: translateY(3px) translateX(-1px) rotate(-0.2deg); 
+    }
+}
+
+@keyframes gentle-float-2 {
+    0%, 100% { 
+        transform: translateY(0px) translateX(0px) rotate(0deg); 
+    }
+    25% { 
+        transform: translateY(3px) translateX(-2px) rotate(-0.25deg); 
+    }
+    75% { 
+        transform: translateY(-2px) translateX(1.5px) rotate(0.2deg); 
+    }
+}
+
+@keyframes gentle-float-3 {
+    0%, 100% { 
+        transform: translateY(0px) translateX(0px) rotate(0deg); 
+    }
+    40% { 
+        transform: translateY(-3px) translateX(1.5px) rotate(0.15deg); 
+    }
+    80% { 
+        transform: translateY(2px) translateX(-2px) rotate(-0.1deg); 
+    }
+}
+
 .hero-content {
     flex: 2;
     max-width: 700px;
@@ -388,14 +424,38 @@ body {
 .hero-visual-section {
     flex: 1.5;
     display: flex;
+    flex-direction: column;
     justify-content: center;
-    align-items: center;
+    align-items: flex-start;
     position: relative;
     overflow: visible;
     min-height: 600px;
     max-width: 100%;
     z-index: 1;
     animation: fade-in-up 1s ease-out 0.6s both;
+    gap: var(--spacing-lg);
+    padding-left: var(--spacing-md);
+}
+
+.hero-logo-section {
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    position: relative;
+    z-index: 3;
+    padding-left: var(--spacing-lg);
+}
+
+.hero-logo {
+    height: 336px;
+    width: auto;
+    filter: drop-shadow(0 8px 16px rgba(0, 0, 0, 0.1));
+    transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.hero-logo:hover {
+    transform: scale(1.05);
+    filter: drop-shadow(0 12px 24px rgba(0, 0, 0, 0.15));
 }
 
 .hero-images {
@@ -404,6 +464,7 @@ body {
     height: 500px;
     max-width: 100%;
     overflow: visible; /* Ensure shadows are not clipped */
+    margin-left: calc(var(--spacing-lg) - 100px);
 }
 
 .cleaning-image {
@@ -456,24 +517,27 @@ body {
     width: 320px;
     height: 240px;
     top: 0;
-    left: 20px;
+    left: -20px;
     z-index: 3;
+    animation: gentle-float-1 6s ease-in-out infinite;
 }
 
 .image-2 {
     width: 350px;
     height: 260px;
     top: 120px;
-    right: 20px;
+    right: 60px;
     z-index: 2;
+    animation: gentle-float-2 8s ease-in-out infinite;
 }
 
 .image-3 {
     width: 280px;
     height: 200px;
     bottom: 0;
-    left: 120px;
+    left: 80px;
     z-index: 1;
+    animation: gentle-float-3 7s ease-in-out infinite;
 }
 
 /* Hero Content Updates */
@@ -1017,6 +1081,21 @@ body {
     .hero-visual-section {
         flex: 1;
         min-height: 400px;
+        order: 3;
+        flex-direction: column;
+    }
+
+    .hero-logo-section {
+        order: 1;
+        margin-bottom: var(--spacing-md);
+    }
+
+    .hero-logo {
+        height: 200px;
+    }
+
+    .hero-content {
+        order: 2;
     }
 
     .hero-images {
@@ -1024,6 +1103,7 @@ body {
         height: 300px;
         margin: 0 auto;
         overflow: visible;
+        order: 3;
     }
 
     .image-1 {
