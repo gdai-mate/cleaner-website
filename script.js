@@ -105,6 +105,11 @@ document.addEventListener('DOMContentLoaded', function() {
     const quoteButtons = document.querySelectorAll('.btn-primary, .cta-button, .package-btn, .service-cta .btn');
     
     quoteButtons.forEach(button => {
+        // Skip buttons that should navigate normally (like services-link)
+        if (button.classList.contains('services-link')) {
+            return;
+        }
+        
         button.addEventListener('click', function(e) {
             e.preventDefault();
             const selectedService = this.getAttribute('data-service') || 'general';
