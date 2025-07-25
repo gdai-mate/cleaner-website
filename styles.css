@@ -455,7 +455,7 @@ body {
 }
 
 .hero-logo-mobile-img {
-    height: 100px;
+    height: 60px;
     width: auto;
     filter: drop-shadow(0 4px 8px rgba(0, 0, 0, 0.1));
 }
@@ -1105,7 +1105,11 @@ body {
     }
 
     .hero-logo-section {
-        display: none;
+        display: none !important;
+    }
+    
+    .hero-visual-section .hero-logo-section {
+        display: none !important;
     }
 
     .hero-images {
