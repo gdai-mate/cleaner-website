@@ -460,6 +460,24 @@ body {
     filter: drop-shadow(0 4px 8px rgba(0, 0, 0, 0.1));
 }
 
+/* Force mobile logo styles with high specificity */
+@media screen and (max-width: 768px) {
+    .hero .hero-logo-mobile {
+        display: flex !important;
+        justify-content: center !important;
+        align-items: center !important;
+        order: 1 !important;
+        margin-bottom: 8px !important;
+    }
+    
+    .hero .hero-logo-mobile .hero-logo-mobile-img {
+        height: 140px !important;
+        width: auto !important;
+        max-width: 90vw !important;
+        filter: drop-shadow(0 4px 8px rgba(0, 0, 0, 0.1)) !important;
+    }
+}
+
 .hero-logo {
     height: 286px;
     width: auto;
@@ -1082,7 +1100,12 @@ body {
     }
     
     .hero-logo-mobile {
-        display: flex;
+        display: flex !important;
+    }
+    
+    .hero-logo-mobile-img {
+        height: 140px !important;
+        margin-bottom: 0 !important;
     }
 
     .hero-title {
