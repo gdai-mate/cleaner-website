@@ -52,6 +52,7 @@ body {
     line-height: 1.6;
     color: var(--dark-gray);
     background-color: var(--white);
+    overflow-x: hidden; /* Prevent horizontal scrolling */
 }
 
 .container {
@@ -391,8 +392,8 @@ body {
     justify-content: center;
     align-items: center;
     position: relative;
+    overflow: visible;
     min-height: 600px;
-    overflow: hidden;
     max-width: 100%;
     z-index: 1;
     animation: fade-in-up 1s ease-out 0.6s both;
@@ -403,6 +404,7 @@ body {
     width: min(600px, 90vw);
     height: 500px;
     max-width: 100%;
+    overflow: visible; /* Ensure shadows are not clipped */
 }
 
 .cleaning-image {
@@ -455,7 +457,7 @@ body {
     width: 320px;
     height: 240px;
     top: 0;
-    left: 0;
+    left: 20px;
     z-index: 3;
 }
 
@@ -463,7 +465,7 @@ body {
     width: 350px;
     height: 260px;
     top: 120px;
-    right: 0;
+    right: 20px;
     z-index: 2;
 }
 
@@ -794,7 +796,7 @@ body {
 .testimonials {
     padding: var(--spacing-xl) 0 calc(var(--spacing-xl) + 30px);
     background: linear-gradient(135deg, rgba(30, 124, 168, 0.05), rgba(0, 188, 212, 0.05));
-    overflow: hidden;
+    overflow: visible;
 }
 
 .testimonials-carousel {
@@ -1025,6 +1027,7 @@ body {
         width: 350px;
         height: 300px;
         margin: 0 auto;
+        overflow: visible;
     }
 
     .image-1 {
@@ -1152,6 +1155,7 @@ body {
 /* Smooth scrolling */
 html {
     scroll-behavior: smooth;
+    overflow-x: hidden; /* Prevent horizontal scrolling */
 }
 
 /* Focus styles for accessibility */
@@ -1521,6 +1525,15 @@ img {
     .guarantee-content {
         flex-direction: column;
         text-align: center;
+    }
+    
+    /* Reduce spacing between services and guarantee sections on mobile */
+    .services-detailed {
+        padding: var(--spacing-lg) 0 var(--spacing-sm);
+    }
+    
+    .service-guarantee {
+        padding: var(--spacing-sm) 0 var(--spacing-lg);
     }
 
     .add-ons-grid {
@@ -2260,16 +2273,27 @@ img {
 .checkbox-group {
     display: flex;
     flex-direction: column;
-    gap: var(--spacing-sm);
+    gap: var(--spacing-xs);
+    padding: 0;
 }
 
 .checkbox-item {
     display: flex;
     align-items: flex-start;
-    gap: var(--spacing-sm);
+    gap: var(--spacing-xs);
     cursor: pointer;
     font-weight: var(--font-weight-normal);
-    line-height: 1.5;
+    line-height: 1.4;
+    padding: var(--spacing-xs);
+    border-radius: var(--radius-sm);
+    transition: background-color 0.2s ease;
+    min-height: 36px; /* Reduced height to save space */
+    width: 100%;
+    position: relative;
+}
+
+.checkbox-item:hover {
+    background-color: rgba(30, 124, 168, 0.05);
 }
 
 .checkbox-item input[type="checkbox"] {
@@ -2277,33 +2301,41 @@ img {
     margin: 0;
     opacity: 0;
     position: absolute;
+    z-index: -1;
 }
 
 .checkmark {
-    width: 20px;
-    height: 20px;
-    border: 2px solid rgba(30, 124, 168, 0.3);
+    width: 18px;
+    height: 18px;
+    border: 2px solid rgba(30, 124, 168, 0.4);
     border-radius: var(--radius-sm);
     position: relative;
     flex-shrink: 0;
-    margin-top: 2px;
     transition: all 0.3s ease;
+    background: var(--white);
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    margin-top: 2px;
 }
 
 .checkbox-item input[type="checkbox"]:checked + .checkmark {
     background: var(--primary-blue);
     border-color: var(--primary-blue);
+    transform: scale(1.05);
 }
 
 .checkbox-item input[type="checkbox"]:checked + .checkmark::after {
     content: '✓';
-    position: absolute;
     color: var(--white);
-    font-size: 0.8rem;
+    font-size: 0.9rem;
     font-weight: bold;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
+    display: block;
+}
+
+.checkbox-item input[type="checkbox"]:focus + .checkmark {
+    box-shadow: 0 0 0 3px rgba(30, 124, 168, 0.2);
+    outline: none;
 }
 
 .form-consent {
@@ -2488,6 +2520,84 @@ img {
 
     .team-grid {
         grid-template-columns: 1fr;
+        gap: var(--spacing-md);
+    }
+    
+    .team-member {
+        flex-direction: column;
+        text-align: center;
+        padding: var(--spacing-md);
+    }
+    
+    .member-photo {
+        align-self: center;
+        margin-bottom: var(--spacing-sm);
+    }
+    
+    .member-photo img {
+        width: 100px;
+        height: 100px;
+    }
+    
+    .member-info h3 {
+        font-size: 1.2rem;
+        margin-bottom: var(--spacing-xs);
+    }
+    
+    .member-role {
+        font-size: 0.9rem;
+        margin-bottom: var(--spacing-sm);
+    }
+    
+    .member-info p {
+        font-size: 0.9rem;
+        line-height: 1.5;
+    }
+    
+    /* Fix service areas mobile layout */
+    .areas-content {
+        grid-template-columns: 1fr;
+        gap: var(--spacing-lg);
+    }
+    
+    .areas-list {
+        grid-template-columns: 1fr;
+        gap: var(--spacing-xs);
+    }
+    
+    .contact-card {
+        padding: var(--spacing-md);
+    }
+    
+    .contact-card h4 {
+        font-size: 1.1rem;
+        margin-bottom: var(--spacing-sm);
+    }
+    
+    .contact-details {
+        font-size: 0.9rem;
+    }
+    
+    /* Fix contact.html service area map mobile layout */
+    .areas-columns {
+        grid-template-columns: 1fr;
+        gap: var(--spacing-md);
+    }
+    
+    .areas-columns ul {
+        padding: var(--spacing-md);
+    }
+    
+    .primary-areas h3 {
+        font-size: 1.3rem;
+        margin-bottom: var(--spacing-sm);
+    }
+    
+    .travel-note {
+        text-align: center;
+        font-size: 0.9rem;
+        padding: var(--spacing-sm);
+        margin-top: var(--spacing-md);
     }
 
     .filter-buttons {
@@ -2620,7 +2730,7 @@ img {
 
 /* Photo Upload Icon Styling */
 .photo-upload-contact::before {
-    content: "📷";
+    content: "";
     display: block;
     font-size: 2rem;
     margin-bottom: 8px;
@@ -2667,6 +2777,56 @@ img {
     .gallery-showcase,
     .contact-main {
         padding: var(--spacing-md) 0;
+    }
+
+    /* Enhanced mobile checkbox styling */
+    .checkbox-group {
+        gap: var(--spacing-xs);
+    }
+    
+    .checkbox-item {
+        padding: var(--spacing-sm);
+        margin-bottom: 0;
+        border: 1px solid rgba(30, 124, 168, 0.1);
+        border-radius: var(--radius-md);
+        background: var(--white);
+        min-height: 44px;
+        display: flex;
+        align-items: flex-start;
+        gap: var(--spacing-xs);
+        line-height: 1.3;
+    }
+    
+    .checkbox-item:active {
+        background-color: rgba(30, 124, 168, 0.1);
+        transform: scale(0.98);
+    }
+    
+    .checkmark {
+        width: 20px;
+        height: 20px;
+        border-width: 2px;
+        margin-top: 1px;
+        flex-shrink: 0;
+    }
+    
+    /* Mobile form improvements */
+    .form-group input,
+    .form-group select,
+    .form-group textarea {
+        font-size: 16px; /* Prevents zoom on iOS */
+        padding: 14px;
+        border-radius: var(--radius-lg);
+    }
+    
+    .form-group textarea {
+        min-height: 100px;
+        resize: vertical;
+    }
+    
+    .form-group label {
+        font-size: 0.9rem;
+        font-weight: 500;
     }
 
     /* Compress hero section for mobile efficiency */
@@ -2725,6 +2885,7 @@ img {
     .hero-images {
         width: 300px;
         height: 250px;
+        overflow: visible;
     }
 
     /* Smaller hero images for mobile efficiency */
@@ -3117,6 +3278,7 @@ img {
     .hero-images {
         width: 260px;
         height: 220px;
+        overflow: visible;
     }
 
     .service-micro-card {

@@ -135,7 +135,7 @@ document.addEventListener('DOMContentLoaded', function() {
                     <button class="close-modal">&times;</button>
                 </div>
                 <div class="quote-modal-info">
-                    <p>Please include as much detail as possible about the spaces you would like cleaned. Include images and descriptions - we will do our best to provide you with an accurate quote, but please be aware that this is just an estimate and we require a walk-through with you before we give an exact quote.</p>
+                    <p>Provide details about areas to clean and upload photos for an accurate estimate. A walk-through is required before final pricing.</p>
                 </div>
                 <form class="quote-form" id="quoteForm">
                     <div class="form-row-modal">
@@ -194,7 +194,7 @@ document.addEventListener('DOMContentLoaded', function() {
                     </div>
                     <div class="form-group">
                         <label for="message">Additional Details</label>
-                        <textarea id="message" name="message" rows="3" placeholder="Include details about spaces to be cleaned, special requirements, and upload photos above. Note: This is an estimate - a walk-through is required for exact pricing."></textarea>
+                        <textarea id="message" name="message" rows="3" placeholder="Describe the areas to clean, any special requirements, and property details. Photos help us provide better estimates."></textarea>
                     </div>
                     <div class="form-group">
                         <label for="photos">📷 Upload Photos (Optional)</label>
@@ -248,12 +248,47 @@ document.addEventListener('DOMContentLoaded', function() {
                 @media (max-width: 768px) {
                     .form-row-modal {
                         grid-template-columns: 1fr;
-                        gap: 0.5rem;
+                        gap: 0.8rem;
                     }
                     .quote-modal-content {
                         width: 95%;
-                        max-width: 400px;
+                        max-width: 420px;
                         padding: 1.5rem;
+                        margin: 10px;
+                        max-height: 85vh;
+                    }
+                    
+                    .quote-modal-header h3 {
+                        font-size: 1.3rem;
+                        line-height: 1.3;
+                    }
+                    
+                    .quote-modal-info {
+                        padding: 0.8rem;
+                        margin-bottom: 1rem;
+                    }
+                    
+                    .quote-modal-info p {
+                        font-size: 0.85rem;
+                        line-height: 1.4;
+                    }
+                    
+                    .form-group label {
+                        font-size: 0.9rem;
+                        margin-bottom: 0.4rem;
+                    }
+                    
+                    .form-group input,
+                    .form-group select,
+                    .form-group textarea {
+                        padding: 14px;
+                        font-size: 16px; /* Prevents zoom on iOS */
+                        border-radius: 8px;
+                    }
+                    
+                    .form-group textarea {
+                        rows: "2";
+                        min-height: 80px;
                     }
                 }
                 
