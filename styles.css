@@ -446,6 +446,20 @@ body {
     padding-left: var(--spacing-lg);
 }
 
+.hero-logo-mobile {
+    display: none;
+    justify-content: center;
+    align-items: center;
+    order: 1;
+    margin-bottom: var(--spacing-md);
+}
+
+.hero-logo-mobile-img {
+    height: 100px;
+    width: auto;
+    filter: drop-shadow(0 4px 8px rgba(0, 0, 0, 0.1));
+}
+
 .hero-logo {
     height: 336px;
     width: auto;
@@ -1064,6 +1078,11 @@ body {
         padding-left: 0;
         text-align: center;
         width: 100%;
+        order: 2;
+    }
+    
+    .hero-logo-mobile {
+        display: flex;
     }
 
     .hero-title {
@@ -1086,16 +1105,7 @@ body {
     }
 
     .hero-logo-section {
-        order: 1;
-        margin-bottom: var(--spacing-md);
-    }
-
-    .hero-logo {
-        height: 200px;
-    }
-
-    .hero-content {
-        order: 2;
+        display: none;
     }
 
     .hero-images {
