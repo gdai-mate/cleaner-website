@@ -63,6 +63,44 @@ document.addEventListener('DOMContentLoaded', function() {
         lastScrollTop = scrollTop;
     });
 
+    // Patent Leather Texture Scroll Movement
+    let ticking = false;
+    
+    function updatePatentLeatherPosition() {
+        const scrolled = window.pageYOffset;
+        
+        // Gentle, organic scroll movement with easing curve
+        const moveY = Math.sin(scrolled * 0.001) * 8 + scrolled * 0.018; // More organic with sine wave + linear
+        const rotation = scrolled * 0.0003; // Even more subtle rotation
+        const scale = 1 + Math.sin(scrolled * 0.0005) * 0.002; // Tiny breathing effect
+        
+        // Apply to main hero
+        const mainHero = document.querySelector('.hero');
+        if (mainHero) {
+            const heroStyle = `translateY(${moveY}px) rotate(${rotation}deg) scale(${scale})`;
+            mainHero.style.setProperty('--hero-transform', heroStyle);
+        }
+        
+        // Apply to page heroes with slight variation
+        const pageHeroes = document.querySelectorAll('.page-hero');
+        pageHeroes.forEach(hero => {
+            const heroStyle = `translateY(${moveY * 0.75}px) rotate(${rotation * 0.7}deg) scale(${scale})`;
+            hero.style.setProperty('--page-hero-transform', heroStyle);
+        });
+        
+        ticking = false;
+    }
+
+    function requestTick() {
+        if (!ticking) {
+            requestAnimationFrame(updatePatentLeatherPosition);
+            ticking = true;
+        }
+    }
+
+    // Smooth scroll-based movement
+    window.addEventListener('scroll', requestTick);
+
     // Form handling for quote requests
     const quoteButtons = document.querySelectorAll('.btn-primary, .cta-button, .package-btn');
     
@@ -625,7 +663,7 @@ document.addEventListener('DOMContentLoaded', function() {
         });
     }
 
-    // Scroll animations for elements coming into view
+    // Enhanced scroll animations for elements coming into view
     const observerOptions = {
         threshold: 0.1,
         rootMargin: '0px 0px -50px 0px'
@@ -634,19 +672,36 @@ document.addEventListener('DOMContentLoaded', function() {
     const observer = new IntersectionObserver(function(entries) {
         entries.forEach(entry => {
             if (entry.isIntersecting) {
-                entry.target.style.opacity = '1';
-                entry.target.style.transform = 'translateY(0)';
+                entry.target.classList.add('visible');
             }
         });
     }, observerOptions);
 
     // Observe elements for scroll animations
-    const animatedElements = document.querySelectorAll('.feature-card, .service-card, .testimonial-card');
-    animatedElements.forEach(el => {
-        el.style.opacity = '0';
-        el.style.transform = 'translateY(20px)';
-        el.style.transition = 'opacity 0.6s ease, transform 0.6s ease';
+    const animatedElements = document.querySelectorAll('.feature-card, .service-card, .testimonial-card, .services-cta-content, .team-intro-content, .about-content, .values-grid .value-card, .package-card');
+    animatedElements.forEach((el, index) => {
+        // Add different animation classes based on element type and position
+        if (el.classList.contains('feature-card') || el.classList.contains('value-card')) {
+            el.classList.add('fade-in-on-scroll');
+        } else if (index % 2 === 0) {
+            el.classList.add('slide-in-left');
+        } else {
+            el.classList.add('slide-in-right');
+        }
+        
+        // Add delay for staggered animations
+        el.style.transitionDelay = `${index * 0.1}s`;
         observer.observe(el);
+    });
+
+    // Add animation classes to sections
+    const sections = document.querySelectorAll('.services-cta, .team-intro, .about-story, .values-section');
+    sections.forEach((section, index) => {
+        const content = section.querySelector('.services-cta-content, .team-intro-content, .about-content, .values-grid');
+        if (content) {
+            content.classList.add('fade-in-on-scroll');
+            observer.observe(content);
+        }
     });
 
     // Add loading state to buttons
