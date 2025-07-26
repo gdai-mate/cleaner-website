@@ -202,7 +202,7 @@ document.addEventListener('DOMContentLoaded', function() {
                     </div>
                     <div class="form-group">
                         <label for="address">Property Address (Suburb, Postcode)</label>
-                        <input type="text" id="address" name="address" placeholder="e.g. Victoria Point, QLD 4165">
+                        <input type="text" id="address" name="address" placeholder="e.g. West End, QLD 4101">
                     </div>
                     <div class="form-group">
                         <label for="message">Additional Details</label>
