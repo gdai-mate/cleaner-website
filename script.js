@@ -396,7 +396,7 @@ document.addEventListener('DOMContentLoaded', function() {
                 .form-group textarea:focus {
                     outline: none;
                     border-color: var(--dark-blue);
-                    box-shadow: 0 0 0 3px rgba(27, 117, 188, 0.2);
+                    box-shadow: 0 0 0 3px rgba(30, 90, 122, 0.2);
                 }
                 
                 .photo-upload {

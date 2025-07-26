@@ -11,7 +11,7 @@
     --secondary-turquoise: #00D4AA;
     --accent-yellow: #F9E71E;
     --light-blue: #4AA6E0;
-    --dark-blue: #1B75BC;
+    --dark-blue: #1E5A7A;
     --white: #ffffff;
     --light-gray: #f8f9fa;
     --gray: #6c757d;
@@ -50,7 +50,7 @@ body {
     font-family: var(--font-family);
     font-weight: var(--font-weight-normal);
     line-height: 1.6;
-    color: var(--dark-gray);
+    color: var(--dark-blue);
     background-color: var(--white);
     overflow-x: hidden; /* Prevent horizontal scrolling */
 }
@@ -130,8 +130,8 @@ body {
 }
 
 .call-button {
-    background: var(--accent-yellow);
-    color: var(--dark-gray);
+    background: var(--dark-blue);
+    color: var(--white);
     border: none;
     padding: 12px 24px;
     border-radius: var(--radius-md);
@@ -143,14 +143,14 @@ body {
     display: inline-flex;
     align-items: center;
     gap: 6px;
-    box-shadow: 0 2px 4px rgba(249, 231, 30, 0.3);
+    box-shadow: 0 2px 4px rgba(30, 90, 122, 0.3);
 }
 
 .call-button:hover {
-    background: #f0d000;
+    background: var(--light-blue);
     transform: translateY(-1px);
-    box-shadow: 0 4px 8px rgba(249, 231, 30, 0.4);
-    color: var(--dark-gray);
+    box-shadow: 0 4px 8px rgba(30, 90, 122, 0.4);
+    color: var(--white);
 }
 
 .cta-button {
@@ -595,11 +595,11 @@ body {
     color: var(--dark-blue);
     font-weight: var(--font-weight-semibold);
     background: 
-        linear-gradient(135deg, rgba(27, 117, 188, 0.12), rgba(27, 117, 188, 0.08)),
+        linear-gradient(135deg, rgba(30, 90, 122, 0.12), rgba(30, 90, 122, 0.08)),
         rgba(255, 255, 255, 0.9);
     padding: 12px 18px;
     border-radius: var(--radius-md);
-    border: 1px solid rgba(27, 117, 188, 0.25);
+    border: 1px solid rgba(30, 90, 122, 0.25);
     box-shadow: 
         0 4px 8px rgba(0, 0, 0, 0.05),
         0 1px 2px rgba(0, 0, 0, 0.1);
@@ -625,7 +625,7 @@ body {
     box-shadow: 
         0 8px 16px rgba(0, 0, 0, 0.1),
         0 2px 4px rgba(0, 0, 0, 0.1);
-    border-color: rgba(27, 117, 188, 0.4);
+    border-color: rgba(30, 90, 122, 0.4);
 }
 
 .hero-credentials span:hover::before {
@@ -715,7 +715,7 @@ body {
     font-size: 1.5rem;
     font-weight: var(--font-weight-semibold);
     margin-bottom: var(--spacing-sm);
-    color: var(--dark-gray);
+    color: var(--dark-blue);
 }
 
 .feature-card p {
@@ -739,7 +739,7 @@ body {
 .services-cta-content h2 {
     font-size: 2.5rem;
     font-weight: var(--font-weight-bold);
-    color: var(--dark-gray);
+    color: var(--dark-blue);
     margin-bottom: var(--spacing-md);
 }
 
@@ -827,7 +827,7 @@ body {
 .section-header h2 {
     font-size: 2.5rem;
     font-weight: var(--font-weight-bold);
-    color: var(--dark-gray);
+    color: var(--dark-blue);
     margin-bottom: var(--spacing-sm);
 }
 
@@ -953,7 +953,7 @@ body {
 }
 
 .testimonial-author strong {
-    color: var(--dark-gray);
+    color: var(--dark-blue);
     font-weight: var(--font-weight-semibold);
     display: block;
     margin-bottom: 2px;
@@ -1323,7 +1323,7 @@ img {
 .page-hero-content h1 {
     font-size: 3rem;
     font-weight: var(--font-weight-bold);
-    color: var(--dark-gray);
+    color: var(--dark-blue);
     margin-bottom: var(--spacing-md);
     text-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
     position: relative;
@@ -1383,7 +1383,7 @@ img {
 .service-info h2 {
     font-size: 2.5rem;
     font-weight: var(--font-weight-bold);
-    color: var(--dark-gray);
+    color: var(--dark-blue);
     margin-bottom: var(--spacing-sm);
 }
 
@@ -1441,7 +1441,7 @@ img {
 .package-header h3 {
     font-size: 1.5rem;
     font-weight: var(--font-weight-semibold);
-    color: var(--dark-gray);
+    color: var(--dark-blue);
     margin-bottom: var(--spacing-sm);
 }
 
@@ -1492,7 +1492,7 @@ img {
 }
 
 .package-schedule strong {
-    color: var(--dark-gray);
+    color: var(--dark-blue);
 }
 
 /* Add-on Services */
@@ -1510,7 +1510,7 @@ img {
 
 .add-on-pill {
     background: var(--light-gray);
-    color: var(--dark-gray);
+    color: var(--dark-blue);
     padding: 12px 20px;
     border-radius: 50px;
     font-size: 0.9rem;
@@ -1550,7 +1550,7 @@ img {
 .guarantee-text h2 {
     font-size: 2rem;
     font-weight: var(--font-weight-bold);
-    color: var(--dark-gray);
+    color: var(--dark-blue);
     margin-bottom: var(--spacing-sm);
 }
 
@@ -1699,7 +1699,7 @@ img {
 .about-text h2 {
     font-size: 2.5rem;
     font-weight: var(--font-weight-bold);
-    color: var(--dark-gray);
+    color: var(--dark-blue);
     margin-bottom: var(--spacing-lg);
 }
 
@@ -1863,7 +1863,7 @@ img {
 .member-info h3 {
     font-size: 1.5rem;
     font-weight: var(--font-weight-semibold);
-    color: var(--dark-gray);
+    color: var(--dark-blue);
     margin-bottom: 4px;
 }
 
@@ -1912,7 +1912,7 @@ img {
 .value-card h3 {
     font-size: 1.3rem;
     font-weight: var(--font-weight-semibold);
-    color: var(--dark-gray);
+    color: var(--dark-blue);
     margin-bottom: var(--spacing-sm);
 }
 
@@ -1936,7 +1936,7 @@ img {
 .areas-text h3 {
     font-size: 1.5rem;
     font-weight: var(--font-weight-semibold);
-    color: var(--dark-gray);
+    color: var(--dark-blue);
     margin-bottom: var(--spacing-md);
 }
 
@@ -1972,7 +1972,7 @@ img {
 .contact-card h4 {
     font-size: 1.3rem;
     font-weight: var(--font-weight-semibold);
-    color: var(--dark-gray);
+    color: var(--dark-blue);
     margin-bottom: var(--spacing-sm);
 }
 
@@ -2144,7 +2144,7 @@ img {
 .gallery-info h3 {
     font-size: 1.2rem;
     font-weight: var(--font-weight-semibold);
-    color: var(--dark-gray);
+    color: var(--dark-blue);
     margin-bottom: 4px;
 }
 
@@ -2196,7 +2196,7 @@ img {
 }
 
 .testimonial-content cite strong {
-    color: var(--dark-gray);
+    color: var(--dark-blue);
     font-weight: var(--font-weight-semibold);
     display: block;
 }
@@ -2269,7 +2269,7 @@ img {
 .contact-info h2 {
     font-size: 2.2rem;
     font-weight: var(--font-weight-bold);
-    color: var(--dark-gray);
+    color: var(--dark-blue);
     margin-bottom: var(--spacing-md);
 }
 
@@ -2309,7 +2309,7 @@ img {
 .method-details h3 {
     font-size: 1.2rem;
     font-weight: var(--font-weight-semibold);
-    color: var(--dark-gray);
+    color: var(--dark-blue);
     margin-bottom: 4px;
 }
 
@@ -2341,7 +2341,7 @@ img {
 .business-details h3 {
     font-size: 1.3rem;
     font-weight: var(--font-weight-semibold);
-    color: var(--dark-gray);
+    color: var(--dark-blue);
     margin-bottom: var(--spacing-md);
 }
 
@@ -2357,7 +2357,7 @@ img {
 }
 
 .detail-item strong {
-    color: var(--dark-gray);
+    color: var(--dark-blue);
     font-weight: var(--font-weight-semibold);
 }
 
@@ -2371,7 +2371,7 @@ img {
 .quote-form h3 {
     font-size: 1.8rem;
     font-weight: var(--font-weight-semibold);
-    color: var(--dark-gray);
+    color: var(--dark-blue);
     margin-bottom: var(--spacing-sm);
 }
 
@@ -2409,7 +2409,7 @@ img {
 .form-group label {
     display: block;
     font-weight: var(--font-weight-medium);
-    color: var(--dark-gray);
+    color: var(--dark-blue);
     margin-bottom: 6px;
 }
 
@@ -2563,7 +2563,7 @@ img {
 .primary-areas h3 {
     font-size: 1.5rem;
     font-weight: var(--font-weight-semibold);
-    color: var(--dark-gray);
+    color: var(--dark-blue);
     margin-bottom: var(--spacing-md);
     text-align: center;
 }
@@ -3510,7 +3510,7 @@ img {
 
 .team-info h2 {
     font-size: 2rem;
-    color: var(--dark-gray);
+    color: var(--dark-blue);
     margin-bottom: 1rem;
 }
 
@@ -3530,7 +3530,7 @@ img {
 
 .services-text h2 {
     font-size: 2.2rem;
-    color: var(--dark-gray);
+    color: var(--dark-blue);
     margin-bottom: 1rem;
 }
 
@@ -3673,7 +3673,7 @@ img {
 .service-intro h2 {
     font-size: 2.5rem;
     font-weight: var(--font-weight-bold);
-    color: var(--dark-gray);
+    color: var(--dark-blue);
     margin-bottom: var(--spacing-sm);
 }
 
@@ -3758,7 +3758,7 @@ img {
 .service-info h3 {
     font-size: 1.5rem;
     font-weight: var(--font-weight-semibold);
-    color: var(--dark-gray);
+    color: var(--dark-blue);
     margin-bottom: var(--spacing-xs);
 }
 
@@ -3855,7 +3855,7 @@ img {
 
 .details-section li {
     padding: var(--spacing-xs) 0;
-    color: var(--dark-gray);
+    color: var(--dark-blue);
     line-height: 1.5;
     position: relative;
     padding-left: var(--spacing-md);
@@ -3889,7 +3889,7 @@ img {
 
 .service-schedule p {
     margin: 0;
-    color: var(--dark-gray);
+    color: var(--dark-blue);
     font-size: 1rem;
 }
 
