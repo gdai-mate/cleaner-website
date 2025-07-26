@@ -140,7 +140,10 @@ document.addEventListener('DOMContentLoaded', function() {
         modal.innerHTML = `
             <div class="quote-modal-content">
                 <div class="quote-modal-header">
-                    <h3>Get Your Free Quote - ${selectedServiceName}</h3>
+                    <div class="modal-header-content">
+                        <img src="assets/DEEP CLEAN Logo.png" alt="DEEP CLEAN Logo" class="modal-logo">
+                        <h3>Get Your Free Quote - ${selectedServiceName}</h3>
+                    </div>
                     <button class="close-modal">&times;</button>
                 </div>
                 <div class="quote-modal-info">
@@ -299,6 +302,14 @@ document.addEventListener('DOMContentLoaded', function() {
                         rows: "2";
                         min-height: 80px;
                     }
+                    
+                    .modal-header-content {
+                        gap: 0.5rem;
+                    }
+                    
+                    .modal-logo {
+                        height: 32px;
+                    }
                 }
                 
                 .quote-modal-header {
@@ -310,9 +321,20 @@ document.addEventListener('DOMContentLoaded', function() {
                     border-bottom: 1px solid #eee;
                 }
                 
+                .modal-header-content {
+                    display: flex;
+                    align-items: center;
+                    gap: 1rem;
+                }
+                
+                .modal-logo {
+                    height: 40px;
+                    width: auto;
+                }
+                
                 .quote-modal-header h3 {
                     margin: 0;
-                    color: var(--primary-blue);
+                    color: var(--dark-blue);
                 }
                 
                 .quote-modal-info {
@@ -324,7 +346,7 @@ document.addEventListener('DOMContentLoaded', function() {
                 
                 .quote-modal-info p {
                     margin: 0;
-                    color: #666;
+                    color: var(--dark-blue);
                     font-size: 0.9rem;
                     line-height: 1.5;
                 }
@@ -355,7 +377,7 @@ document.addEventListener('DOMContentLoaded', function() {
                     display: block;
                     margin-bottom: 0.5rem;
                     font-weight: 500;
-                    color: var(--dark-gray);
+                    color: var(--dark-blue);
                 }
                 
                 .form-group input,
@@ -373,8 +395,8 @@ document.addEventListener('DOMContentLoaded', function() {
                 .form-group select:focus,
                 .form-group textarea:focus {
                     outline: none;
-                    border-color: var(--primary-blue);
-                    box-shadow: 0 0 0 3px rgba(30, 124, 168, 0.1);
+                    border-color: var(--dark-blue);
+                    box-shadow: 0 0 0 3px rgba(27, 117, 188, 0.2);
                 }
                 
                 .photo-upload {
