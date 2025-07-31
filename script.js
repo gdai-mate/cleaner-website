@@ -1133,48 +1133,167 @@ document.addEventListener('DOMContentLoaded', function() {
         }, 150);
     });
 
-    // Gallery Modal Functionality
+    // Enhanced Gallery Modal Functionality with Navigation
     const modal = document.getElementById('imageModal');
     const modalImg = document.getElementById('modalImage');
     const modalCaption = document.getElementById('modalCaption');
     const close = document.getElementsByClassName('close')[0];
+    const prevBtn = document.getElementById('prevBtn');
+    const nextBtn = document.getElementById('nextBtn');
+    const currentIndexSpan = document.getElementById('currentIndex');
+    const totalImagesSpan = document.getElementById('totalImages');
+    
+    let galleryImages = [];
+    let currentImageIndex = 0;
+    let touchStartX = 0;
+    let touchEndX = 0;
     
     if (modal && modalImg && modalCaption && close) {
-        // Add click event to all gallery items
-        document.querySelectorAll('.gallery-item').forEach(item => {
-            item.addEventListener('click', function() {
-                const img = this.querySelector('.gallery-image img');
-                const overlay = this.querySelector('.overlay-content');
+        // Collect all gallery images
+        function initializeGallery() {
+            galleryImages = [];
+            document.querySelectorAll('.gallery-item').forEach((item, index) => {
+                const img = item.querySelector('.gallery-image img');
+                const overlay = item.querySelector('.overlay-content');
                 
                 if (img && overlay) {
-                    modal.style.display = 'block';
-                    modalImg.src = img.src;
-                    modalImg.alt = img.alt;
-                    
                     const title = overlay.querySelector('h3')?.textContent || '';
                     const description = overlay.querySelector('p')?.textContent || '';
-                    modalCaption.innerHTML = `<strong>${title}</strong><br>${description}`;
+                    
+                    galleryImages.push({
+                        src: img.src,
+                        alt: img.alt,
+                        title: title,
+                        description: description,
+                        element: item
+                    });
                 }
             });
+            
+            if (totalImagesSpan) {
+                totalImagesSpan.textContent = galleryImages.length;
+            }
+        }
+        
+        // Show image at specific index
+        function showImage(index) {
+            if (index < 0 || index >= galleryImages.length) return;
+            
+            const imageData = galleryImages[index];
+            currentImageIndex = index;
+            
+            modalImg.src = imageData.src;
+            modalImg.alt = imageData.alt;
+            modalCaption.innerHTML = `<strong>${imageData.title}</strong><br>${imageData.description}`;
+            
+            if (currentIndexSpan) {
+                currentIndexSpan.textContent = index + 1;
+            }
+            
+            // Update navigation button visibility
+            if (prevBtn) prevBtn.style.display = index === 0 ? 'none' : 'flex';
+            if (nextBtn) nextBtn.style.display = index === galleryImages.length - 1 ? 'none' : 'flex';
+        }
+        
+        // Navigate to previous image
+        function showPrevImage() {
+            if (currentImageIndex > 0) {
+                showImage(currentImageIndex - 1);
+            }
+        }
+        
+        // Navigate to next image
+        function showNextImage() {
+            if (currentImageIndex < galleryImages.length - 1) {
+                showImage(currentImageIndex + 1);
+            }
+        }
+        
+        // Initialize gallery
+        initializeGallery();
+        
+        // Add click event to all gallery items
+        document.querySelectorAll('.gallery-item').forEach((item, index) => {
+            item.addEventListener('click', function() {
+                modal.style.display = 'block';
+                showImage(index);
+            });
         });
+        
+        // Navigation button events
+        if (prevBtn) {
+            prevBtn.addEventListener('click', function(e) {
+                e.stopPropagation();
+                showPrevImage();
+            });
+        }
+        
+        if (nextBtn) {
+            nextBtn.addEventListener('click', function(e) {
+                e.stopPropagation();
+                showNextImage();
+            });
+        }
         
         // Close modal when clicking X
         close.addEventListener('click', function() {
             modal.style.display = 'none';
         });
         
-        // Close modal when clicking outside the image
+        // Close modal when clicking outside the content
         modal.addEventListener('click', function(e) {
             if (e.target === modal) {
                 modal.style.display = 'none';
             }
         });
         
-        // Close modal with Escape key
+        // Keyboard navigation
         document.addEventListener('keydown', function(e) {
-            if (e.key === 'Escape' && modal.style.display === 'block') {
-                modal.style.display = 'none';
+            if (modal.style.display === 'block') {
+                switch(e.key) {
+                    case 'Escape':
+                        modal.style.display = 'none';
+                        break;
+                    case 'ArrowLeft':
+                        e.preventDefault();
+                        showPrevImage();
+                        break;
+                    case 'ArrowRight':
+                        e.preventDefault();
+                        showNextImage();
+                        break;
+                }
             }
         });
+        
+        // Touch/swipe support for mobile
+        modalImg.addEventListener('touchstart', function(e) {
+            touchStartX = e.changedTouches[0].screenX;
+        }, { passive: true });
+        
+        modalImg.addEventListener('touchend', function(e) {
+            touchEndX = e.changedTouches[0].screenX;
+            handleSwipe();
+        }, { passive: true });
+        
+        function handleSwipe() {
+            const swipeThreshold = 50;
+            const swipeDistance = touchEndX - touchStartX;
+            
+            if (Math.abs(swipeDistance) > swipeThreshold) {
+                if (swipeDistance > 0) {
+                    // Swipe right - show previous
+                    showPrevImage();
+                } else {
+                    // Swipe left - show next
+                    showNextImage();
+                }
+            }
+        }
+        
+        // Reinitialize gallery when images are dynamically added/removed
+        window.reinitializeGallery = function() {
+            initializeGallery();
+        };
     }
 });
