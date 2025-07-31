@@ -1501,6 +1501,55 @@ img {
 
 
 
+/* Service Areas */
+.service-areas {
+    padding: var(--spacing-xl) 0;
+    background: #f8f9fa;
+}
+
+.service-areas-content {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: var(--spacing-lg);
+    align-items: center;
+}
+
+.areas-text h2 {
+    color: var(--dark-blue);
+    margin-bottom: var(--spacing-md);
+    font-size: 2.5rem;
+    font-weight: var(--font-weight-bold);
+}
+
+.areas-text p {
+    color: var(--gray);
+    font-size: 1.1rem;
+    line-height: 1.6;
+}
+
+.areas-map img {
+    width: 100%;
+    height: auto;
+    border-radius: var(--radius-lg);
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+}
+
+@media (max-width: 768px) {
+    .service-areas-content {
+        grid-template-columns: 1fr;
+        gap: var(--spacing-md);
+        text-align: center;
+    }
+    
+    .areas-text h2 {
+        font-size: 2rem;
+    }
+    
+    .areas-text p {
+        font-size: 1rem;
+    }
+}
+
 /* Service Guarantee */
 .service-guarantee {
     padding: var(--spacing-xl) 0;
