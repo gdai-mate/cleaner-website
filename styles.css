@@ -1555,299 +1555,196 @@ img {
     padding: var(--spacing-xl) 0;
 }
 
-.careers-intro-content .intro-text h2 {
+.intro-content {
+    max-width: 800px;
+    margin: 0 auto;
+    text-align: center;
+}
+
+.intro-text h2 {
     color: var(--dark-blue);
     margin-bottom: var(--spacing-md);
     font-size: 2.5rem;
     font-weight: var(--font-weight-bold);
 }
 
-.careers-intro-content .intro-text p {
+.intro-text p {
     color: var(--gray);
     font-size: 1.1rem;
     line-height: 1.6;
-    margin-bottom: var(--spacing-lg);
+}
+
+.careers-benefits {
+    padding: var(--spacing-xl) 0;
+    background: #f8f9fa;
 }
 
 .benefits-grid {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
     gap: var(--spacing-lg);
     margin-top: var(--spacing-lg);
 }
 
-.benefit-item {
+.benefit-card {
+    background: white;
+    padding: var(--spacing-lg);
+    border-radius: var(--radius-lg);
     text-align: center;
-    padding: var(--spacing-md);
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+    border: 1px solid rgba(30, 124, 168, 0.1);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.benefit-card:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 6px 25px rgba(0, 0, 0, 0.12);
 }
 
 .benefit-icon {
     color: var(--primary-turquoise);
-    margin-bottom: var(--spacing-sm);
+    margin-bottom: var(--spacing-md);
     display: flex;
     justify-content: center;
 }
 
-.benefit-item h3 {
+.benefit-card h3 {
     color: var(--dark-blue);
     margin-bottom: var(--spacing-sm);
     font-size: 1.3rem;
     font-weight: var(--font-weight-semibold);
 }
 
-.benefit-item p {
+.benefit-card p {
     color: var(--gray);
-    line-height: 1.5;
+    line-height: 1.6;
 }
 
-.careers-positions {
+.careers-opportunities {
     padding: var(--spacing-xl) 0;
-    background: #f8f9fa;
 }
 
-.positions-header {
-    text-align: center;
-    margin-bottom: var(--spacing-lg);
+.opportunities-content {
+    display: grid;
+    grid-template-columns: 2fr 1fr;
+    gap: var(--spacing-xl);
+    align-items: center;
 }
 
-.positions-header h2 {
+.opportunities-text h2 {
     color: var(--dark-blue);
     margin-bottom: var(--spacing-md);
     font-size: 2.5rem;
     font-weight: var(--font-weight-bold);
 }
 
-.positions-header p {
+.opportunities-text p {
     color: var(--gray);
     font-size: 1.1rem;
-    line-height: 1.6;
-}
-
-.positions-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-    gap: var(--spacing-lg);
-}
-
-.position-card {
-    background: white;
-    padding: var(--spacing-lg);
-    border-radius: var(--radius-lg);
-    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
-    border: 1px solid rgba(30, 124, 168, 0.1);
-}
-
-.position-card h3 {
-    color: var(--dark-blue);
-    margin-bottom: var(--spacing-sm);
-    font-size: 1.4rem;
-    font-weight: var(--font-weight-semibold);
-}
-
-.position-card p {
-    color: var(--gray);
     line-height: 1.6;
     margin-bottom: var(--spacing-md);
 }
 
-.position-card ul {
+.opportunities-list {
     list-style: none;
     padding: 0;
+    margin: var(--spacing-md) 0;
 }
 
-.position-card ul li {
+.opportunities-list li {
     color: var(--gray);
-    padding: 0.5rem 0;
-    position: relative;
-    padding-left: 1.5rem;
-}
-
-.position-card ul li:before {
-    content: "✓";
-    color: var(--primary-turquoise);
-    font-weight: bold;
-    position: absolute;
-    left: 0;
-}
-
-.careers-application {
-    padding: var(--spacing-xl) 0;
-}
-
-.application-intro {
-    text-align: center;
-    margin-bottom: var(--spacing-lg);
-}
-
-.application-intro h2 {
-    color: var(--dark-blue);
-    margin-bottom: var(--spacing-md);
-    font-size: 2.5rem;
-    font-weight: var(--font-weight-bold);
-}
-
-.application-intro p {
-    color: var(--gray);
-    font-size: 1.1rem;
+    padding: 0.75rem 0;
+    border-bottom: 1px solid rgba(30, 124, 168, 0.1);
     line-height: 1.6;
 }
 
-.careers-form {
-    max-width: 800px;
-    margin: 0 auto;
+.opportunities-list li:last-child {
+    border-bottom: none;
 }
 
-.form-section {
-    margin-bottom: var(--spacing-lg);
-    padding: var(--spacing-lg);
-    background: #f8f9fa;
-    border-radius: var(--radius-lg);
-    border: 1px solid rgba(30, 124, 168, 0.1);
-}
-
-.form-section h3 {
+.opportunities-list strong {
     color: var(--dark-blue);
-    margin-bottom: var(--spacing-md);
-    font-size: 1.4rem;
-    font-weight: var(--font-weight-semibold);
-    border-bottom: 2px solid var(--primary-turquoise);
-    padding-bottom: 0.5rem;
 }
 
-.form-row {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: var(--spacing-md);
-}
-
-.form-group {
-    margin-bottom: var(--spacing-md);
-}
-
-.form-group label {
-    display: block;
-    margin-bottom: 0.5rem;
-    color: var(--dark-blue);
-    font-weight: var(--font-weight-medium);
-}
-
-.form-group input,
-.form-group select,
-.form-group textarea {
-    width: 100%;
-    padding: 0.75rem;
-    border: 2px solid #e5e7eb;
-    border-radius: var(--radius-md);
-    font-size: 1rem;
-    transition: border-color 0.3s ease;
-}
-
-.form-group input:focus,
-.form-group select:focus,
-.form-group textarea:focus {
-    outline: none;
-    border-color: var(--primary-turquoise);
-}
-
-.form-note {
-    color: var(--gray);
+.note {
     font-size: 0.9rem;
-    margin-bottom: var(--spacing-sm);
+    color: var(--gray);
     font-style: italic;
 }
 
-.reference-block {
-    margin-bottom: var(--spacing-md);
-    padding: var(--spacing-md);
-    background: white;
-    border-radius: var(--radius-md);
-    border: 1px solid #e5e7eb;
-}
-
-.reference-block h4 {
-    color: var(--dark-blue);
-    margin-bottom: var(--spacing-sm);
-    font-size: 1.1rem;
-    font-weight: var(--font-weight-medium);
-}
-
-.form-actions {
-    text-align: center;
-    margin-top: var(--spacing-lg);
-}
-
-.careers-next-steps {
-    padding: var(--spacing-xl) 0;
-    background: #f8f9fa;
-}
-
-.next-steps-content h2 {
-    text-align: center;
-    color: var(--dark-blue);
-    margin-bottom: var(--spacing-lg);
-    font-size: 2.5rem;
-    font-weight: var(--font-weight-bold);
-}
-
-.steps-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-    gap: var(--spacing-lg);
-    margin-bottom: var(--spacing-lg);
-}
-
-.step-item {
-    text-align: center;
-    padding: var(--spacing-md);
-}
-
-.step-number {
-    width: 60px;
-    height: 60px;
-    background: var(--primary-turquoise);
-    color: white;
-    border-radius: 50%;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    font-size: 1.5rem;
-    font-weight: var(--font-weight-bold);
-    margin: 0 auto var(--spacing-sm);
-}
-
-.step-item h3 {
-    color: var(--dark-blue);
-    margin-bottom: var(--spacing-sm);
-    font-size: 1.2rem;
-    font-weight: var(--font-weight-semibold);
-}
-
-.step-item p {
-    color: var(--gray);
-    line-height: 1.5;
-}
-
-.contact-note {
-    text-align: center;
-    padding: var(--spacing-md);
-    background: white;
+.cta-card {
+    background: linear-gradient(135deg, rgba(30, 124, 168, 0.02), rgba(0, 188, 212, 0.04));
+    padding: var(--spacing-lg);
     border-radius: var(--radius-lg);
+    text-align: center;
     border: 1px solid rgba(30, 124, 168, 0.1);
 }
 
-.contact-note p {
-    color: var(--gray);
-    margin: 0;
+.cta-card h3 {
+    color: var(--dark-blue);
+    margin-bottom: var(--spacing-sm);
+    font-size: 1.5rem;
+    font-weight: var(--font-weight-semibold);
 }
 
-.contact-note a {
+.cta-card p {
+    color: var(--gray);
+    margin-bottom: var(--spacing-md);
+    line-height: 1.6;
+}
+
+.cta-note {
+    margin-top: var(--spacing-sm);
+    font-size: 0.9rem;
+    color: var(--gray);
+}
+
+.cta-note a {
     color: var(--primary-turquoise);
     text-decoration: none;
     font-weight: var(--font-weight-medium);
 }
 
-.contact-note a:hover {
+.cta-note a:hover {
     text-decoration: underline;
+}
+
+.careers-testimonial {
+    padding: var(--spacing-xl) 0;
+    background: #f8f9fa;
+}
+
+.testimonial-content {
+    max-width: 800px;
+    margin: 0 auto;
+    text-align: center;
+}
+
+.quote-icon {
+    color: var(--primary-turquoise);
+    margin-bottom: var(--spacing-md);
+    display: flex;
+    justify-content: center;
+    opacity: 0.3;
+}
+
+.testimonial-content blockquote {
+    margin: 0;
+    padding: 0;
+}
+
+.testimonial-content blockquote p {
+    color: var(--dark-blue);
+    font-size: 1.3rem;
+    line-height: 1.7;
+    font-style: italic;
+    margin-bottom: var(--spacing-md);
+}
+
+.testimonial-content cite {
+    color: var(--gray);
+    font-style: normal;
+    font-weight: var(--font-weight-medium);
 }
 
 /* Careers CTA on About Page */
@@ -1905,16 +1802,8 @@ img {
         gap: var(--spacing-md);
     }
     
-    .positions-grid {
+    .opportunities-content {
         grid-template-columns: 1fr;
-    }
-    
-    .form-row {
-        grid-template-columns: 1fr;
-    }
-    
-    .steps-grid {
-        grid-template-columns: 1fr 1fr;
         gap: var(--spacing-md);
     }
     
@@ -1931,18 +1820,14 @@ img {
         margin: 0 auto;
     }
     
-    .careers-intro-content .intro-text h2,
-    .positions-header h2,
-    .application-intro h2,
-    .next-steps-content h2,
+    .intro-text h2,
+    .opportunities-text h2,
     .cta-text h2 {
         font-size: 2rem;
     }
-}
-
-@media (max-width: 480px) {
-    .steps-grid {
-        grid-template-columns: 1fr;
+    
+    .testimonial-content blockquote p {
+        font-size: 1.1rem;
     }
 }
 

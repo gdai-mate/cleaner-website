@@ -1310,4 +1310,206 @@ document.addEventListener('DOMContentLoaded', function() {
             initializeGallery();
         };
     }
+    
+    // Careers Enquiry Modal
+    function showCareersModal() {
+        const modal = document.createElement('div');
+        modal.className = 'careers-modal';
+        
+        modal.innerHTML = `
+            <div class="careers-modal-content">
+                <div class="careers-modal-header">
+                    <h3>Let's Start a Conversation</h3>
+                    <button class="close-modal">&times;</button>
+                </div>
+                <div class="careers-modal-intro">
+                    <p>Tell us a bit about yourself and we'll get back to you within 48 hours.</p>
+                </div>
+                <form class="careers-enquiry-form" id="careersEnquiryForm">
+                    <div class="form-group">
+                        <label for="fullName">Your Name *</label>
+                        <input type="text" id="fullName" name="fullName" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="email">Email Address *</label>
+                        <input type="email" id="email" name="email" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="phone">Phone Number *</label>
+                        <input type="tel" id="phone" name="phone" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="position">Position of Interest</label>
+                        <select id="position" name="position">
+                            <option value="">Select a position (optional)</option>
+                            <option value="Residential Cleaning">Residential Cleaning Specialist</option>
+                            <option value="Post-Construction">Post-Construction Cleaning</option>
+                            <option value="NDIS Support">NDIS Support Cleaner</option>
+                            <option value="General">Just exploring opportunities</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label for="message">Tell Us About Yourself *</label>
+                        <textarea id="message" name="message" rows="4" required placeholder="Share what interests you about joining DEEP CLEAN and any relevant experience you'd like us to know about."></textarea>
+                    </div>
+                    <div class="form-actions">
+                        <button type="submit" class="btn btn-primary">Send Message</button>
+                    </div>
+                </form>
+            </div>
+        `;
+        
+        // Add modal styles
+        const modalStyles = `
+            <style>
+                .careers-modal {
+                    position: fixed;
+                    top: 0;
+                    left: 0;
+                    width: 100%;
+                    height: 100%;
+                    background-color: rgba(0, 0, 0, 0.5);
+                    display: flex;
+                    justify-content: center;
+                    align-items: center;
+                    z-index: 1000;
+                    animation: fadeIn 0.3s ease;
+                }
+                
+                .careers-modal-content {
+                    background: white;
+                    padding: 2rem;
+                    border-radius: 12px;
+                    width: 90%;
+                    max-width: 500px;
+                    max-height: 90vh;
+                    overflow-y: auto;
+                    animation: slideUp 0.3s ease;
+                }
+                
+                .careers-modal-header {
+                    display: flex;
+                    justify-content: space-between;
+                    align-items: center;
+                    margin-bottom: 1rem;
+                }
+                
+                .careers-modal-header h3 {
+                    margin: 0;
+                    color: var(--dark-blue);
+                }
+                
+                .careers-modal-intro {
+                    margin-bottom: 1.5rem;
+                }
+                
+                .careers-modal-intro p {
+                    color: var(--gray);
+                    margin: 0;
+                }
+                
+                .careers-enquiry-form .form-group {
+                    margin-bottom: 1rem;
+                }
+                
+                .careers-enquiry-form label {
+                    display: block;
+                    margin-bottom: 0.5rem;
+                    color: var(--dark-blue);
+                    font-weight: var(--font-weight-medium);
+                }
+                
+                .careers-enquiry-form input,
+                .careers-enquiry-form select,
+                .careers-enquiry-form textarea {
+                    width: 100%;
+                    padding: 0.75rem;
+                    border: 2px solid #e5e7eb;
+                    border-radius: 8px;
+                    font-size: 1rem;
+                    transition: border-color 0.3s ease;
+                }
+                
+                .careers-enquiry-form input:focus,
+                .careers-enquiry-form select:focus,
+                .careers-enquiry-form textarea:focus {
+                    outline: none;
+                    border-color: var(--primary-turquoise);
+                }
+                
+                @media (max-width: 768px) {
+                    .careers-modal-content {
+                        width: 95%;
+                        padding: 1.5rem;
+                    }
+                }
+            </style>
+        `;
+        
+        document.head.insertAdjacentHTML('beforeend', modalStyles);
+        document.body.appendChild(modal);
+        
+        // Close modal functionality
+        const closeModal = modal.querySelector('.close-modal');
+        closeModal.addEventListener('click', function() {
+            document.body.removeChild(modal);
+        });
+        
+        modal.addEventListener('click', function(e) {
+            if (e.target === modal) {
+                document.body.removeChild(modal);
+            }
+        });
+        
+        // Form submission
+        const form = modal.querySelector('#careersEnquiryForm');
+        form.addEventListener('submit', function(e) {
+            e.preventDefault();
+            
+            const formData = {
+                fullName: form.fullName.value,
+                email: form.email.value,
+                phone: form.phone.value,
+                position: form.position.value || 'Not specified',
+                message: form.message.value
+            };
+            
+            // Create email body
+            let emailBody = `CAREERS ENQUIRY FROM DEEP CLEAN WEBSITE\n`;
+            emailBody += `=====================================\n\n`;
+            emailBody += `Name: ${formData.fullName}\n`;
+            emailBody += `Email: ${formData.email}\n`;
+            emailBody += `Phone: ${formData.phone}\n`;
+            emailBody += `Position of Interest: ${formData.position}\n\n`;
+            emailBody += `Message:\n${formData.message}\n\n`;
+            emailBody += `Sent from: Careers page enquiry form`;
+            
+            // Create mailto link
+            const subject = encodeURIComponent('Careers Enquiry - ' + formData.fullName);
+            const body = encodeURIComponent(emailBody);
+            const mailtoLink = `mailto:deepclean.go2@gmail.com?subject=${subject}&body=${body}`;
+            
+            // Open email client
+            window.location.href = mailtoLink;
+            
+            // Update modal content to show success
+            modal.querySelector('.careers-modal-content').innerHTML = `
+                <div class="success-content" style="text-align: center; padding: 2rem;">
+                    <svg width="64" height="64" viewBox="0 0 24 24" fill="none" stroke="var(--primary-turquoise)" stroke-width="2" style="margin-bottom: 1rem;">
+                        <path d="M9 12l2 2 4-4"/>
+                        <circle cx="12" cy="12" r="9"/>
+                    </svg>
+                    <h3 style="color: var(--dark-blue); margin-bottom: 1rem;">Email Ready!</h3>
+                    <p style="color: var(--gray); margin-bottom: 1rem;">Your email client should have opened with your enquiry.</p>
+                    <p style="color: var(--gray); font-size: 0.9rem; margin-bottom: 2rem;">If it didn't open automatically, please email: <strong>deepclean.go2@gmail.com</strong></p>
+                    <button type="button" class="btn btn-primary" onclick="this.closest('.careers-modal').remove()">Close</button>
+                </div>
+            `;
+        });
+    }
+    
+    // Attach careers modal to buttons
+    document.querySelectorAll('.careers-enquiry-btn').forEach(btn => {
+        btn.addEventListener('click', showCareersModal);
+    });
 });
