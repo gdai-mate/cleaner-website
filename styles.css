@@ -4451,11 +4451,6 @@ img {
 }
 
 /* Careers Page Styles */
-.careers-hero {
-    background: linear-gradient(135deg, rgba(30, 124, 168, 0.95), rgba(0, 188, 212, 0.95));
-    color: white;
-}
-
 .hero-badge {
     display: inline-block;
     background: #FFD700;
@@ -4761,11 +4756,6 @@ img {
 }
 
 /* Application Page Styles */
-.application-hero {
-    background: linear-gradient(135deg, rgba(30, 124, 168, 0.95), rgba(0, 188, 212, 0.95));
-    color: white;
-}
-
 .application-intro {
     padding: var(--spacing-xl) 0;
     background: #f8f9fa;
