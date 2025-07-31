@@ -105,8 +105,8 @@ document.addEventListener('DOMContentLoaded', function() {
     const quoteButtons = document.querySelectorAll('.btn-primary, .cta-button, .package-btn, .service-cta .btn');
     
     quoteButtons.forEach(button => {
-        // Skip buttons that should navigate normally (like services-link)
-        if (button.classList.contains('services-link')) {
+        // Skip buttons that should navigate normally (like services-link) or careers buttons
+        if (button.classList.contains('services-link') || button.classList.contains('careers-enquiry-btn')) {
             return;
         }
         
@@ -1339,16 +1339,6 @@ document.addEventListener('DOMContentLoaded', function() {
                         <input type="tel" id="phone" name="phone" required>
                     </div>
                     <div class="form-group">
-                        <label for="position">Position of Interest</label>
-                        <select id="position" name="position">
-                            <option value="">Select a position (optional)</option>
-                            <option value="Residential Cleaning">Residential Cleaning Specialist</option>
-                            <option value="Post-Construction">Post-Construction Cleaning</option>
-                            <option value="NDIS Support">NDIS Support Cleaner</option>
-                            <option value="General">Just exploring opportunities</option>
-                        </select>
-                    </div>
-                    <div class="form-group">
                         <label for="message">Tell Us About Yourself *</label>
                         <textarea id="message" name="message" rows="4" required placeholder="Share what interests you about joining DEEP CLEAN and any relevant experience you'd like us to know about."></textarea>
                     </div>
@@ -1470,7 +1460,6 @@ document.addEventListener('DOMContentLoaded', function() {
                 fullName: form.fullName.value,
                 email: form.email.value,
                 phone: form.phone.value,
-                position: form.position.value || 'Not specified',
                 message: form.message.value
             };
             
@@ -1479,8 +1468,7 @@ document.addEventListener('DOMContentLoaded', function() {
             emailBody += `=====================================\n\n`;
             emailBody += `Name: ${formData.fullName}\n`;
             emailBody += `Email: ${formData.email}\n`;
-            emailBody += `Phone: ${formData.phone}\n`;
-            emailBody += `Position of Interest: ${formData.position}\n\n`;
+            emailBody += `Phone: ${formData.phone}\n\n`;
             emailBody += `Message:\n${formData.message}\n\n`;
             emailBody += `Sent from: Careers page enquiry form`;
             
