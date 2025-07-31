@@ -1500,4 +1500,207 @@ document.addEventListener('DOMContentLoaded', function() {
     document.querySelectorAll('.careers-enquiry-btn').forEach(btn => {
         btn.addEventListener('click', showCareersModal);
     });
+    
+    // Animation Intersection Observer
+    const animationObserver = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                entry.target.classList.add('visible');
+                
+                // Also trigger child animations
+                const fadeUps = entry.target.querySelectorAll('.fade-up');
+                const slideInLefts = entry.target.querySelectorAll('.slide-in-left');
+                const slideInRights = entry.target.querySelectorAll('.slide-in-right');
+                const scaleIns = entry.target.querySelectorAll('.scale-in');
+                const supportCards = entry.target.querySelectorAll('.support-card');
+                const benefitItems = entry.target.querySelectorAll('.benefit-item');
+                
+                fadeUps.forEach(el => el.classList.add('visible'));
+                slideInLefts.forEach(el => el.classList.add('visible'));
+                slideInRights.forEach(el => el.classList.add('visible'));
+                scaleIns.forEach(el => el.classList.add('visible'));
+                supportCards.forEach(el => el.classList.add('visible'));
+                benefitItems.forEach(el => el.classList.add('visible'));
+            }
+        });
+    }, {
+        threshold: 0.1,
+        rootMargin: '0px 0px -50px 0px'
+    });
+    
+    // Observe all animated sections
+    document.querySelectorAll('.animated-section').forEach(section => {
+        animationObserver.observe(section);
+    });
+    
+    // Multi-step Application Form
+    const applicationForm = document.getElementById('fullApplicationForm');
+    if (applicationForm) {
+        const formSections = applicationForm.querySelectorAll('.form-section');
+        const progressFill = document.getElementById('progressFill');
+        const currentSectionSpan = document.getElementById('currentSection');
+        let currentSection = 1;
+        const totalSections = formSections.length;
+        
+        // Update progress bar
+        function updateProgress() {
+            const progress = (currentSection / totalSections) * 100;
+            progressFill.style.width = progress + '%';
+            currentSectionSpan.textContent = currentSection;
+        }
+        
+        // Show specific section
+        function showSection(sectionNumber) {
+            formSections.forEach(section => {
+                section.classList.remove('active');
+                if (parseInt(section.dataset.section) === sectionNumber) {
+                    section.classList.add('active');
+                }
+            });
+            currentSection = sectionNumber;
+            updateProgress();
+            
+            // Scroll to top of form
+            applicationForm.scrollIntoView({ behavior: 'smooth', block: 'start' });
+        }
+        
+        // Validate current section
+        function validateSection(sectionElement) {
+            const requiredFields = sectionElement.querySelectorAll('[required]');
+            let isValid = true;
+            
+            requiredFields.forEach(field => {
+                if (field.type === 'radio') {
+                    const radioGroup = sectionElement.querySelectorAll(`input[name="${field.name}"]`);
+                    const isChecked = Array.from(radioGroup).some(radio => radio.checked);
+                    if (!isChecked) {
+                        isValid = false;
+                        field.closest('.radio-group').style.border = '2px solid #ef4444';
+                        setTimeout(() => {
+                            field.closest('.radio-group').style.border = '';
+                        }, 3000);
+                    }
+                } else if (field.type === 'checkbox' && field.hasAttribute('required')) {
+                    if (!field.checked) {
+                        isValid = false;
+                        field.style.outline = '2px solid #ef4444';
+                        setTimeout(() => {
+                            field.style.outline = '';
+                        }, 3000);
+                    }
+                } else if (!field.value.trim()) {
+                    isValid = false;
+                    field.style.borderColor = '#ef4444';
+                    setTimeout(() => {
+                        field.style.borderColor = '';
+                    }, 3000);
+                }
+            });
+            
+            return isValid;
+        }
+        
+        // Next button handlers
+        applicationForm.querySelectorAll('.next-section').forEach(btn => {
+            btn.addEventListener('click', function() {
+                const currentSectionElement = formSections[currentSection - 1];
+                if (validateSection(currentSectionElement)) {
+                    if (currentSection < totalSections) {
+                        showSection(currentSection + 1);
+                    }
+                }
+            });
+        });
+        
+        // Previous button handlers
+        applicationForm.querySelectorAll('.prev-section').forEach(btn => {
+            btn.addEventListener('click', function() {
+                if (currentSection > 1) {
+                    showSection(currentSection - 1);
+                }
+            });
+        });
+        
+        // Form submission
+        applicationForm.addEventListener('submit', function(e) {
+            e.preventDefault();
+            
+            const formData = new FormData(applicationForm);
+            let emailBody = `JOB APPLICATION FROM DEEP CLEAN WEBSITE\n`;
+            emailBody += `=====================================\n\n`;
+            
+            // Personal Information
+            emailBody += `PERSONAL INFORMATION\n`;
+            emailBody += `-------------------\n`;
+            emailBody += `Name: ${formData.get('firstName')} ${formData.get('lastName')}\n`;
+            emailBody += `Email: ${formData.get('email')}\n`;
+            emailBody += `Phone: ${formData.get('phone')}\n`;
+            emailBody += `Location: ${formData.get('location') || 'Not specified'}\n\n`;
+            
+            // Availability
+            emailBody += `AVAILABILITY & PREFERENCES\n`;
+            emailBody += `-------------------------\n`;
+            emailBody += `Work Type: ${formData.get('workType')}\n`;
+            
+            const availableDays = formData.getAll('availability');
+            emailBody += `Available Days: ${availableDays.length ? availableDays.join(', ') : 'Not specified'}\n`;
+            emailBody += `Start Date: ${formData.get('startDate') || 'Not specified'}\n\n`;
+            
+            // About
+            emailBody += `ABOUT THE APPLICANT\n`;
+            emailBody += `------------------\n`;
+            emailBody += `Why Join: ${formData.get('whyJoin')}\n\n`;
+            emailBody += `Strengths: ${formData.get('strengths') || 'Not specified'}\n\n`;
+            emailBody += `Experience: ${formData.get('experience') || 'No experience specified'}\n\n`;
+            
+            // References
+            emailBody += `REFERENCES\n`;
+            emailBody += `----------\n`;
+            emailBody += `Reference 1:\n`;
+            emailBody += `  Name: ${formData.get('ref1Name')}\n`;
+            emailBody += `  Relationship: ${formData.get('ref1Relationship')}\n`;
+            emailBody += `  Phone: ${formData.get('ref1Phone')}\n`;
+            emailBody += `  Email: ${formData.get('ref1Email') || 'Not provided'}\n\n`;
+            
+            emailBody += `Reference 2:\n`;
+            emailBody += `  Name: ${formData.get('ref2Name')}\n`;
+            emailBody += `  Relationship: ${formData.get('ref2Relationship')}\n`;
+            emailBody += `  Phone: ${formData.get('ref2Phone')}\n`;
+            emailBody += `  Email: ${formData.get('ref2Email') || 'Not provided'}\n\n`;
+            
+            // Additional Info
+            emailBody += `ADDITIONAL INFORMATION\n`;
+            emailBody += `---------------------\n`;
+            emailBody += `Transportation: ${formData.get('transport') || 'Not specified'}\n`;
+            emailBody += `Additional Notes: ${formData.get('additionalInfo') || 'None'}\n\n`;
+            
+            emailBody += `Submitted: ${new Date().toLocaleString('en-AU', { timeZone: 'Australia/Brisbane' })}`;
+            
+            // Create mailto link
+            const subject = encodeURIComponent(`Job Application - ${formData.get('firstName')} ${formData.get('lastName')}`);
+            const body = encodeURIComponent(emailBody);
+            const mailtoLink = `mailto:deepclean.go2@gmail.com?subject=${subject}&body=${body}`;
+            
+            // Open email client
+            window.location.href = mailtoLink;
+            
+            // Show success message
+            applicationForm.innerHTML = `
+                <div class="success-content" style="text-align: center; padding: 3rem;">
+                    <svg width="80" height="80" viewBox="0 0 24 24" fill="none" stroke="var(--primary-turquoise)" stroke-width="2" style="margin-bottom: 2rem;">
+                        <path d="M9 12l2 2 4-4"/>
+                        <circle cx="12" cy="12" r="9"/>
+                    </svg>
+                    <h2 style="color: var(--dark-blue); margin-bottom: 1rem;">Application Ready!</h2>
+                    <p style="color: var(--gray); margin-bottom: 1rem; font-size: 1.1rem;">Your email client should have opened with your application.</p>
+                    <p style="color: var(--gray); margin-bottom: 2rem;">If it didn't open automatically, please email your application to: <strong>deepclean.go2@gmail.com</strong></p>
+                    <p style="color: var(--primary-turquoise); font-weight: var(--font-weight-medium); margin-bottom: 2rem;">We're excited to hear from you and will be in touch soon!</p>
+                    <a href="careers.html" class="btn btn-primary">Back to Careers</a>
+                </div>
+            `;
+            
+            // Scroll to top
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        });
+    }
 });

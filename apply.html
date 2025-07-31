@@ -1,0 +1,360 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Apply to join DEEP CLEAN - Complete application form for cleaning positions in Brisbane Bayside. No experience needed.">
+    <meta name="keywords" content="apply cleaning job Brisbane, job application DEEP CLEAN, no experience needed">
+    <title>Apply Now - DEEP CLEAN Careers</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <header class="header">
+        <nav class="nav">
+            <div class="nav-container">
+                <div class="logo">
+                    <a href="index.html">
+                        <img src="assets/DEEP CLEAN Logo.png" alt="DEEP CLEAN Logo" class="logo-img">
+                    </a>
+                </div>
+                <ul class="nav-menu">
+                    <li><a href="index.html" class="nav-link">Home</a></li>
+                    <li><a href="services.html" class="nav-link">Services</a></li>
+                    <li><a href="about.html" class="nav-link">About</a></li>
+                    <li><a href="gallery.html" class="nav-link">Gallery</a></li>
+                    <li><a href="contact.html" class="nav-link">Contact</a></li>
+                    <li><a href="careers.html" class="nav-link">Careers</a></li>
+                </ul>
+                <div class="header-cta-buttons">
+                    <a href="tel:0433147018" class="call-button">Call Now</a>
+                    <button class="cta-button">Get Quote</button>
+                </div>
+                <div class="hamburger">
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                </div>
+            </div>
+        </nav>
+    </header>
+
+    <main>
+        <section class="page-hero application-hero">
+            <div class="container">
+                <div class="page-hero-content">
+                    <h1>Start Your Journey With Us</h1>
+                    <p>No experience? Perfect! We're looking for passionate people, not resumes.</p>
+                </div>
+            </div>
+        </section>
+
+        <section class="application-intro">
+            <div class="container">
+                <div class="intro-content">
+                    <h2>We Value Heart Over Experience</h2>
+                    <p>At DEEP CLEAN, we believe the best team members are those who care deeply about making a difference. That's why we provide comprehensive training and ongoing support to help you succeed. Take your time with this application - we want to get to know the real you.</p>
+                </div>
+            </div>
+        </section>
+
+        <section class="application-form-section">
+            <div class="container">
+                <form class="application-form" id="fullApplicationForm">
+                    <div class="form-progress">
+                        <div class="progress-bar">
+                            <div class="progress-fill" id="progressFill"></div>
+                        </div>
+                        <p class="progress-text">Section <span id="currentSection">1</span> of 5</p>
+                    </div>
+
+                    <div class="form-section active" data-section="1">
+                        <h3>Let's Start With The Basics</h3>
+                        <p class="section-intro">Tell us who you are - we're excited to meet you!</p>
+                        
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label for="firstName">First Name *</label>
+                                <input type="text" id="firstName" name="firstName" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="lastName">Last Name *</label>
+                                <input type="text" id="lastName" name="lastName" required>
+                            </div>
+                        </div>
+                        
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label for="email">Email Address *</label>
+                                <input type="email" id="email" name="email" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="phone">Phone Number *</label>
+                                <input type="tel" id="phone" name="phone" required>
+                            </div>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="location">Where are you located? (Suburb/Area)</label>
+                            <input type="text" id="location" name="location" placeholder="e.g., Wynnum, Capalaba, Manly">
+                            <small>This helps us understand your travel needs</small>
+                        </div>
+                        
+                        <div class="form-navigation">
+                            <button type="button" class="btn btn-secondary" disabled>Previous</button>
+                            <button type="button" class="btn btn-primary next-section">Next</button>
+                        </div>
+                    </div>
+
+                    <div class="form-section" data-section="2">
+                        <h3>Your Availability & Preferences</h3>
+                        <p class="section-intro">We offer flexible schedules to fit your life</p>
+                        
+                        <div class="form-group">
+                            <label>What type of work are you looking for? *</label>
+                            <div class="radio-group">
+                                <label class="radio-label">
+                                    <input type="radio" name="workType" value="full-time" required>
+                                    <span>Full-time (30+ hours/week)</span>
+                                </label>
+                                <label class="radio-label">
+                                    <input type="radio" name="workType" value="part-time" required>
+                                    <span>Part-time (15-29 hours/week)</span>
+                                </label>
+                                <label class="radio-label">
+                                    <input type="radio" name="workType" value="casual" required>
+                                    <span>Casual (Flexible hours as needed)</span>
+                                </label>
+                            </div>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label>Which days work best for you? (Select all that apply)</label>
+                            <div class="checkbox-group">
+                                <label class="checkbox-label">
+                                    <input type="checkbox" name="availability" value="monday">
+                                    <span>Monday</span>
+                                </label>
+                                <label class="checkbox-label">
+                                    <input type="checkbox" name="availability" value="tuesday">
+                                    <span>Tuesday</span>
+                                </label>
+                                <label class="checkbox-label">
+                                    <input type="checkbox" name="availability" value="wednesday">
+                                    <span>Wednesday</span>
+                                </label>
+                                <label class="checkbox-label">
+                                    <input type="checkbox" name="availability" value="thursday">
+                                    <span>Thursday</span>
+                                </label>
+                                <label class="checkbox-label">
+                                    <input type="checkbox" name="availability" value="friday">
+                                    <span>Friday</span>
+                                </label>
+                                <label class="checkbox-label">
+                                    <input type="checkbox" name="availability" value="saturday">
+                                    <span>Saturday</span>
+                                </label>
+                                <label class="checkbox-label">
+                                    <input type="checkbox" name="availability" value="sunday">
+                                    <span>Sunday</span>
+                                </label>
+                            </div>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="startDate">When could you start?</label>
+                            <select id="startDate" name="startDate">
+                                <option value="">Select timeframe</option>
+                                <option value="immediately">Immediately</option>
+                                <option value="1-week">Within 1 week</option>
+                                <option value="2-weeks">Within 2 weeks</option>
+                                <option value="1-month">Within 1 month</option>
+                                <option value="other">Other (please specify in additional info)</option>
+                            </select>
+                        </div>
+                        
+                        <div class="form-navigation">
+                            <button type="button" class="btn btn-secondary prev-section">Previous</button>
+                            <button type="button" class="btn btn-primary next-section">Next</button>
+                        </div>
+                    </div>
+
+                    <div class="form-section" data-section="3">
+                        <h3>About You</h3>
+                        <p class="section-intro">Remember - no cleaning experience needed! We're interested in who you are as a person.</p>
+                        
+                        <div class="form-group">
+                            <label for="whyJoin">Why do you want to join our team? *</label>
+                            <textarea id="whyJoin" name="whyJoin" rows="4" required 
+                                placeholder="Tell us what excites you about this opportunity. There's no right or wrong answer - just be yourself!"></textarea>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="strengths">What personal qualities would make you great at this job?</label>
+                            <textarea id="strengths" name="strengths" rows="4" 
+                                placeholder="Think about things like: attention to detail, reliability, caring nature, teamwork, problem-solving, etc."></textarea>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="experience">Any relevant experience? (Optional)</label>
+                            <textarea id="experience" name="experience" rows="3" 
+                                placeholder="This could be professional cleaning, hospitality, customer service, or even keeping your own home organized. But remember - no experience is required!"></textarea>
+                        </div>
+                        
+                        <div class="form-navigation">
+                            <button type="button" class="btn btn-secondary prev-section">Previous</button>
+                            <button type="button" class="btn btn-primary next-section">Next</button>
+                        </div>
+                    </div>
+
+                    <div class="form-section" data-section="4">
+                        <h3>References</h3>
+                        <p class="section-intro">Please provide two people who can speak to your character (they don't need to be employers)</p>
+                        
+                        <div class="reference-block">
+                            <h4>Reference 1</h4>
+                            <div class="form-row">
+                                <div class="form-group">
+                                    <label for="ref1Name">Name *</label>
+                                    <input type="text" id="ref1Name" name="ref1Name" required>
+                                </div>
+                                <div class="form-group">
+                                    <label for="ref1Relationship">Relationship *</label>
+                                    <input type="text" id="ref1Relationship" name="ref1Relationship" placeholder="e.g., Friend, Former colleague, Teacher" required>
+                                </div>
+                            </div>
+                            <div class="form-row">
+                                <div class="form-group">
+                                    <label for="ref1Phone">Phone *</label>
+                                    <input type="tel" id="ref1Phone" name="ref1Phone" required>
+                                </div>
+                                <div class="form-group">
+                                    <label for="ref1Email">Email (Optional)</label>
+                                    <input type="email" id="ref1Email" name="ref1Email">
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="reference-block">
+                            <h4>Reference 2</h4>
+                            <div class="form-row">
+                                <div class="form-group">
+                                    <label for="ref2Name">Name *</label>
+                                    <input type="text" id="ref2Name" name="ref2Name" required>
+                                </div>
+                                <div class="form-group">
+                                    <label for="ref2Relationship">Relationship *</label>
+                                    <input type="text" id="ref2Relationship" name="ref2Relationship" placeholder="e.g., Friend, Former colleague, Teacher" required>
+                                </div>
+                            </div>
+                            <div class="form-row">
+                                <div class="form-group">
+                                    <label for="ref2Phone">Phone *</label>
+                                    <input type="tel" id="ref2Phone" name="ref2Phone" required>
+                                </div>
+                                <div class="form-group">
+                                    <label for="ref2Email">Email (Optional)</label>
+                                    <input type="email" id="ref2Email" name="ref2Email">
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="form-navigation">
+                            <button type="button" class="btn btn-secondary prev-section">Previous</button>
+                            <button type="button" class="btn btn-primary next-section">Next</button>
+                        </div>
+                    </div>
+
+                    <div class="form-section" data-section="5">
+                        <h3>Almost Done!</h3>
+                        <p class="section-intro">Just a few final details</p>
+                        
+                        <div class="form-group">
+                            <label for="transport">Do you have reliable transportation?</label>
+                            <select id="transport" name="transport">
+                                <option value="">Select option</option>
+                                <option value="own-vehicle">Yes, I have my own vehicle</option>
+                                <option value="public-transport">I use public transport</option>
+                                <option value="other">Other arrangement</option>
+                            </select>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="additionalInfo">Anything else you'd like us to know?</label>
+                            <textarea id="additionalInfo" name="additionalInfo" rows="4" 
+                                placeholder="Questions, special circumstances, or just something fun about yourself!"></textarea>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label class="checkbox-label">
+                                <input type="checkbox" name="confirmation" required>
+                                <span>I confirm that all information provided is accurate *</span>
+                            </label>
+                        </div>
+                        
+                        <div class="form-navigation">
+                            <button type="button" class="btn btn-secondary prev-section">Previous</button>
+                            <button type="submit" class="btn btn-primary btn-large">Submit Application</button>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </section>
+
+        <section class="application-support">
+            <div class="container">
+                <div class="support-content">
+                    <h2>Need Help With Your Application?</h2>
+                    <p>We're here to help! Feel free to call us at <a href="tel:0433147018">0433 147 018</a> if you have any questions or would prefer to apply over the phone.</p>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <div class="logo">
+                        <img src="assets/DEEP CLEAN Logo.png" alt="DEEP CLEAN Logo" class="logo-img">
+                    </div>
+                    <p>Premium cleaning services you can trust. Professional, reliable, and thorough.</p>
+                </div>
+                <div class="footer-section">
+                    <h4>Services</h4>
+                    <ul>
+                        <li><a href="services.html">One-off Deep Clean</a></li>
+                        <li><a href="services.html">Recurring Domestic Clean</a></li>
+                        <li><a href="services.html">Post Construction Clean</a></li>
+                        <li><a href="services.html">NIISQ/NDIS Services</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h4>Company</h4>
+                    <ul>
+                        <li><a href="about.html">About Us</a></li>
+                        <li><a href="gallery.html">Gallery</a></li>
+                        <li><a href="contact.html">Contact</a></li>
+                        <li><a href="careers.html">Join Our Team</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h4>Contact Info</h4>
+                    <p>Phone: 0433 147 018<br>
+                    Email: deepclean.go2@gmail.com<br>
+                    ABN: 57 805 931 28<br>
+                    Service Area: Brisbane Bayside & Southeast</p>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2025 DEEP CLEAN. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+</html>
