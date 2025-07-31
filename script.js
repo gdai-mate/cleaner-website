@@ -1147,6 +1147,8 @@ document.addEventListener('DOMContentLoaded', function() {
     let currentImageIndex = 0;
     let touchStartX = 0;
     let touchEndX = 0;
+    let touchStartY = 0;
+    let touchEndY = 0;
     
     if (modal && modalImg && modalCaption && close) {
         // Collect all gallery images
@@ -1269,24 +1271,36 @@ document.addEventListener('DOMContentLoaded', function() {
         // Touch/swipe support for mobile
         modalImg.addEventListener('touchstart', function(e) {
             touchStartX = e.changedTouches[0].screenX;
+            touchStartY = e.changedTouches[0].screenY;
         }, { passive: true });
         
         modalImg.addEventListener('touchend', function(e) {
             touchEndX = e.changedTouches[0].screenX;
+            touchEndY = e.changedTouches[0].screenY;
             handleSwipe();
         }, { passive: true });
         
         function handleSwipe() {
             const swipeThreshold = 50;
-            const swipeDistance = touchEndX - touchStartX;
+            const swipeDistanceX = touchEndX - touchStartX;
+            const swipeDistanceY = touchEndY - touchStartY;
             
-            if (Math.abs(swipeDistance) > swipeThreshold) {
-                if (swipeDistance > 0) {
-                    // Swipe right - show previous
-                    showPrevImage();
-                } else {
-                    // Swipe left - show next
-                    showNextImage();
+            // Check if it's primarily a vertical or horizontal swipe
+            if (Math.abs(swipeDistanceY) > Math.abs(swipeDistanceX)) {
+                // Vertical swipe - close modal if swipe distance is sufficient
+                if (Math.abs(swipeDistanceY) > swipeThreshold) {
+                    modal.style.display = 'none';
+                }
+            } else {
+                // Horizontal swipe - navigate images
+                if (Math.abs(swipeDistanceX) > swipeThreshold) {
+                    if (swipeDistanceX > 0) {
+                        // Swipe right - show previous
+                        showPrevImage();
+                    } else {
+                        // Swipe left - show next
+                        showNextImage();
+                    }
                 }
             }
         }
