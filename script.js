@@ -1437,24 +1437,18 @@ document.addEventListener('DOMContentLoaded', function() {
                 .careers-modal-content {
                     background: white;
                     padding: 2rem;
-                    padding-bottom: 1rem;
                     border-radius: 12px;
                     width: 90%;
                     max-width: 600px;
-                    height: 90vh;
-                    max-height: 700px;
+                    max-height: 90vh;
                     overflow-y: auto;
                     animation: slideUp 0.3s ease;
                     position: relative;
                     margin: 20px auto;
-                    display: flex;
-                    flex-direction: column;
                 }
                 
                 .careers-enquiry-form {
-                    overflow-y: auto;
-                    flex: 1;
-                    padding-right: 10px;
+                    display: block;
                 }
                 
                 .careers-modal-content::-webkit-scrollbar {
@@ -1530,13 +1524,14 @@ document.addEventListener('DOMContentLoaded', function() {
                     border-color: var(--primary-turquoise);
                 }
                 
-                .form-section {
+                .careers-enquiry-form .form-section {
                     margin-bottom: 2rem;
                     padding-bottom: 1.5rem;
                     border-bottom: 1px solid #e5e7eb;
+                    display: block !important;
                 }
                 
-                .form-section:last-of-type {
+                .careers-enquiry-form .form-section:last-of-type {
                     border-bottom: none;
                     margin-bottom: 1rem;
                 }
