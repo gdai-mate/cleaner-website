@@ -1326,24 +1326,92 @@ document.addEventListener('DOMContentLoaded', function() {
                     <p>Tell us a bit about yourself and we'll get back to you within 48 hours.</p>
                 </div>
                 <form class="careers-enquiry-form" id="careersEnquiryForm">
-                    <div class="form-group">
-                        <label for="fullName">Your Name *</label>
-                        <input type="text" id="fullName" name="fullName" required>
+                    <!-- Contact Details -->
+                    <div class="form-section">
+                        <h4>Contact Details</h4>
+                        <div class="form-group">
+                            <label for="fullName">Full Name *</label>
+                            <input type="text" id="fullName" name="fullName" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="address">Address *</label>
+                            <input type="text" id="address" name="address" placeholder="Street address, suburb, postcode" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="email">Email Address *</label>
+                            <input type="email" id="email" name="email" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="phone">Phone Number *</label>
+                            <input type="tel" id="phone" name="phone" required>
+                        </div>
                     </div>
-                    <div class="form-group">
-                        <label for="email">Email Address *</label>
-                        <input type="email" id="email" name="email" required>
+                    
+                    <!-- Work History -->
+                    <div class="form-section">
+                        <h4>Previous Work History</h4>
+                        <p class="section-note">Please list your last 3 jobs (if any)</p>
+                        
+                        <div class="job-entry">
+                            <div class="form-group">
+                                <label for="job1">Job 1 - Most Recent</label>
+                                <input type="text" id="job1" name="job1" placeholder="Company, position, and dates">
+                            </div>
+                        </div>
+                        <div class="job-entry">
+                            <div class="form-group">
+                                <label for="job2">Job 2</label>
+                                <input type="text" id="job2" name="job2" placeholder="Company, position, and dates">
+                            </div>
+                        </div>
+                        <div class="job-entry">
+                            <div class="form-group">
+                                <label for="job3">Job 3</label>
+                                <input type="text" id="job3" name="job3" placeholder="Company, position, and dates">
+                            </div>
+                        </div>
                     </div>
-                    <div class="form-group">
-                        <label for="phone">Phone Number *</label>
-                        <input type="tel" id="phone" name="phone" required>
+                    
+                    <!-- Availability -->
+                    <div class="form-section">
+                        <h4>Availability</h4>
+                        <div class="form-group">
+                            <label for="availability">When are you available to work? *</label>
+                            <textarea id="availability" name="availability" rows="3" required placeholder="Please let us know your available days and hours"></textarea>
+                        </div>
                     </div>
-                    <div class="form-group">
-                        <label for="message">Tell Us About Yourself *</label>
-                        <textarea id="message" name="message" rows="4" required placeholder="Share what interests you about joining DEEP CLEAN and any relevant experience you'd like us to know about."></textarea>
+                    
+                    <!-- Personal Information -->
+                    <div class="form-section">
+                        <h4>About You</h4>
+                        <div class="form-group">
+                            <label for="interests">Interests & Hobbies</label>
+                            <textarea id="interests" name="interests" rows="3" placeholder="Tell us about your interests and hobbies"></textarea>
+                        </div>
+                        <div class="form-group">
+                            <label for="goals">What do you hope to achieve working with us? *</label>
+                            <textarea id="goals" name="goals" rows="3" required placeholder="Share your goals and aspirations"></textarea>
+                        </div>
+                        <div class="form-group">
+                            <label for="helpingOthers">Do you enjoy helping others? *</label>
+                            <textarea id="helpingOthers" name="helpingOthers" rows="3" required placeholder="Tell us about your experience helping others"></textarea>
+                        </div>
+                        <div class="form-group">
+                            <label for="howHeard">How did you hear about us? *</label>
+                            <select id="howHeard" name="howHeard" required>
+                                <option value="">Please select</option>
+                                <option value="Indeed">Indeed</option>
+                                <option value="Seek">Seek</option>
+                                <option value="Website">Website</option>
+                                <option value="Social Media">Social Media</option>
+                                <option value="Word of Mouth">Word of Mouth</option>
+                                <option value="Other">Other</option>
+                            </select>
+                        </div>
                     </div>
+                    
                     <div class="form-actions">
-                        <button type="submit" class="btn btn-primary">Send Message</button>
+                        <button type="submit" class="btn btn-primary">Submit Application</button>
                     </div>
                 </form>
             </div>
@@ -1371,10 +1439,30 @@ document.addEventListener('DOMContentLoaded', function() {
                     padding: 2rem;
                     border-radius: 12px;
                     width: 90%;
-                    max-width: 500px;
-                    max-height: 90vh;
+                    max-width: 600px;
+                    max-height: 85vh;
                     overflow-y: auto;
                     animation: slideUp 0.3s ease;
+                    position: relative;
+                    margin: 20px auto;
+                }
+                
+                .careers-modal-content::-webkit-scrollbar {
+                    width: 8px;
+                }
+                
+                .careers-modal-content::-webkit-scrollbar-track {
+                    background: #f1f1f1;
+                    border-radius: 4px;
+                }
+                
+                .careers-modal-content::-webkit-scrollbar-thumb {
+                    background: #888;
+                    border-radius: 4px;
+                }
+                
+                .careers-modal-content::-webkit-scrollbar-thumb:hover {
+                    background: #555;
                 }
                 
                 .careers-modal-header {
@@ -1382,6 +1470,13 @@ document.addEventListener('DOMContentLoaded', function() {
                     justify-content: space-between;
                     align-items: center;
                     margin-bottom: 1rem;
+                    position: sticky;
+                    top: -2rem;
+                    background: white;
+                    padding: 1rem 0;
+                    margin-top: -1rem;
+                    border-bottom: 1px solid #e5e7eb;
+                    z-index: 10;
                 }
                 
                 .careers-modal-header h3 {
@@ -1427,10 +1522,70 @@ document.addEventListener('DOMContentLoaded', function() {
                     border-color: var(--primary-turquoise);
                 }
                 
+                .form-section {
+                    margin-bottom: 2rem;
+                    padding-bottom: 1.5rem;
+                    border-bottom: 1px solid #e5e7eb;
+                }
+                
+                .form-section:last-of-type {
+                    border-bottom: none;
+                    margin-bottom: 1rem;
+                }
+                
+                .form-section h4 {
+                    color: var(--dark-blue);
+                    font-weight: var(--font-weight-semibold);
+                    margin-bottom: 1rem;
+                    font-size: 1.2rem;
+                }
+                
+                .section-note {
+                    color: var(--gray);
+                    font-size: 0.9rem;
+                    margin-bottom: 1rem;
+                }
+                
+                .job-entry {
+                    margin-bottom: 0.5rem;
+                }
+                
+                .close-modal {
+                    background: none;
+                    border: none;
+                    font-size: 24px;
+                    cursor: pointer;
+                    color: #666;
+                    padding: 0;
+                    width: 30px;
+                    height: 30px;
+                    display: flex;
+                    align-items: center;
+                    justify-content: center;
+                    border-radius: 4px;
+                    transition: background-color 0.2s;
+                }
+                
+                .close-modal:hover {
+                    background-color: #f0f0f0;
+                }
+                
+                .form-actions {
+                    margin-top: 2rem;
+                    padding-top: 1rem;
+                    border-top: 1px solid #e5e7eb;
+                }
+                
                 @media (max-width: 768px) {
                     .careers-modal-content {
                         width: 95%;
                         padding: 1.5rem;
+                        max-height: 90vh;
+                        margin: 10px auto;
+                    }
+                    
+                    .form-section h4 {
+                        font-size: 1.1rem;
                     }
                 }
             </style>
@@ -1458,19 +1613,48 @@ document.addEventListener('DOMContentLoaded', function() {
             
             const formData = {
                 fullName: form.fullName.value,
+                address: form.address.value,
                 email: form.email.value,
                 phone: form.phone.value,
-                message: form.message.value
+                job1: form.job1.value,
+                job2: form.job2.value,
+                job3: form.job3.value,
+                availability: form.availability.value,
+                interests: form.interests.value,
+                goals: form.goals.value,
+                helpingOthers: form.helpingOthers.value,
+                howHeard: form.howHeard.value
             };
             
             // Create email body
             let emailBody = `CAREERS ENQUIRY FROM DEEP CLEAN WEBSITE\n`;
             emailBody += `=====================================\n\n`;
+            
+            emailBody += `CONTACT DETAILS\n`;
+            emailBody += `---------------\n`;
             emailBody += `Name: ${formData.fullName}\n`;
+            emailBody += `Address: ${formData.address}\n`;
             emailBody += `Email: ${formData.email}\n`;
             emailBody += `Phone: ${formData.phone}\n\n`;
-            emailBody += `Message:\n${formData.message}\n\n`;
-            emailBody += `Sent from: Careers page enquiry form`;
+            
+            emailBody += `PREVIOUS WORK HISTORY\n`;
+            emailBody += `--------------------\n`;
+            emailBody += `Job 1 (Most Recent): ${formData.job1 || 'Not provided'}\n`;
+            emailBody += `Job 2: ${formData.job2 || 'Not provided'}\n`;
+            emailBody += `Job 3: ${formData.job3 || 'Not provided'}\n\n`;
+            
+            emailBody += `AVAILABILITY\n`;
+            emailBody += `------------\n`;
+            emailBody += `${formData.availability}\n\n`;
+            
+            emailBody += `ABOUT THE APPLICANT\n`;
+            emailBody += `------------------\n`;
+            emailBody += `Interests & Hobbies:\n${formData.interests || 'Not provided'}\n\n`;
+            emailBody += `What they hope to achieve:\n${formData.goals}\n\n`;
+            emailBody += `Experience helping others:\n${formData.helpingOthers}\n\n`;
+            emailBody += `How they heard about us: ${formData.howHeard}\n\n`;
+            
+            emailBody += `Submitted: ${new Date().toLocaleString('en-AU', { timeZone: 'Australia/Brisbane' })}`;
             
             // Create mailto link
             const subject = encodeURIComponent('Careers Enquiry - ' + formData.fullName);
