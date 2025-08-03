@@ -1,3 +1,10 @@
+// EmailJS Configuration
+const EMAILJS_CONFIG = {
+    SERVICE_ID: 'YOUR_SERVICE_ID', // Replace with your EmailJS service ID
+    CONTACT_TEMPLATE_ID: 'YOUR_CONTACT_TEMPLATE_ID', // Replace with your contact form template ID
+    CAREERS_TEMPLATE_ID: 'YOUR_CAREERS_TEMPLATE_ID', // Replace with your careers form template ID
+};
+
 // Mobile navigation toggle
 document.addEventListener('DOMContentLoaded', function() {
     const hamburger = document.querySelector('.hamburger');
@@ -1018,16 +1025,52 @@ document.addEventListener('DOMContentLoaded', function() {
             emailBody += `Please contact me at your earliest convenience to discuss pricing and availability.\n\n`;
             emailBody += `Thank you,\n${data.firstName} ${data.lastName}`;
             
-            // Create mailto link
-            const mailtoLink = `mailto:deepclean.go2@gmail.com?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(emailBody)}`;
+            // Check if EmailJS is available and configured
+            if (typeof emailjs !== 'undefined' && EMAILJS_CONFIG.SERVICE_ID !== 'YOUR_SERVICE_ID') {
+                // Use EmailJS to send email
+                const templateParams = {
+                    to_email: 'deepclean.go2@gmail.com',
+                    from_name: `${data.firstName} ${data.lastName}`,
+                    from_email: data.email,
+                    phone: data.phone,
+                    subject: subject,
+                    message: emailBody,
+                    services: selectedServices.join(', '),
+                    address: data.address,
+                    property_type: data.propertyType || 'Not specified',
+                    property_size: data.propertySize || 'Not specified',
+                    urgency: data.urgency || 'Flexible',
+                    additional_details: data.message || 'None provided',
+                    photos: contactUploadedImages.length > 0 ? 
+                        contactUploadedImages.map((img, i) => `Photo ${i+1}: ${img.url}`).join('\n') : 
+                        'No photos provided'
+                };
+                
+                emailjs.send(EMAILJS_CONFIG.SERVICE_ID, EMAILJS_CONFIG.CONTACT_TEMPLATE_ID, templateParams)
+                    .then(function(response) {
+                        console.log('Email sent successfully!', response.status, response.text);
+                        showSuccessMessage();
+                    }, function(error) {
+                        console.error('Failed to send email:', error);
+                        // Fallback to mailto
+                        fallbackToMailto();
+                    });
+            } else {
+                // Fallback to mailto if EmailJS not configured
+                fallbackToMailto();
+            }
             
-            // Open email client
-            window.location.href = mailtoLink;
+            function fallbackToMailto() {
+                const mailtoLink = `mailto:deepclean.go2@gmail.com?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(emailBody)}`;
+                window.location.href = mailtoLink;
+                showSuccessMessage();
+            }
             
-            console.log('Contact form submitted:', data);
-            console.log('Uploaded images:', contactUploadedImages);
-            
-            // Show success message
+            function showSuccessMessage() {
+                console.log('Contact form submitted:', data);
+                console.log('Uploaded images:', contactUploadedImages);
+                
+                // Show success message
             alert('Email client opened! Your quote request with photos is ready to send.');
         });
     }
@@ -1681,15 +1724,51 @@ document.addEventListener('DOMContentLoaded', function() {
             
             emailBody += `Submitted: ${new Date().toLocaleString('en-AU', { timeZone: 'Australia/Brisbane' })}`;
             
-            // Create mailto link
-            const subject = encodeURIComponent('Careers Enquiry - ' + formData.fullName);
-            const body = encodeURIComponent(emailBody);
-            const mailtoLink = `mailto:deepclean.go2@gmail.com?subject=${subject}&body=${body}`;
+            // Check if EmailJS is available and configured
+            if (typeof emailjs !== 'undefined' && EMAILJS_CONFIG.SERVICE_ID !== 'YOUR_SERVICE_ID') {
+                // Use EmailJS to send email
+                const templateParams = {
+                    to_email: 'deepclean.go2@gmail.com',
+                    subject: 'Careers Enquiry - ' + formData.fullName,
+                    from_name: formData.fullName,
+                    from_email: formData.email,
+                    phone: formData.phone,
+                    address: formData.address,
+                    job1: formData.job1 || 'Not provided',
+                    job2: formData.job2 || 'Not provided', 
+                    job3: formData.job3 || 'Not provided',
+                    availability: formData.availability,
+                    interests: formData.interests || 'Not provided',
+                    goals: formData.goals,
+                    helping_others: formData.helpingOthers,
+                    how_heard: formData.howHeard,
+                    full_message: emailBody
+                };
+                
+                emailjs.send(EMAILJS_CONFIG.SERVICE_ID, EMAILJS_CONFIG.CAREERS_TEMPLATE_ID, templateParams)
+                    .then(function(response) {
+                        console.log('Careers email sent successfully!', response.status, response.text);
+                        showCareersSuccess();
+                    }, function(error) {
+                        console.error('Failed to send careers email:', error);
+                        // Fallback to mailto
+                        fallbackToMailto();
+                    });
+            } else {
+                // Fallback to mailto if EmailJS not configured
+                fallbackToMailto();
+            }
             
-            // Open email client
-            window.location.href = mailtoLink;
+            function fallbackToMailto() {
+                const subject = encodeURIComponent('Careers Enquiry - ' + formData.fullName);
+                const body = encodeURIComponent(emailBody);
+                const mailtoLink = `mailto:deepclean.go2@gmail.com?subject=${subject}&body=${body}`;
+                window.location.href = mailtoLink;
+                showCareersSuccess();
+            }
             
-            // Update modal content to show success
+            function showCareersSuccess() {
+                // Update modal content to show success
             modal.querySelector('.careers-modal-content').innerHTML = `
                 <div class="success-content" style="text-align: center; padding: 2rem;">
                     <svg width="64" height="64" viewBox="0 0 24 24" fill="none" stroke="var(--primary-turquoise)" stroke-width="2" style="margin-bottom: 1rem;">
@@ -1702,6 +1781,7 @@ document.addEventListener('DOMContentLoaded', function() {
                     <button type="button" class="btn btn-primary" onclick="this.closest('.careers-modal').remove()">Close</button>
                 </div>
             `;
+            }
         });
     }
     
