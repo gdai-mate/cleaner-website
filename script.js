@@ -1313,7 +1313,6 @@ document.addEventListener('DOMContentLoaded', function() {
     
     // Careers Enquiry Modal
     function showCareersModal() {
-        console.log('Showing careers modal...');
         const modal = document.createElement('div');
         modal.className = 'careers-modal';
         
@@ -1438,14 +1437,24 @@ document.addEventListener('DOMContentLoaded', function() {
                 .careers-modal-content {
                     background: white;
                     padding: 2rem;
+                    padding-bottom: 1rem;
                     border-radius: 12px;
                     width: 90%;
                     max-width: 600px;
-                    max-height: 85vh;
+                    height: 90vh;
+                    max-height: 700px;
                     overflow-y: auto;
                     animation: slideUp 0.3s ease;
                     position: relative;
                     margin: 20px auto;
+                    display: flex;
+                    flex-direction: column;
+                }
+                
+                .careers-enquiry-form {
+                    overflow-y: auto;
+                    flex: 1;
+                    padding-right: 10px;
                 }
                 
                 .careers-modal-content::-webkit-scrollbar {
@@ -1471,13 +1480,9 @@ document.addEventListener('DOMContentLoaded', function() {
                     justify-content: space-between;
                     align-items: center;
                     margin-bottom: 1rem;
-                    position: sticky;
-                    top: -2rem;
-                    background: white;
-                    padding: 1rem 0;
-                    margin-top: -1rem;
+                    padding-bottom: 1rem;
                     border-bottom: 1px solid #e5e7eb;
-                    z-index: 10;
+                    flex-shrink: 0;
                 }
                 
                 .careers-modal-header h3 {
@@ -1486,12 +1491,14 @@ document.addEventListener('DOMContentLoaded', function() {
                 }
                 
                 .careers-modal-intro {
-                    margin-bottom: 1.5rem;
+                    margin-bottom: 1rem;
+                    flex-shrink: 0;
                 }
                 
                 .careers-modal-intro p {
                     color: var(--gray);
                     margin: 0;
+                    font-size: 0.95rem;
                 }
                 
                 .careers-enquiry-form .form-group {
