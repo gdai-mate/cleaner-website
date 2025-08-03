@@ -5232,6 +5232,134 @@ img {
     margin: var(--spacing-sm) 0 var(--spacing-md);
 }
 
+/* Careers Hero */
+.careers-hero .hero-subtitle {
+    font-size: 1.3rem;
+    color: var(--gray);
+    margin-top: var(--spacing-sm);
+    max-width: 600px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.hero-note {
+    display: inline-block;
+    margin-left: var(--spacing-md);
+    color: var(--gray);
+    font-size: 0.9rem;
+    font-style: italic;
+}
+
+/* Why Work With Us */
+.why-work-with-us {
+    padding: var(--spacing-xl) 0;
+}
+
+.benefits-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: var(--spacing-lg);
+    margin-top: var(--spacing-lg);
+}
+
+.benefit-card {
+    background: white;
+    padding: var(--spacing-lg);
+    border-radius: var(--radius-lg);
+    box-shadow: var(--shadow-md);
+    text-align: center;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.benefit-card:hover {
+    transform: translateY(-5px);
+    box-shadow: var(--shadow-lg);
+}
+
+.benefit-icon {
+    font-size: 3rem;
+    margin-bottom: var(--spacing-md);
+}
+
+.benefit-card h3 {
+    color: var(--dark-blue);
+    font-size: 1.3rem;
+    margin-bottom: var(--spacing-sm);
+}
+
+.benefit-card p {
+    color: var(--gray);
+    line-height: 1.6;
+}
+
+/* Team Testimonial */
+.team-testimonial {
+    padding: var(--spacing-xl) 0;
+    background: #f8f9fa;
+}
+
+.team-testimonial .testimonial-content {
+    max-width: 800px;
+    margin: 0 auto;
+    text-align: center;
+}
+
+.team-testimonial blockquote {
+    margin: 0;
+    padding: 0;
+}
+
+.team-testimonial blockquote p {
+    font-size: 1.3rem;
+    line-height: 1.8;
+    color: var(--dark-blue);
+    font-style: italic;
+    margin-bottom: var(--spacing-md);
+}
+
+.team-testimonial cite {
+    color: var(--primary-turquoise);
+    font-style: normal;
+    font-weight: var(--font-weight-medium);
+}
+
+/* Typical Day */
+.typical-day {
+    padding: var(--spacing-xl) 0;
+}
+
+.day-timeline {
+    max-width: 800px;
+    margin: var(--spacing-xl) auto 0;
+}
+
+.timeline-item {
+    display: flex;
+    gap: var(--spacing-lg);
+    margin-bottom: var(--spacing-lg);
+    align-items: flex-start;
+}
+
+.timeline-time {
+    background: var(--primary-turquoise);
+    color: white;
+    padding: var(--spacing-sm) var(--spacing-md);
+    border-radius: var(--radius-md);
+    font-weight: var(--font-weight-semibold);
+    min-width: 100px;
+    text-align: center;
+}
+
+.timeline-content h4 {
+    color: var(--dark-blue);
+    margin-bottom: var(--spacing-xs);
+}
+
+.timeline-content p {
+    color: var(--gray);
+    line-height: 1.6;
+}
+
 /* Responsive Styles */
 @media (max-width: 768px) {
     .banner-content {
@@ -5266,6 +5394,21 @@ img {
 
     .testimonial-grid {
         grid-template-columns: 1fr;
+    }
+    
+    .hero-note {
+        display: block;
+        margin-left: 0;
+        margin-top: var(--spacing-sm);
+    }
+    
+    .timeline-item {
+        flex-direction: column;
+        gap: var(--spacing-sm);
+    }
+    
+    .timeline-time {
+        min-width: auto;
     }
 }
 

@@ -1313,6 +1313,7 @@ document.addEventListener('DOMContentLoaded', function() {
     
     // Careers Enquiry Modal
     function showCareersModal() {
+        console.log('Showing careers modal...');
         const modal = document.createElement('div');
         modal.className = 'careers-modal';
         
@@ -1681,8 +1682,23 @@ document.addEventListener('DOMContentLoaded', function() {
     }
     
     // Attach careers modal to buttons
-    document.querySelectorAll('.careers-enquiry-btn').forEach(btn => {
-        btn.addEventListener('click', showCareersModal);
+    function attachCareersButtons() {
+        document.querySelectorAll('.careers-enquiry-btn').forEach(btn => {
+            // Remove any existing listeners to avoid duplicates
+            btn.removeEventListener('click', showCareersModal);
+            btn.addEventListener('click', showCareersModal);
+        });
+    }
+    
+    // Initial attachment
+    attachCareersButtons();
+    
+    // Also attach using event delegation for reliability
+    document.body.addEventListener('click', function(e) {
+        if (e.target.classList.contains('careers-enquiry-btn')) {
+            e.preventDefault();
+            showCareersModal();
+        }
     });
     
     // Animation Intersection Observer
