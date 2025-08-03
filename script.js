@@ -1325,7 +1325,7 @@ document.addEventListener('DOMContentLoaded', function() {
                 <div class="careers-modal-intro">
                     <p>Tell us a bit about yourself and we'll get back to you within 48 hours.</p>
                 </div>
-                <form class="careers-enquiry-form" id="careersEnquiryForm">
+                <form class="careers-enquiry-form" id="careersEnquiryForm" novalidate>
                     <!-- Contact Details -->
                     <div class="form-section">
                         <h4>Contact Details</h4>
@@ -1602,6 +1602,9 @@ document.addEventListener('DOMContentLoaded', function() {
         document.head.insertAdjacentHTML('beforeend', modalStyles);
         document.body.appendChild(modal);
         
+        // Force a reflow to ensure the modal is rendered
+        modal.offsetHeight;
+        
         // Close modal functionality
         const closeModal = modal.querySelector('.close-modal');
         closeModal.addEventListener('click', function() {
@@ -1618,6 +1621,25 @@ document.addEventListener('DOMContentLoaded', function() {
         const form = modal.querySelector('#careersEnquiryForm');
         form.addEventListener('submit', function(e) {
             e.preventDefault();
+            
+            // Manual validation for required fields
+            const requiredFields = ['fullName', 'address', 'email', 'phone', 'availability', 'goals', 'helpingOthers', 'howHeard'];
+            let isValid = true;
+            
+            for (const fieldName of requiredFields) {
+                const field = form[fieldName];
+                if (!field.value.trim()) {
+                    field.style.borderColor = '#ef4444';
+                    isValid = false;
+                } else {
+                    field.style.borderColor = '#e5e7eb';
+                }
+            }
+            
+            if (!isValid) {
+                alert('Please fill in all required fields.');
+                return;
+            }
             
             const formData = {
                 fullName: form.fullName.value,
