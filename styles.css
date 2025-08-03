@@ -5153,6 +5153,85 @@ img {
 .benefit-item:nth-child(5) { transition-delay: 0.3s; }
 .benefit-item:nth-child(6) { transition-delay: 0.35s; }
 
+/* Who We're Looking For Section */
+.who-we-want {
+    padding: var(--spacing-xl) 0;
+    background: #f8f9fa;
+}
+
+.qualities-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: var(--spacing-lg);
+    margin-top: var(--spacing-lg);
+}
+
+.quality-item {
+    text-align: center;
+    padding: var(--spacing-md);
+}
+
+.quality-item h3 {
+    color: var(--dark-blue);
+    font-size: 1.3rem;
+    margin-bottom: var(--spacing-sm);
+}
+
+.quality-item p {
+    color: var(--gray);
+    line-height: 1.6;
+}
+
+/* Application Process Section */
+.application-process {
+    padding: var(--spacing-xl) 0;
+}
+
+.process-steps {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    gap: var(--spacing-lg);
+    margin-top: var(--spacing-xl);
+}
+
+.process-step {
+    text-align: center;
+    position: relative;
+}
+
+.step-number {
+    width: 60px;
+    height: 60px;
+    background: var(--primary-turquoise);
+    color: white;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.5rem;
+    font-weight: var(--font-weight-bold);
+    margin: 0 auto var(--spacing-md);
+}
+
+.process-step h3 {
+    color: var(--dark-blue);
+    font-size: 1.2rem;
+    margin-bottom: var(--spacing-sm);
+}
+
+.process-step p {
+    color: var(--gray);
+    line-height: 1.6;
+    font-size: 0.95rem;
+}
+
+/* CTA Description */
+.cta-description {
+    font-size: 1.1rem;
+    color: var(--gray);
+    margin: var(--spacing-sm) 0 var(--spacing-md);
+}
+
 /* Responsive Styles */
 @media (max-width: 768px) {
     .banner-content {
