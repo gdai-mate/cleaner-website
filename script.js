@@ -1097,39 +1097,46 @@ document.addEventListener('DOMContentLoaded', function() {
         const details = card.querySelector('.service-details');
         const closeBtn = card.querySelector('.service-close-btn');
         
+        // Initialize details as collapsed
+        if (details) {
+            details.style.maxHeight = '0';
+            details.style.transition = 'max-height 0.4s ease';
+        }
+        
         // Expand on header click
-        header.addEventListener('click', function() {
-            // Store current scroll position and card position
-            const currentScrollY = window.pageYOffset;
-            const cardRect = card.getBoundingClientRect();
-            const cardTopBeforeExpansion = cardRect.top + currentScrollY;
-            
-            // Close all other cards first (without animation to prevent jumping)
-            serviceCards.forEach(otherCard => {
-                if (otherCard !== card && otherCard.classList.contains('expanded')) {
-                    const otherDetails = otherCard.querySelector('.service-details');
-                    otherCard.classList.remove('expanded');
-                    otherDetails.style.transition = 'none'; // Disable transition temporarily
-                    otherDetails.style.maxHeight = '0';
-                    // Re-enable transition after a brief moment
+        if (header && details) {
+            header.addEventListener('click', function() {
+                const isExpanded = card.classList.contains('expanded');
+                
+                // Close all other cards first
+                serviceCards.forEach(otherCard => {
+                    if (otherCard !== card && otherCard.classList.contains('expanded')) {
+                        const otherDetails = otherCard.querySelector('.service-details');
+                        otherCard.classList.remove('expanded');
+                        if (otherDetails) {
+                            otherDetails.style.maxHeight = '0';
+                        }
+                    }
+                });
+                
+                // Toggle current card
+                if (isExpanded) {
+                    // Collapse
+                    card.classList.remove('expanded');
+                    details.style.maxHeight = '0';
+                } else {
+                    // Expand
+                    card.classList.add('expanded');
+                    const scrollHeight = details.scrollHeight;
+                    details.style.maxHeight = scrollHeight + 'px';
+                    
+                    // After expansion starts, lock to this service
                     setTimeout(() => {
-                        otherDetails.style.transition = 'max-height 0.4s ease';
-                    }, 50);
+                        lockToService(card);
+                    }, 100);
                 }
             });
-            
-            // Brief delay to let the DOM settle, then expand current card
-            setTimeout(() => {
-                card.classList.add('expanded');
-                const scrollHeight = details.scrollHeight;
-                details.style.maxHeight = scrollHeight + 'px';
-                
-                // After expansion starts, lock to this service
-                setTimeout(() => {
-                    lockToService(card);
-                }, 50);
-            }, 100);
-        });
+        }
         
         // Close on close button click
         if (closeBtn) {
@@ -1804,6 +1811,8 @@ document.addEventListener('DOMContentLoaded', function() {
             showCareersModal();
         }
     });
+    
+    // Service dropdowns functionality - Removed duplicate code, functionality is below
     
     // Animation Intersection Observer
     const animationObserver = new IntersectionObserver((entries) => {
