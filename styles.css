@@ -4292,7 +4292,7 @@ img {
 }
 
 .service-card.expanded .service-details {
-    max-height: none;
+    max-height: 3000px; /* Large enough for content but still animatable */
 }
 
 .service-close-btn {

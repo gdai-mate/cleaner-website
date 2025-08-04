@@ -1837,8 +1837,10 @@ document.addEventListener('DOMContentLoaded', function() {
         }
     });
     
-    // Initialize service dropdowns after a short delay
-    setTimeout(initializeServiceDropdowns, 100);
+    // Initialize service dropdowns after DOM is ready
+    if (document.querySelector('.expandable-services')) {
+        initializeServiceDropdowns();
+    }
     
     // Also add direct handlers for any quote buttons
     setTimeout(() => {
@@ -1856,102 +1858,79 @@ document.addEventListener('DOMContentLoaded', function() {
     }, 200);
 });
 
-// Service dropdowns functionality
+// Service dropdowns functionality - Simplified implementation
 function initializeServiceDropdowns() {
-    const servicePageCards = document.querySelectorAll('.expandable-services .service-card');
-    console.log('Initializing service dropdowns, cards found:', servicePageCards.length);
+    console.log('Initializing service dropdowns...');
     
-    if (servicePageCards.length === 0) {
-        console.log('No service cards found. Checking for any service-card elements...');
-        const allServiceCards = document.querySelectorAll('.service-card');
-        console.log('Total service-card elements on page:', allServiceCards.length);
-    }
-    
-    servicePageCards.forEach((card, index) => {
-        const header = card.querySelector('.service-header');
-        const details = card.querySelector('.service-details');
-        const closeBtn = card.querySelector('.service-close-btn');
-        
-        console.log(`Card ${index}: header=${!!header}, details=${!!details}`);
-        
-        if (header && details) {
-            // Remove any existing click handlers
-            const newHeader = header.cloneNode(true);
-            header.parentNode.replaceChild(newHeader, header);
-            
-            // Make sure details start collapsed
-            details.style.maxHeight = '0';
-            details.style.overflow = 'hidden';
-            details.style.transition = 'max-height 0.4s ease';
-            
-            newHeader.addEventListener('click', function(e) {
-                e.preventDefault();
-                e.stopPropagation();
-                console.log('Service header clicked');
-                
-                const isExpanded = card.classList.contains('expanded');
-                
-                // Close all other cards
-                servicePageCards.forEach(otherCard => {
-                    if (otherCard !== card) {
-                        otherCard.classList.remove('expanded');
-                        const otherDetails = otherCard.querySelector('.service-details');
-                        if (otherDetails) {
-                            otherDetails.style.maxHeight = '0';
-                        }
-                    }
-                });
-                
-                // Toggle current card
-                if (isExpanded) {
-                    console.log('Collapsing card');
-                    card.classList.remove('expanded');
-                    details.style.maxHeight = '0';
-                } else {
-                    console.log('Expanding card');
-                    card.classList.add('expanded');
-                    // Force reflow
-                    details.style.maxHeight = 'auto';
-                    const height = details.scrollHeight;
-                    details.style.maxHeight = '0';
-                    details.offsetHeight; // Force reflow
-                    details.style.maxHeight = height + 'px';
-                    
-                    // Scroll into view
-                    setTimeout(() => {
-                        const headerRect = newHeader.getBoundingClientRect();
-                        const scrollTop = window.pageYOffset + headerRect.top - 100;
-                        window.scrollTo({ top: scrollTop, behavior: 'smooth' });
-                    }, 100);
-                }
-            });
-            
-            // Close button
-            if (closeBtn) {
-                closeBtn.addEventListener('click', function(e) {
-                    e.stopPropagation();
-                    console.log('Close button clicked');
-                    card.classList.remove('expanded');
-                    details.style.maxHeight = '0';
-                });
-            }
-        }
-    });
-    
-    // Also try direct event delegation as fallback
+    // Use event delegation for better reliability
     document.addEventListener('click', function(e) {
-        const header = e.target.closest('.service-header');
-        if (header) {
-            const card = header.closest('.service-card');
-            const details = card?.querySelector('.service-details');
-            if (card && details && card.closest('.expandable-services')) {
-                console.log('Service header clicked via delegation');
-                // Handle click
-                e.preventDefault();
-                e.stopPropagation();
-            }
+        // Check if clicked element is part of a service header
+        const header = e.target.closest('.expandable-services .service-header');
+        if (!header) return;
+        
+        e.preventDefault();
+        e.stopPropagation();
+        
+        const card = header.closest('.service-card');
+        const details = card.querySelector('.service-details');
+        
+        if (!details) {
+            console.error('No service details found for card');
+            return;
+        }
+        
+        const isExpanded = card.classList.contains('expanded');
+        const allCards = document.querySelectorAll('.expandable-services .service-card');
+        
+        // Close all cards
+        allCards.forEach(c => {
+            c.classList.remove('expanded');
+            const d = c.querySelector('.service-details');
+            if (d) d.style.maxHeight = '0';
+        });
+        
+        // If this card wasn't expanded, expand it
+        if (!isExpanded) {
+            card.classList.add('expanded');
+            // Calculate height
+            details.style.maxHeight = 'auto';
+            const height = details.scrollHeight;
+            details.style.maxHeight = '0';
+            // Force reflow
+            details.offsetHeight;
+            // Animate to calculated height
+            details.style.maxHeight = height + 'px';
+            
+            // Scroll into view after animation
+            setTimeout(() => {
+                header.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+            }, 300);
         }
     });
+    
+    // Handle close buttons
+    document.addEventListener('click', function(e) {
+        const closeBtn = e.target.closest('.service-close-btn');
+        if (!closeBtn) return;
+        
+        e.stopPropagation();
+        const card = closeBtn.closest('.service-card');
+        if (card) {
+            card.classList.remove('expanded');
+            const details = card.querySelector('.service-details');
+            if (details) details.style.maxHeight = '0';
+        }
+    });
+    
+    // Initialize all service details to be collapsed
+    const allDetails = document.querySelectorAll('.expandable-services .service-details');
+    allDetails.forEach(details => {
+        details.style.maxHeight = '0';
+        details.style.overflow = 'hidden';
+        details.style.transition = 'max-height 0.4s ease';
+    });
+    
+    console.log('Service dropdowns initialized');
 }
 
 // Additional initialization for any dynamic content
