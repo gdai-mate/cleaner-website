@@ -1831,8 +1831,11 @@ document.addEventListener('DOMContentLoaded', function() {
     
     // Also attach using event delegation for reliability
     document.body.addEventListener('click', function(e) {
-        if (e.target.classList.contains('careers-enquiry-btn')) {
+        const careersBtn = e.target.closest('.careers-enquiry-btn');
+        if (careersBtn) {
             e.preventDefault();
+            e.stopPropagation();
+            console.log('Careers button clicked');
             showCareersModal();
         }
     });
