@@ -35,7 +35,7 @@
             // Set initial state
             details.style.maxHeight = '0';
             details.style.overflow = 'hidden';
-            details.style.transition = 'max-height 0.4s ease';
+            details.style.transition = 'max-height 0.6s cubic-bezier(0.4, 0, 0.2, 1)';
             
             // Add click handler to header
             header.addEventListener('click', function(e) {
@@ -56,22 +56,28 @@
                     card.classList.add('expanded');
                     details.style.maxHeight = details.scrollHeight + 'px';
                     
-                    // Smooth scroll to the top of the card after a brief delay
+                    // Wait for expansion animation to start before scrolling
                     setTimeout(() => {
                         const rect = card.getBoundingClientRect();
-                        const headerHeight = 80; // Account for fixed header
+                        const viewportHeight = window.innerHeight;
+                        const headerHeight = 80;
                         
-                        // Only scroll if the card header is above the viewport or too close to top
-                        if (rect.top < headerHeight + 20) {
-                            const cardTop = card.offsetTop;
-                            const scrollPosition = cardTop - headerHeight - 20; // 20px extra padding
+                        // Calculate if we need to scroll
+                        const cardTop = rect.top + window.pageYOffset;
+                        const cardBottom = cardTop + card.offsetHeight;
+                        const viewportTop = window.pageYOffset;
+                        const viewportBottom = viewportTop + viewportHeight;
+                        
+                        // Scroll if card extends below viewport or header is too close to top
+                        if (cardBottom > viewportBottom - 100 || rect.top < headerHeight + 40) {
+                            const scrollPosition = cardTop - headerHeight - 40;
                             
                             window.scrollTo({
-                                top: scrollPosition,
+                                top: Math.max(0, scrollPosition),
                                 behavior: 'smooth'
                             });
                         }
-                    }, 100);
+                    }, 200); // Slightly longer delay for smoother experience
                 }
             });
             
