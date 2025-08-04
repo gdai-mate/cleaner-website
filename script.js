@@ -5,8 +5,11 @@ const EMAILJS_CONFIG = {
     CAREERS_TEMPLATE_ID: 'YOUR_CAREERS_TEMPLATE_ID', // Replace with your careers form template ID
 };
 
-// Mobile navigation toggle
+// Wait for DOM to be fully loaded
 document.addEventListener('DOMContentLoaded', function() {
+    console.log('DOM loaded, initializing DEEP CLEAN website functionality...');
+    
+    // Mobile navigation toggle
     const hamburger = document.querySelector('.hamburger');
     const navMenu = document.querySelector('.nav-menu');
     const navLinks = document.querySelectorAll('.nav-link');
@@ -108,20 +111,42 @@ document.addEventListener('DOMContentLoaded', function() {
     // Smooth scroll-based movement
     window.addEventListener('scroll', requestTick);
 
-    // Form handling for quote requests
-    const quoteButtons = document.querySelectorAll('.btn-primary, .cta-button, .package-btn, .service-cta .btn');
-    
-    quoteButtons.forEach(button => {
-        // Skip buttons that should navigate normally (like services-link) or careers buttons
-        if (button.classList.contains('services-link') || button.classList.contains('careers-enquiry-btn')) {
+    // Form handling for quote requests - Using event delegation for better handling
+    document.addEventListener('click', function(e) {
+        // Check if clicked element is a quote button
+        const button = e.target.closest('.btn-primary, .cta-button, .package-btn, .service-cta .btn, .quote-trigger');
+        
+        if (!button) return;
+        
+        // Skip buttons that should navigate normally or have special purposes
+        if (button.classList.contains('services-link') || 
+            button.classList.contains('careers-enquiry-btn') ||
+            button.closest('form') || // Skip buttons inside forms
+            button.hasAttribute('type') && button.getAttribute('type') === 'submit' || // Skip submit buttons
+            button.closest('.careers-modal') || // Skip buttons in careers modal
+            button.closest('.quote-modal')) { // Skip buttons in quote modal
             return;
         }
         
-        button.addEventListener('click', function(e) {
+        // Check if it's a quote-related button
+        const buttonText = button.textContent.toLowerCase();
+        const hasQuoteText = buttonText.includes('quote') || buttonText.includes('pricing');
+        const hasServiceAttr = button.hasAttribute('data-service');
+        const isQuoteTrigger = button.classList.contains('quote-trigger');
+        
+        if (hasQuoteText || hasServiceAttr || isQuoteTrigger) {
             e.preventDefault();
-            const selectedService = this.getAttribute('data-service') || 'general';
-            showQuoteModal(selectedService);
-        });
+            e.stopPropagation();
+            const selectedService = button.getAttribute('data-service') || 'general';
+            console.log('Quote button clicked, service:', selectedService); // Debug log
+            try {
+                showQuoteModal(selectedService);
+            } catch (error) {
+                console.error('Error showing quote modal:', error);
+                // Fallback to contact page
+                window.location.href = 'contact.html';
+            }
+        }
     });
 
     // Enhanced quote modal with frequency selection and better layout
@@ -1812,7 +1837,86 @@ document.addEventListener('DOMContentLoaded', function() {
         }
     });
     
-    // Service dropdowns functionality - Removed duplicate code, functionality is below
+    // Initialize service dropdowns after a short delay
+    setTimeout(initializeServiceDropdowns, 100);
+    
+    // Also add direct handlers for any quote buttons
+    setTimeout(() => {
+        const allQuoteButtons = document.querySelectorAll('button');
+        allQuoteButtons.forEach(btn => {
+            if (btn.textContent.toLowerCase().includes('quote') && 
+                !btn.closest('form') && 
+                !btn.closest('.quote-modal')) {
+                btn.style.cursor = 'pointer';
+                if (!btn.hasAttribute('data-service')) {
+                    btn.setAttribute('data-service', 'general');
+                }
+            }
+        });
+    }, 200);
+});
+
+// Service dropdowns functionality
+function initializeServiceDropdowns() {
+    const servicePageCards = document.querySelectorAll('.expandable-services .service-card');
+    console.log('Initializing service dropdowns, cards found:', servicePageCards.length);
+    
+    servicePageCards.forEach(card => {
+        const header = card.querySelector('.service-header');
+        const details = card.querySelector('.service-details');
+        const closeBtn = card.querySelector('.service-close-btn');
+        
+        if (header && details) {
+            // Make sure details start collapsed
+            details.style.maxHeight = '0';
+            details.style.overflow = 'hidden';
+            details.style.transition = 'max-height 0.4s ease';
+            
+            header.addEventListener('click', function(e) {
+                e.preventDefault();
+                const isExpanded = card.classList.contains('expanded');
+                
+                // Close all other cards
+                servicePageCards.forEach(otherCard => {
+                    if (otherCard !== card) {
+                        otherCard.classList.remove('expanded');
+                        const otherDetails = otherCard.querySelector('.service-details');
+                        if (otherDetails) {
+                            otherDetails.style.maxHeight = '0';
+                        }
+                    }
+                });
+                
+                // Toggle current card
+                if (isExpanded) {
+                    card.classList.remove('expanded');
+                    details.style.maxHeight = '0';
+                } else {
+                    card.classList.add('expanded');
+                    details.style.maxHeight = details.scrollHeight + 'px';
+                    // Scroll into view
+                    setTimeout(() => {
+                        const headerRect = header.getBoundingClientRect();
+                        const scrollTop = window.pageYOffset + headerRect.top - 100;
+                        window.scrollTo({ top: scrollTop, behavior: 'smooth' });
+                    }, 100);
+                }
+            });
+            
+            // Close button
+            if (closeBtn) {
+                closeBtn.addEventListener('click', function(e) {
+                    e.stopPropagation();
+                    card.classList.remove('expanded');
+                    details.style.maxHeight = '0';
+                });
+            }
+        }
+    });
+}
+
+// Additional initialization for any dynamic content
+document.addEventListener('DOMContentLoaded', function() {
     
     // Animation Intersection Observer
     const animationObserver = new IntersectionObserver((entries) => {
