@@ -4230,10 +4230,13 @@ img {
     gap: var(--spacing-sm);
     cursor: pointer;
     transition: background-color 0.3s ease;
+    border-radius: var(--radius-md);
+    user-select: none;
 }
 
 .service-header:hover {
-    background: rgba(0, 212, 170, 0.05);
+    background: rgba(0, 212, 170, 0.08);
+    transform: translateY(-1px);
 }
 
 .service-icon {
