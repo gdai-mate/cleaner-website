@@ -884,11 +884,11 @@ body {
 
 .testimonial-card {
     background: var(--white);
-    padding: var(--spacing-md);
+    padding: var(--spacing-lg) var(--spacing-md);
     border-radius: var(--radius-lg);
     box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
-    min-width: 320px;
-    max-width: 320px;
+    min-width: 380px;
+    max-width: 380px;
     flex-shrink: 0;
     transition: all 0.3s ease;
     border: 1px solid rgba(0, 188, 212, 0.1);
@@ -923,14 +923,17 @@ body {
 }
 
 .testimonial-content p {
+    font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
     font-style: italic;
-    color: #4a5568;
-    font-size: 1.15rem;
-    line-height: 1.8;
-    font-weight: 400;
-    letter-spacing: 0.02em;
+    color: #1f2937;
+    font-size: 1.25rem;
+    line-height: 1.7;
+    font-weight: 600;
+    letter-spacing: -0.01em;
     position: relative;
-    padding: 0 var(--spacing-sm);
+    padding: 0;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
 }
 
 .testimonial-content p::before {
@@ -1202,8 +1205,8 @@ body {
     }
     
     .testimonial-card {
-        min-width: 280px;
-        max-width: 280px;
+        min-width: 340px;
+        max-width: 340px;
         padding: var(--spacing-md);
     }
     
@@ -1275,9 +1278,9 @@ body {
     }
     
     .testimonial-card {
-        min-width: 260px;
-        max-width: 260px;
-        padding: var(--spacing-sm);
+        min-width: 300px;
+        max-width: 300px;
+        padding: var(--spacing-md) var(--spacing-sm);
     }
     
     .testimonial-content p {
@@ -4698,13 +4701,16 @@ img {
 }
 
 .testimonial-card p {
-    color: #4a5568;
-    line-height: 1.8;
+    font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+    color: #1f2937;
+    line-height: 1.7;
     margin-bottom: var(--spacing-md);
     font-style: italic;
-    font-size: 1.1rem;
-    font-weight: 400;
-    letter-spacing: 0.02em;
+    font-size: 1.2rem;
+    font-weight: 600;
+    letter-spacing: -0.01em;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
 }
 
 .testimonial-author {
