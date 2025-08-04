@@ -56,28 +56,24 @@
                     card.classList.add('expanded');
                     details.style.maxHeight = details.scrollHeight + 'px';
                     
-                    // Wait for expansion animation to start before scrolling
+                    // Always scroll to the top of the opened card
                     setTimeout(() => {
-                        const rect = card.getBoundingClientRect();
-                        const viewportHeight = window.innerHeight;
-                        const headerHeight = 80;
+                        const headerHeight = 80; // Fixed header height
+                        const padding = 20; // Extra padding for comfortable viewing
                         
-                        // Calculate if we need to scroll
-                        const cardTop = rect.top + window.pageYOffset;
-                        const cardBottom = cardTop + card.offsetHeight;
-                        const viewportTop = window.pageYOffset;
-                        const viewportBottom = viewportTop + viewportHeight;
+                        // Get the position of the card
+                        const cardRect = card.getBoundingClientRect();
+                        const cardTop = cardRect.top + window.pageYOffset;
                         
-                        // Scroll if card extends below viewport or header is too close to top
-                        if (cardBottom > viewportBottom - 100 || rect.top < headerHeight + 40) {
-                            const scrollPosition = cardTop - headerHeight - 40;
-                            
-                            window.scrollTo({
-                                top: Math.max(0, scrollPosition),
-                                behavior: 'smooth'
-                            });
-                        }
-                    }, 200); // Slightly longer delay for smoother experience
+                        // Calculate scroll position - top of card minus header and padding
+                        const scrollPosition = cardTop - headerHeight - padding;
+                        
+                        // Smooth scroll to the card
+                        window.scrollTo({
+                            top: Math.max(0, scrollPosition),
+                            behavior: 'smooth'
+                        });
+                    }, 150); // Small delay to let expansion start
                 }
             });
             
