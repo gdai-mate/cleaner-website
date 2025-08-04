@@ -55,6 +55,23 @@
                 if (!isExpanded) {
                     card.classList.add('expanded');
                     details.style.maxHeight = details.scrollHeight + 'px';
+                    
+                    // Smooth scroll to the top of the card after a brief delay
+                    setTimeout(() => {
+                        const rect = card.getBoundingClientRect();
+                        const headerHeight = 80; // Account for fixed header
+                        
+                        // Only scroll if the card header is above the viewport or too close to top
+                        if (rect.top < headerHeight + 20) {
+                            const cardTop = card.offsetTop;
+                            const scrollPosition = cardTop - headerHeight - 20; // 20px extra padding
+                            
+                            window.scrollTo({
+                                top: scrollPosition,
+                                behavior: 'smooth'
+                            });
+                        }
+                    }, 100);
                 }
             });
             
