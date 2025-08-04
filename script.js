@@ -1861,19 +1861,34 @@ function initializeServiceDropdowns() {
     const servicePageCards = document.querySelectorAll('.expandable-services .service-card');
     console.log('Initializing service dropdowns, cards found:', servicePageCards.length);
     
-    servicePageCards.forEach(card => {
+    if (servicePageCards.length === 0) {
+        console.log('No service cards found. Checking for any service-card elements...');
+        const allServiceCards = document.querySelectorAll('.service-card');
+        console.log('Total service-card elements on page:', allServiceCards.length);
+    }
+    
+    servicePageCards.forEach((card, index) => {
         const header = card.querySelector('.service-header');
         const details = card.querySelector('.service-details');
         const closeBtn = card.querySelector('.service-close-btn');
         
+        console.log(`Card ${index}: header=${!!header}, details=${!!details}`);
+        
         if (header && details) {
+            // Remove any existing click handlers
+            const newHeader = header.cloneNode(true);
+            header.parentNode.replaceChild(newHeader, header);
+            
             // Make sure details start collapsed
             details.style.maxHeight = '0';
             details.style.overflow = 'hidden';
             details.style.transition = 'max-height 0.4s ease';
             
-            header.addEventListener('click', function(e) {
+            newHeader.addEventListener('click', function(e) {
                 e.preventDefault();
+                e.stopPropagation();
+                console.log('Service header clicked');
+                
                 const isExpanded = card.classList.contains('expanded');
                 
                 // Close all other cards
@@ -1889,14 +1904,22 @@ function initializeServiceDropdowns() {
                 
                 // Toggle current card
                 if (isExpanded) {
+                    console.log('Collapsing card');
                     card.classList.remove('expanded');
                     details.style.maxHeight = '0';
                 } else {
+                    console.log('Expanding card');
                     card.classList.add('expanded');
-                    details.style.maxHeight = details.scrollHeight + 'px';
+                    // Force reflow
+                    details.style.maxHeight = 'auto';
+                    const height = details.scrollHeight;
+                    details.style.maxHeight = '0';
+                    details.offsetHeight; // Force reflow
+                    details.style.maxHeight = height + 'px';
+                    
                     // Scroll into view
                     setTimeout(() => {
-                        const headerRect = header.getBoundingClientRect();
+                        const headerRect = newHeader.getBoundingClientRect();
                         const scrollTop = window.pageYOffset + headerRect.top - 100;
                         window.scrollTo({ top: scrollTop, behavior: 'smooth' });
                     }, 100);
@@ -1907,9 +1930,25 @@ function initializeServiceDropdowns() {
             if (closeBtn) {
                 closeBtn.addEventListener('click', function(e) {
                     e.stopPropagation();
+                    console.log('Close button clicked');
                     card.classList.remove('expanded');
                     details.style.maxHeight = '0';
                 });
+            }
+        }
+    });
+    
+    // Also try direct event delegation as fallback
+    document.addEventListener('click', function(e) {
+        const header = e.target.closest('.service-header');
+        if (header) {
+            const card = header.closest('.service-card');
+            const details = card?.querySelector('.service-details');
+            if (card && details && card.closest('.expandable-services')) {
+                console.log('Service header clicked via delegation');
+                // Handle click
+                e.preventDefault();
+                e.stopPropagation();
             }
         }
     });
