@@ -1209,14 +1209,14 @@ document.addEventListener('DOMContentLoaded', function() {
     });
 
     // Enhanced Gallery Modal Functionality with Navigation
-    const modal = document.getElementById('imageModal');
-    const modalImg = document.getElementById('modalImage');
-    const modalCaption = document.getElementById('modalCaption');
-    const close = modal ? modal.querySelector('.close') : null;
-    const prevBtn = document.getElementById('prevBtn');
-    const nextBtn = document.getElementById('nextBtn');
-    const currentIndexSpan = document.getElementById('currentIndex');
-    const totalImagesSpan = document.getElementById('totalImages');
+    let modal = document.getElementById('imageModal');
+    let modalImg = document.getElementById('modalImage');
+    let modalCaption = document.getElementById('modalCaption');
+    let close = modal ? modal.querySelector('.close') : null;
+    let prevBtn = document.getElementById('prevBtn');
+    let nextBtn = document.getElementById('nextBtn');
+    let currentIndexSpan = document.getElementById('currentIndex');
+    let totalImagesSpan = document.getElementById('totalImages');
     
     let galleryImages = [];
     let currentImageIndex = 0;
@@ -1228,10 +1228,41 @@ document.addEventListener('DOMContentLoaded', function() {
     // Check if we're on the gallery page
     const galleryItems = document.querySelectorAll('.gallery-item');
     console.log('Gallery items found:', galleryItems.length);
-    console.log('Modal elements:', { modal, modalImg, modalCaption, close });
     
-    // Initialize gallery if modal elements exist
-    if (modal && modalImg && modalCaption) {
+    // If we have gallery items but no modal, create one
+    if (galleryItems.length > 0 && !modal) {
+        console.log('Creating gallery modal...');
+        const modalHTML = `
+            <div id="imageModal" class="modal">
+                <div class="modal-content">
+                    <span class="close">&times;</span>
+                    <button class="modal-nav prev" id="prevBtn">&#10094;</button>
+                    <button class="modal-nav next" id="nextBtn">&#10095;</button>
+                    <img id="modalImage" src="" alt="">
+                    <div id="modalCaption"></div>
+                    <div class="modal-counter">
+                        <span id="currentIndex">1</span> / <span id="totalImages">1</span>
+                    </div>
+                </div>
+            </div>
+        `;
+        document.body.insertAdjacentHTML('beforeend', modalHTML);
+        
+        // Re-query the elements
+        modal = document.getElementById('imageModal');
+        modalImg = document.getElementById('modalImage');
+        modalCaption = document.getElementById('modalCaption');
+        close = modal ? modal.querySelector('.close') : null;
+        prevBtn = document.getElementById('prevBtn');
+        nextBtn = document.getElementById('nextBtn');
+        currentIndexSpan = document.getElementById('currentIndex');
+        totalImagesSpan = document.getElementById('totalImages');
+    }
+    
+    console.log('Modal elements after init:', { modal, modalImg, modalCaption, close });
+    
+    // Initialize gallery if modal elements exist OR if we have gallery items
+    if ((modal && modalImg && modalCaption) || galleryItems.length > 0) {
         console.log('Initializing gallery modal...');
         // Collect all gallery images
         function initializeGallery() {
@@ -1297,15 +1328,24 @@ document.addEventListener('DOMContentLoaded', function() {
         initializeGallery();
         
         // Add click event to all gallery items
-        document.querySelectorAll('.gallery-item').forEach((item, index) => {
+        const allGalleryItems = document.querySelectorAll('.gallery-item');
+        allGalleryItems.forEach((item, index) => {
             console.log(`Adding click listener to gallery item ${index}`);
             // Make the entire gallery item clickable
             item.style.cursor = 'pointer';
+            
             item.addEventListener('click', function(e) {
                 console.log(`Gallery item ${index} clicked!`);
                 e.preventDefault();
                 e.stopPropagation();
+                
+                if (!modal) {
+                    console.error('Modal not found!');
+                    return;
+                }
+                
                 modal.style.display = 'block';
+                modal.style.zIndex = '9999'; // Ensure modal is on top
                 document.body.style.overflow = 'hidden'; // Prevent background scrolling
                 showImage(index);
             });
