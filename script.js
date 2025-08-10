@@ -1209,14 +1209,8 @@ document.addEventListener('DOMContentLoaded', function() {
     });
 
     // Enhanced Gallery Modal Functionality with Navigation
-    let modal = document.getElementById('imageModal');
-    let modalImg = document.getElementById('modalImage');
-    let modalCaption = document.getElementById('modalCaption');
-    let close = modal ? modal.querySelector('.close') : null;
-    let prevBtn = document.getElementById('prevBtn');
-    let nextBtn = document.getElementById('nextBtn');
-    let currentIndexSpan = document.getElementById('currentIndex');
-    let totalImagesSpan = document.getElementById('totalImages');
+    // Simplified and robust implementation
+    console.log('Initializing gallery functionality...');
     
     let galleryImages = [];
     let currentImageIndex = 0;
@@ -1229,41 +1223,42 @@ document.addEventListener('DOMContentLoaded', function() {
     const galleryItems = document.querySelectorAll('.gallery-item');
     console.log('Gallery items found:', galleryItems.length);
     
-    // If we have gallery items but no modal, create one
-    if (galleryItems.length > 0 && !modal) {
-        console.log('Creating gallery modal...');
-        const modalHTML = `
-            <div id="imageModal" class="modal">
-                <div class="modal-content">
-                    <span class="close">&times;</span>
-                    <button class="modal-nav prev" id="prevBtn">&#10094;</button>
-                    <button class="modal-nav next" id="nextBtn">&#10095;</button>
-                    <img id="modalImage" src="" alt="">
-                    <div id="modalCaption"></div>
-                    <div class="modal-counter">
-                        <span id="currentIndex">1</span> / <span id="totalImages">1</span>
+    // Only initialize if we have gallery items
+    if (galleryItems.length > 0) {
+        console.log('Gallery page detected, setting up lightbox...');
+        
+        // First, check if modal exists, if not create it
+        let modal = document.getElementById('imageModal');
+        if (!modal) {
+            console.log('Creating gallery modal...');
+            const modalHTML = `
+                <div id="imageModal" class="modal">
+                    <div class="modal-content">
+                        <span class="close">&times;</span>
+                        <button class="modal-nav prev" id="prevBtn">&#10094;</button>
+                        <button class="modal-nav next" id="nextBtn">&#10095;</button>
+                        <img id="modalImage" src="" alt="">
+                        <div id="modalCaption"></div>
+                        <div class="modal-counter">
+                            <span id="currentIndex">1</span> / <span id="totalImages">1</span>
+                        </div>
                     </div>
                 </div>
-            </div>
-        `;
-        document.body.insertAdjacentHTML('beforeend', modalHTML);
+            `;
+            document.body.insertAdjacentHTML('beforeend', modalHTML);
+            modal = document.getElementById('imageModal');
+        }
         
-        // Re-query the elements
-        modal = document.getElementById('imageModal');
-        modalImg = document.getElementById('modalImage');
-        modalCaption = document.getElementById('modalCaption');
-        close = modal ? modal.querySelector('.close') : null;
-        prevBtn = document.getElementById('prevBtn');
-        nextBtn = document.getElementById('nextBtn');
-        currentIndexSpan = document.getElementById('currentIndex');
-        totalImagesSpan = document.getElementById('totalImages');
-    }
-    
-    console.log('Modal elements after init:', { modal, modalImg, modalCaption, close });
-    
-    // Initialize gallery if modal elements exist OR if we have gallery items
-    if ((modal && modalImg && modalCaption) || galleryItems.length > 0) {
-        console.log('Initializing gallery modal...');
+        // Get all modal elements
+        const modalImg = document.getElementById('modalImage');
+        const modalCaption = document.getElementById('modalCaption');
+        const close = modal.querySelector('.close');
+        const prevBtn = document.getElementById('prevBtn');
+        const nextBtn = document.getElementById('nextBtn');
+        const currentIndexSpan = document.getElementById('currentIndex');
+        const totalImagesSpan = document.getElementById('totalImages');
+        
+        console.log('Modal elements:', { modal, modalImg, modalCaption, close });
         // Collect all gallery images
         function initializeGallery() {
             galleryImages = [];
@@ -1327,28 +1322,27 @@ document.addEventListener('DOMContentLoaded', function() {
         // Initialize gallery
         initializeGallery();
         
-        // Add click event to all gallery items
-        const allGalleryItems = document.querySelectorAll('.gallery-item');
-        allGalleryItems.forEach((item, index) => {
-            console.log(`Adding click listener to gallery item ${index}`);
-            // Make the entire gallery item clickable
+        // Add click event to all gallery items - simplified approach
+        galleryItems.forEach((item, index) => {
+            console.log(`Setting up gallery item ${index}`);
             item.style.cursor = 'pointer';
             
-            item.addEventListener('click', function(e) {
+            // Use a simple onclick handler for maximum compatibility
+            item.onclick = function(e) {
                 console.log(`Gallery item ${index} clicked!`);
                 e.preventDefault();
                 e.stopPropagation();
                 
-                if (!modal) {
-                    console.error('Modal not found!');
-                    return;
-                }
-                
+                // Show the modal
                 modal.style.display = 'block';
-                modal.style.zIndex = '9999'; // Ensure modal is on top
-                document.body.style.overflow = 'hidden'; // Prevent background scrolling
+                modal.style.zIndex = '9999';
+                document.body.style.overflow = 'hidden';
+                
+                // Show the clicked image
                 showImage(index);
-            });
+                
+                return false;
+            };
         });
         
         // Navigation button events
@@ -1375,12 +1369,14 @@ document.addEventListener('DOMContentLoaded', function() {
         }
         
         // Close modal when clicking outside the content
-        modal.addEventListener('click', function(e) {
-            if (e.target === modal) {
-                modal.style.display = 'none';
-                document.body.style.overflow = ''; // Restore scrolling
-            }
-        });
+        if (modal) {
+            modal.addEventListener('click', function(e) {
+                if (e.target === modal) {
+                    modal.style.display = 'none';
+                    document.body.style.overflow = ''; // Restore scrolling
+                }
+            });
+        }
         
         // Keyboard navigation
         document.addEventListener('keydown', function(e) {
@@ -1403,16 +1399,18 @@ document.addEventListener('DOMContentLoaded', function() {
         });
         
         // Touch/swipe support for mobile
-        modalImg.addEventListener('touchstart', function(e) {
-            touchStartX = e.changedTouches[0].screenX;
-            touchStartY = e.changedTouches[0].screenY;
-        }, { passive: true });
-        
-        modalImg.addEventListener('touchend', function(e) {
-            touchEndX = e.changedTouches[0].screenX;
-            touchEndY = e.changedTouches[0].screenY;
-            handleSwipe();
-        }, { passive: true });
+        if (modalImg) {
+            modalImg.addEventListener('touchstart', function(e) {
+                touchStartX = e.changedTouches[0].screenX;
+                touchStartY = e.changedTouches[0].screenY;
+            }, { passive: true });
+            
+            modalImg.addEventListener('touchend', function(e) {
+                touchEndX = e.changedTouches[0].screenX;
+                touchEndY = e.changedTouches[0].screenY;
+                handleSwipe();
+            }, { passive: true });
+        }
         
         function handleSwipe() {
             const swipeThreshold = 50;
@@ -1444,7 +1442,9 @@ document.addEventListener('DOMContentLoaded', function() {
         window.reinitializeGallery = function() {
             initializeGallery();
         };
-    }
+        
+        console.log('Gallery initialization complete!');
+    } // End of gallery initialization
     
     // Careers Enquiry Modal
     function showCareersModal() {
