@@ -1212,7 +1212,7 @@ document.addEventListener('DOMContentLoaded', function() {
     const modal = document.getElementById('imageModal');
     const modalImg = document.getElementById('modalImage');
     const modalCaption = document.getElementById('modalCaption');
-    const close = document.getElementsByClassName('close')[0];
+    const close = modal ? modal.querySelector('.close') : null;
     const prevBtn = document.getElementById('prevBtn');
     const nextBtn = document.getElementById('nextBtn');
     const currentIndexSpan = document.getElementById('currentIndex');
@@ -1225,7 +1225,14 @@ document.addEventListener('DOMContentLoaded', function() {
     let touchStartY = 0;
     let touchEndY = 0;
     
-    if (modal && modalImg && modalCaption && close) {
+    // Check if we're on the gallery page
+    const galleryItems = document.querySelectorAll('.gallery-item');
+    console.log('Gallery items found:', galleryItems.length);
+    console.log('Modal elements:', { modal, modalImg, modalCaption, close });
+    
+    // Initialize gallery if modal elements exist
+    if (modal && modalImg && modalCaption) {
+        console.log('Initializing gallery modal...');
         // Collect all gallery images
         function initializeGallery() {
             galleryImages = [];
@@ -1291,7 +1298,10 @@ document.addEventListener('DOMContentLoaded', function() {
         
         // Add click event to all gallery items
         document.querySelectorAll('.gallery-item').forEach((item, index) => {
-            item.addEventListener('click', function() {
+            console.log(`Adding click listener to gallery item ${index}`);
+            item.addEventListener('click', function(e) {
+                console.log(`Gallery item ${index} clicked!`);
+                e.preventDefault();
                 modal.style.display = 'block';
                 showImage(index);
             });
@@ -1313,9 +1323,11 @@ document.addEventListener('DOMContentLoaded', function() {
         }
         
         // Close modal when clicking X
-        close.addEventListener('click', function() {
-            modal.style.display = 'none';
-        });
+        if (close) {
+            close.addEventListener('click', function() {
+                modal.style.display = 'none';
+            });
+        }
         
         // Close modal when clicking outside the content
         modal.addEventListener('click', function(e) {
