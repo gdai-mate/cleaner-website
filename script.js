@@ -1299,10 +1299,14 @@ document.addEventListener('DOMContentLoaded', function() {
         // Add click event to all gallery items
         document.querySelectorAll('.gallery-item').forEach((item, index) => {
             console.log(`Adding click listener to gallery item ${index}`);
+            // Make the entire gallery item clickable
+            item.style.cursor = 'pointer';
             item.addEventListener('click', function(e) {
                 console.log(`Gallery item ${index} clicked!`);
                 e.preventDefault();
+                e.stopPropagation();
                 modal.style.display = 'block';
+                document.body.style.overflow = 'hidden'; // Prevent background scrolling
                 showImage(index);
             });
         });
@@ -1326,6 +1330,7 @@ document.addEventListener('DOMContentLoaded', function() {
         if (close) {
             close.addEventListener('click', function() {
                 modal.style.display = 'none';
+                document.body.style.overflow = ''; // Restore scrolling
             });
         }
         
@@ -1333,6 +1338,7 @@ document.addEventListener('DOMContentLoaded', function() {
         modal.addEventListener('click', function(e) {
             if (e.target === modal) {
                 modal.style.display = 'none';
+                document.body.style.overflow = ''; // Restore scrolling
             }
         });
         
@@ -1342,6 +1348,7 @@ document.addEventListener('DOMContentLoaded', function() {
                 switch(e.key) {
                     case 'Escape':
                         modal.style.display = 'none';
+                        document.body.style.overflow = ''; // Restore scrolling
                         break;
                     case 'ArrowLeft':
                         e.preventDefault();
@@ -1377,6 +1384,7 @@ document.addEventListener('DOMContentLoaded', function() {
                 // Vertical swipe - close modal if swipe distance is sufficient
                 if (Math.abs(swipeDistanceY) > swipeThreshold) {
                     modal.style.display = 'none';
+                    document.body.style.overflow = ''; // Restore scrolling
                 }
             } else {
                 // Horizontal swipe - navigate images
