@@ -2837,6 +2837,13 @@ img {
     margin-bottom: var(--spacing-md);
 }
 
+.contact-methods h3 {
+    font-size: 2rem;
+    font-weight: var(--font-weight-bold);
+    color: var(--dark-blue);
+    margin-bottom: var(--spacing-md);
+}
+
 .contact-intro {
     font-size: 1.1rem;
     line-height: 1.6;
