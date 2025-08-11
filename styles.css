@@ -289,7 +289,7 @@ button.hamburger,
     font-size: 2.5rem;
     font-weight: var(--font-weight-semibold);
     line-height: 1.2;
-    color: var(--text-color);
+    color: var(--dark-blue);
     margin-bottom: var(--spacing-md);
     position: relative;
 }
