@@ -3186,6 +3186,11 @@ img {
     margin-top: var(--spacing-md);
 }
 
+/* Hide mobile-only sections on desktop */
+.mobile-only-sections {
+    display: none;
+}
+
 /* Mobile Responsive for Contact */
 @media (max-width: 768px) {
     .contact-content {
@@ -3206,6 +3211,16 @@ img {
         order: 2;
     }
 
+    /* Hide desktop contact info on mobile */
+    .contact-info-desktop {
+        display: none;
+    }
+
+    /* Show mobile-only sections */
+    .mobile-only-sections {
+        display: block;
+    }
+
     /* No automated response message styling */
     .no-automated-response {
         background: var(--light-bg);
@@ -3218,11 +3233,35 @@ img {
     .no-automated-response h3 {
         font-size: 1.4rem;
         margin-bottom: var(--spacing-xs);
+        color: var(--dark-blue);
     }
 
     .no-automated-response p {
         font-size: 1rem;
         line-height: 1.5;
+        color: var(--gray);
+    }
+
+    /* Mobile contact methods */
+    .contact-methods-mobile {
+        margin-bottom: var(--spacing-lg);
+    }
+
+    .contact-methods-mobile h3 {
+        font-size: 1.4rem;
+        margin-bottom: var(--spacing-md);
+        color: var(--dark-blue);
+    }
+
+    /* Mobile business details */
+    .business-details-mobile {
+        margin-bottom: var(--spacing-lg);
+    }
+
+    .business-details-mobile h3 {
+        font-size: 1.4rem;
+        margin-bottom: var(--spacing-md);
+        color: var(--dark-blue);
     }
 
     .form-row {
