@@ -3191,10 +3191,38 @@ img {
     .contact-content {
         grid-template-columns: 1fr;
         gap: var(--spacing-lg);
+        display: flex;
+        flex-direction: column;
     }
 
+    /* Ensure form section appears first on mobile */
     .contact-form-section {
         padding: var(--spacing-lg);
+        order: 1;
+    }
+
+    /* Contact info section appears second */
+    .contact-info {
+        order: 2;
+    }
+
+    /* No automated response message styling */
+    .no-automated-response {
+        background: var(--light-bg);
+        padding: var(--spacing-md);
+        border-radius: var(--radius-lg);
+        margin-bottom: var(--spacing-md);
+        text-align: center;
+    }
+
+    .no-automated-response h3 {
+        font-size: 1.4rem;
+        margin-bottom: var(--spacing-xs);
+    }
+
+    .no-automated-response p {
+        font-size: 1rem;
+        line-height: 1.5;
     }
 
     .form-row {
