@@ -14,12 +14,22 @@ document.addEventListener('DOMContentLoaded', function() {
     const navMenu = document.querySelector('.nav-menu');
     const navLinks = document.querySelectorAll('.nav-link');
 
+    console.log('Hamburger element:', hamburger);
+    console.log('Nav menu element:', navMenu);
+
     // Toggle mobile menu
     if (hamburger) {
-        hamburger.addEventListener('click', function() {
+        console.log('Adding click event to hamburger');
+        hamburger.addEventListener('click', function(e) {
+            e.preventDefault();
+            e.stopPropagation();
+            console.log('Hamburger clicked!');
             navMenu.classList.toggle('active');
             hamburger.classList.toggle('active');
+            console.log('Menu active:', navMenu.classList.contains('active'));
         });
+    } else {
+        console.error('Hamburger element not found!');
     }
 
     // Close mobile menu when clicking on a link
