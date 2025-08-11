@@ -2299,6 +2299,63 @@ img {
     margin: 0;
 }
 
+.mission-section {
+    padding: var(--spacing-xl) 0;
+    background: linear-gradient(135deg, #f0f4f8 0%, #e1e8f0 100%);
+}
+
+.mission-content {
+    max-width: 900px;
+    margin: 0 auto;
+}
+
+.mission-text {
+    font-size: 1.1rem;
+    line-height: 1.8;
+    color: var(--text-color);
+}
+
+.mission-text p {
+    margin-bottom: var(--spacing-md);
+}
+
+.mission-statement {
+    margin-top: var(--spacing-lg);
+    padding: var(--spacing-lg);
+    background: white;
+    border-radius: var(--border-radius-lg);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+}
+
+.mission-statement h3 {
+    font-size: 1.5rem;
+    color: var(--primary-color);
+    margin-bottom: var(--spacing-md);
+}
+
+.mission-statement ul {
+    list-style: none;
+    padding: 0;
+    margin-bottom: var(--spacing-md);
+}
+
+.mission-statement ul li {
+    position: relative;
+    padding-left: var(--spacing-lg);
+    margin-bottom: var(--spacing-sm);
+    font-size: 1.1rem;
+    color: var(--text-color);
+}
+
+.mission-statement ul li:before {
+    content: '✓';
+    position: absolute;
+    left: 0;
+    color: var(--accent-color);
+    font-weight: bold;
+    font-size: 1.2rem;
+}
+
 .team-section {
     padding: var(--spacing-xl) 0;
     background: var(--light-gray);
@@ -3433,6 +3490,7 @@ img {
     .testimonials,
     .cta-section,
     .about-story,
+    .mission-section,
     .team-section,
     .values-section,
     .gallery-showcase,
@@ -3866,6 +3924,26 @@ img {
         font-size: 1rem;
         line-height: 1.6;
         margin-bottom: var(--spacing-sm);
+    }
+
+    .mission-section {
+        padding: var(--spacing-md) 0;
+    }
+
+    .mission-text {
+        font-size: 1rem;
+    }
+
+    .mission-statement {
+        padding: var(--spacing-md);
+    }
+
+    .mission-statement h3 {
+        font-size: 1.3rem;
+    }
+
+    .mission-statement ul li {
+        font-size: 1rem;
     }
 
     .team-section {
