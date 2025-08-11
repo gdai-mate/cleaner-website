@@ -172,27 +172,33 @@ body {
     transform: translateY(-1px);
 }
 
-button.hamburger {
+button.hamburger,
+.hamburger {
     display: none;
     flex-direction: column;
     cursor: pointer;
     gap: 4px;
-    padding: 12px;
+    padding: 10px;
+    width: 44px;
+    height: 44px;
     min-width: 44px;
     min-height: 44px;
+    max-width: 44px;
+    max-height: 44px;
     justify-content: center;
     align-items: center;
-    border-radius: var(--radius-sm);
+    border-radius: 4px;
     transition: background-color 0.2s ease;
     -webkit-tap-highlight-color: transparent;
     position: relative;
-    z-index: 1001;
+    z-index: 10000 !important;
     background-color: transparent;
     border: none;
     outline: none;
     -webkit-appearance: none;
     -moz-appearance: none;
     appearance: none;
+    pointer-events: auto !important;
 }
 
 .hamburger:hover,
@@ -1293,10 +1299,10 @@ a.btn-outline {
     }
     
     .testimonial-content p {
-        font-size: 1rem;
+        font-size: 0.9rem;
         font-weight: 400;
-        letter-spacing: 0.01em;
-        line-height: 1.5;
+        letter-spacing: 0;
+        line-height: 1.4;
     }
     
     .testimonial-content p::before,

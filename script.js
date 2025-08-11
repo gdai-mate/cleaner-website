@@ -10,41 +10,64 @@ document.addEventListener('DOMContentLoaded', function() {
     console.log('DOM loaded, initializing DEEP CLEAN website functionality...');
     
     // Mobile navigation toggle
-    const hamburger = document.querySelector('.hamburger');
-    const navMenu = document.querySelector('.nav-menu');
-    const navLinks = document.querySelectorAll('.nav-link');
+    try {
+        const hamburger = document.querySelector('.hamburger');
+        const navMenu = document.querySelector('.nav-menu');
+        const navLinks = document.querySelectorAll('.nav-link');
 
-    console.log('Hamburger element:', hamburger);
-    console.log('Nav menu element:', navMenu);
+        console.log('Hamburger element:', hamburger);
+        console.log('Nav menu element:', navMenu);
+        
+        // Add visual indicator
+        if (hamburger) {
+            hamburger.style.backgroundColor = 'rgba(255, 0, 0, 0.1)';
+            console.log('Hamburger found - added red background');
+        }
 
-    // Toggle mobile menu
-    if (hamburger) {
-        console.log('Adding click event to hamburger');
-        hamburger.addEventListener('click', function(e) {
-            e.preventDefault();
-            e.stopPropagation();
-            console.log('Hamburger clicked!');
-            navMenu.classList.toggle('active');
-            hamburger.classList.toggle('active');
-            console.log('Menu active:', navMenu.classList.contains('active'));
-        });
-    } else {
-        console.error('Hamburger element not found!');
+        // Toggle mobile menu
+        if (hamburger && navMenu) {
+            console.log('Adding click event to hamburger');
+            
+            // Remove any existing event listeners
+            const newHamburger = hamburger.cloneNode(true);
+            hamburger.parentNode.replaceChild(newHamburger, hamburger);
+            
+            newHamburger.addEventListener('click', function(e) {
+                console.log('Hamburger clicked!');
+                alert('Hamburger clicked!'); // Add alert for debugging
+                navMenu.classList.toggle('active');
+                newHamburger.classList.toggle('active');
+                console.log('Menu active:', navMenu.classList.contains('active'));
+            }, true); // Use capture phase
+            
+            console.log('Event listener added successfully');
+        } else {
+            console.error('Hamburger or nav menu element not found!');
+        }
+    } catch (error) {
+        console.error('Error setting up hamburger menu:', error);
     }
 
     // Close mobile menu when clicking on a link
     navLinks.forEach(link => {
         link.addEventListener('click', function() {
-            navMenu.classList.remove('active');
-            hamburger.classList.remove('active');
+            if (navMenu && hamburger) {
+                navMenu.classList.remove('active');
+                hamburger.classList.remove('active');
+            }
         });
     });
 
-    // Close mobile menu when clicking outside
+    // Close mobile menu when clicking outside - with delay to prevent conflicts
     document.addEventListener('click', function(e) {
-        if (!hamburger.contains(e.target) && !navMenu.contains(e.target)) {
-            navMenu.classList.remove('active');
-            hamburger.classList.remove('active');
+        if (hamburger && navMenu) {
+            // Check if click is on hamburger or its children
+            if (!hamburger.contains(e.target) && !navMenu.contains(e.target)) {
+                setTimeout(function() {
+                    navMenu.classList.remove('active');
+                    hamburger.classList.remove('active');
+                }, 10);
+            }
         }
     });
 
@@ -123,6 +146,9 @@ document.addEventListener('DOMContentLoaded', function() {
 
     // Form handling for quote requests - Using event delegation for better handling
     document.addEventListener('click', function(e) {
+        // Skip if clicking on hamburger menu
+        if (e.target.closest('.hamburger')) return;
+        
         // Check if clicked element is a quote button
         const button = e.target.closest('.btn-primary, .cta-button, .package-btn, .service-cta .btn, .quote-trigger');
         
