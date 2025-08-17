@@ -67,7 +67,7 @@
                         <div class="progress-bar">
                             <div class="progress-fill" id="progressFill"></div>
                         </div>
-                        <p class="progress-text">Section <span id="currentSection">1</span> of 5</p>
+                        <p class="progress-text">Section <span id="currentSection">1</span> of 6</p>
                     </div>
 
                     <div class="form-section active" data-section="1">
@@ -183,6 +183,76 @@
                     </div>
 
                     <div class="form-section" data-section="3">
+                        <h3>Work History</h3>
+                        <p class="section-intro">Please list your 3 most recent jobs (if applicable)</p>
+                        
+                        <div class="employment-block">
+                            <h4>Most Recent Job</h4>
+                            <div class="form-row">
+                                <div class="form-group">
+                                    <label for="job1Company">Company Name</label>
+                                    <input type="text" id="job1Company" name="job1Company">
+                                </div>
+                                <div class="form-group">
+                                    <label for="job1Position">Position</label>
+                                    <input type="text" id="job1Position" name="job1Position">
+                                </div>
+                            </div>
+                            <div class="form-row">
+                                <div class="form-group">
+                                    <label for="job1Duration">Duration</label>
+                                    <input type="text" id="job1Duration" name="job1Duration" placeholder="e.g., 2 years, 6 months">
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="employment-block">
+                            <h4>Previous Job</h4>
+                            <div class="form-row">
+                                <div class="form-group">
+                                    <label for="job2Company">Company Name</label>
+                                    <input type="text" id="job2Company" name="job2Company">
+                                </div>
+                                <div class="form-group">
+                                    <label for="job2Position">Position</label>
+                                    <input type="text" id="job2Position" name="job2Position">
+                                </div>
+                            </div>
+                            <div class="form-row">
+                                <div class="form-group">
+                                    <label for="job2Duration">Duration</label>
+                                    <input type="text" id="job2Duration" name="job2Duration" placeholder="e.g., 2 years, 6 months">
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="employment-block">
+                            <h4>Third Most Recent Job</h4>
+                            <div class="form-row">
+                                <div class="form-group">
+                                    <label for="job3Company">Company Name</label>
+                                    <input type="text" id="job3Company" name="job3Company">
+                                </div>
+                                <div class="form-group">
+                                    <label for="job3Position">Position</label>
+                                    <input type="text" id="job3Position" name="job3Position">
+                                </div>
+                            </div>
+                            <div class="form-row">
+                                <div class="form-group">
+                                    <label for="job3Duration">Duration</label>
+                                    <input type="text" id="job3Duration" name="job3Duration" placeholder="e.g., 2 years, 6 months">
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="form-navigation">
+                            <button type="button" class="btn btn-secondary prev-section">Previous</button>
+                            <button type="button" class="btn btn-primary next-section">Next</button>
+                        </div>
+                    </div>
+
+                    <div class="form-section" data-section="4">
                         <h3>About You</h3>
                         <p class="section-intro">Remember - no cleaning experience needed! We're interested in who you are as a person.</p>
                         
@@ -210,7 +280,7 @@
                         </div>
                     </div>
 
-                    <div class="form-section" data-section="4">
+                    <div class="form-section" data-section="5">
                         <h3>References</h3>
                         <p class="section-intro">Please provide two people who can speak to your character (they don't need to be employers)</p>
                         
@@ -268,18 +338,42 @@
                         </div>
                     </div>
 
-                    <div class="form-section" data-section="5">
+                    <div class="form-section" data-section="6">
                         <h3>Almost Done!</h3>
                         <p class="section-intro">Just a few final details</p>
                         
                         <div class="form-group">
-                            <label for="transport">Do you have reliable transportation?</label>
-                            <select id="transport" name="transport">
-                                <option value="">Select option</option>
-                                <option value="own-vehicle">Yes, I have my own vehicle</option>
-                                <option value="public-transport">I use public transport</option>
-                                <option value="other">Other arrangement</option>
-                            </select>
+                            <label>Do you have your own transport? *</label>
+                            <div class="radio-group">
+                                <label class="radio-label">
+                                    <input type="radio" name="hasTransport" value="yes" required>
+                                    <span>Yes</span>
+                                </label>
+                                <label class="radio-label">
+                                    <input type="radio" name="hasTransport" value="no" required>
+                                    <span>No</span>
+                                </label>
+                            </div>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label>Have you had any cleaning experience?</label>
+                            <div class="radio-group">
+                                <label class="radio-label">
+                                    <input type="radio" name="hasCleaningExperience" value="yes" onchange="document.getElementById('cleaningExperienceDetails').style.display = this.value === 'yes' ? 'block' : 'none';">
+                                    <span>Yes</span>
+                                </label>
+                                <label class="radio-label">
+                                    <input type="radio" name="hasCleaningExperience" value="no" onchange="document.getElementById('cleaningExperienceDetails').style.display = this.value === 'yes' ? 'block' : 'none';">
+                                    <span>No</span>
+                                </label>
+                            </div>
+                        </div>
+                        
+                        <div class="form-group" id="cleaningExperienceDetails" style="display: none;">
+                            <label for="cleaningExperienceAmount">Please describe your cleaning experience</label>
+                            <textarea id="cleaningExperienceAmount" name="cleaningExperienceAmount" rows="3" 
+                                placeholder="e.g., 2 years in commercial cleaning, home cleaning for family, hospitality experience, etc."></textarea>
                         </div>
                         
                         <div class="form-group">
