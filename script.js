@@ -195,11 +195,11 @@ document.addEventListener('DOMContentLoaded', function() {
             'recurring-basic': 'Recurring Domestic Clean - Basic',
             'recurring-premium': 'Recurring Domestic Clean - Premium',
             'post-construction': 'Post Construction Clean',
-            'ndis-funded': 'NDIS & Externally Funded Services',
+            'ndis-funded': 'NIISQ NDIS & Externally Funded Services Externally Funded Services',
             'deep': 'One-off Deep Clean', // legacy support
             'recurring': 'Recurring Domestic Clean', // legacy support
             'construction': 'Post Construction Clean', // legacy support
-            'funded': 'NDIS & Externally Funded Services', // legacy support
+            'funded': 'NIISQ NDIS & Externally Funded Services Externally Funded Services', // legacy support
             'general': 'General Enquiry'
         };
         
@@ -241,7 +241,7 @@ document.addEventListener('DOMContentLoaded', function() {
                                 <option value="recurring-basic" ${selectedService === 'recurring-basic' ? 'selected' : ''}>Recurring Domestic Clean - Basic</option>
                                 <option value="recurring-premium" ${selectedService === 'recurring-premium' || selectedService === 'recurring' ? 'selected' : ''}>Recurring Domestic Clean - Premium</option>
                                 <option value="post-construction" ${selectedService === 'post-construction' || selectedService === 'construction' ? 'selected' : ''}>Post Construction Clean</option>
-                                <option value="ndis-funded" ${selectedService === 'ndis-funded' || selectedService === 'funded' ? 'selected' : ''}>NDIS & Externally Funded Services</option>
+                                <option value="ndis-funded" ${selectedService === 'ndis-funded' || selectedService === 'funded' ? 'selected' : ''}>NIISQ NDIS & Externally Funded Services Externally Funded Services</option>
                                 <option value="other">Other</option>
                             </select>
                         </div>
@@ -727,12 +727,12 @@ document.addEventListener('DOMContentLoaded', function() {
                 'recurring-basic': 'Recurring Domestic Clean - Basic Request',
                 'recurring-premium': 'Recurring Domestic Clean - Premium Request',
                 'post-construction': 'Post Construction Clean Request',
-                'ndis-funded': 'NDIS & Externally Funded Services Request',
+                'ndis-funded': 'NIISQ NDIS & Externally Funded Services Externally Funded Services Request',
                 'deep': 'One-off Deep Clean Request', // legacy support
                 'recurring': 'Recurring Domestic Clean Request', // legacy support
                 'construction': 'Post Construction Clean Request', // legacy support
                 'renovation': 'Post Renovation Clean Request', // legacy support
-                'funded': 'NDIS & Externally Funded Services Request', // legacy support
+                'funded': 'NIISQ NDIS & Externally Funded Services Externally Funded Services Request', // legacy support
                 'other': 'Other Cleaning Service Request',
                 'general': 'General Cleaning Inquiry'
             };
@@ -1023,7 +1023,7 @@ document.addEventListener('DOMContentLoaded', function() {
                     'recurring-domestic-clean': 'Recurring Domestic Clean',
                     'post-construction-clean': 'Post Construction Clean',
                     'post-renovation-clean': 'Post Renovation Clean',
-                    'niisq-ndis-funded': 'NIISQ, NDIS or other externally funded Clean',
+                    'niisq-ndis-funded': 'NIISQ or other externally funded Clean',
                     'other-service': 'Other Service'
                 };
                 selectedServices.push(labels[checkbox.value] || checkbox.value);
