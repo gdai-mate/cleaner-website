@@ -9,6 +9,11 @@ const EMAILJS_CONFIG = {
 document.addEventListener('DOMContentLoaded', function() {
     console.log('DOM loaded, initializing DEEP CLEAN website functionality...');
     
+    // Initialize Testimonial Slider
+    setTimeout(() => {
+        initTestimonialSlider();
+    }, 100);
+    
     // Mobile navigation toggle
     try {
         const hamburger = document.querySelector('.hamburger');
@@ -2236,5 +2241,160 @@ document.addEventListener('DOMContentLoaded', function() {
             // Scroll to top
             window.scrollTo({ top: 0, behavior: 'smooth' });
         });
+    }
+});
+
+// Testimonial Slider Function
+let sliderInitialized = false;
+function initTestimonialSlider() {
+    if (sliderInitialized) {
+        console.log('Slider already initialized');
+        return;
+    }
+    
+    console.log('Initializing testimonial slider...');
+    const slider = document.querySelector('.testimonial-slider');
+    if (!slider) {
+        console.log('No slider found');
+        return;
+    }
+    
+    const slides = document.querySelector('.testimonial-slides');
+    const cards = document.querySelectorAll('.testimonial-card');
+    const prevArea = document.querySelector('.testimonial-click-prev');
+    const nextArea = document.querySelector('.testimonial-click-next');
+    const dotsContainer = document.querySelector('.testimonial-dots');
+    
+    console.log('Found elements:', {
+        slides: !!slides,
+        cards: cards.length,
+        prevArea: !!prevArea,
+        nextArea: !!nextArea,
+        dotsContainer: !!dotsContainer
+    });
+    
+    if (!slides || cards.length === 0) {
+        console.log('Missing slides or cards');
+        return;
+    }
+    
+    // Prevent re-initialization
+    if (dotsContainer.children.length > 0) {
+        console.log('Dots already created, skipping initialization');
+        return;
+    }
+    
+    let currentSlide = 0;
+    const totalSlides = cards.length;
+    let autoplayInterval;
+    
+    // Create dots
+    for (let i = 0; i < totalSlides; i++) {
+        const dot = document.createElement('button');
+        dot.classList.add('testimonial-dot');
+        if (i === 0) dot.classList.add('active');
+        dot.setAttribute('aria-label', `Go to testimonial ${i + 1}`);
+        dot.addEventListener('click', () => {
+            goToSlide(i);
+            resetAutoplay();
+        });
+        dotsContainer.appendChild(dot);
+    }
+    
+    const dots = document.querySelectorAll('.testimonial-dot');
+    
+    function updateSlider() {
+        // Move slides
+        slides.style.transform = `translateX(-${currentSlide * 100}%)`;
+        
+        // Update dots
+        dots.forEach((dot, index) => {
+            dot.classList.toggle('active', index === currentSlide);
+        });
+    }
+    
+    function goToSlide(slideIndex) {
+        currentSlide = slideIndex;
+        updateSlider();
+    }
+    
+    function nextSlide() {
+        currentSlide = (currentSlide + 1) % totalSlides;
+        updateSlider();
+    }
+    
+    function prevSlide() {
+        currentSlide = (currentSlide - 1 + totalSlides) % totalSlides;
+        updateSlider();
+    }
+    
+    // Click areas for navigation
+    if (prevArea) {
+        prevArea.addEventListener('click', (e) => {
+            e.preventDefault();
+            e.stopPropagation();
+            prevSlide();
+            resetAutoplay();
+            console.log('Previous clicked');
+        });
+    }
+    
+    if (nextArea) {
+        nextArea.addEventListener('click', (e) => {
+            e.preventDefault();
+            e.stopPropagation();
+            nextSlide();
+            resetAutoplay();
+            console.log('Next clicked');
+        });
+    }
+    
+    // Auto-play every 10 seconds
+    function startAutoplay() {
+        autoplayInterval = setInterval(nextSlide, 10000); // Change slide every 10 seconds
+    }
+    
+    function resetAutoplay() {
+        clearInterval(autoplayInterval);
+        startAutoplay();
+    }
+    
+    // Touch/swipe support for mobile
+    let touchStartX = 0;
+    let touchEndX = 0;
+    
+    slider.addEventListener('touchstart', (e) => {
+        touchStartX = e.changedTouches[0].screenX;
+    });
+    
+    slider.addEventListener('touchend', (e) => {
+        touchEndX = e.changedTouches[0].screenX;
+        handleSwipe();
+    });
+    
+    function handleSwipe() {
+        if (touchEndX < touchStartX - 50) {
+            nextSlide(); // Swipe left
+            resetAutoplay();
+        }
+        if (touchEndX > touchStartX + 50) {
+            prevSlide(); // Swipe right
+            resetAutoplay();
+        }
+    }
+    
+    // Initialize
+    updateSlider();
+    startAutoplay();
+    
+    sliderInitialized = true;
+    console.log('Testimonial slider initialized successfully');
+}
+
+// Also try to initialize on window load as fallback
+window.addEventListener('load', function() {
+    if (!sliderInitialized) {
+        console.log('Initializing slider on window load...');
+        initTestimonialSlider();
     }
 });
