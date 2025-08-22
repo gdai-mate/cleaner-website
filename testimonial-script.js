@@ -60,6 +60,12 @@ function initializeSmoothCarousel(track, prevBtn, nextBtn, page) {
             name: "Elise",
             title: "Homeowner - Birkdale",
             stars: "★★★★★"
+        },
+        {
+            quote: "Deep Clean is amazing! Having a super clean house is essential & a top priority as I have no immune system. The staff at Deep Cleans achieve this every clean. They are extremely thorough, professional, very reliable & my house is always left spotlessly clean & smelling fresh every clean.",
+            name: "Rachael",
+            title: "Homeowner",
+            stars: "★★★★★"
         }
     ] : [
         {
@@ -96,6 +102,12 @@ function initializeSmoothCarousel(track, prevBtn, nextBtn, page) {
             quote: "The place smells and looks amazing! So delightful to come home to. Thanks Amie!",
             name: "Client",
             title: "Brisbane",
+            stars: "★★★★★"
+        },
+        {
+            quote: "Deep Clean is amazing! Having a super clean house is essential & a top priority as I have no immune system. The staff at Deep Cleans achieve this every clean. They are extremely thorough, professional, very reliable & my house is always left spotlessly clean & smelling fresh every clean.",
+            name: "Rachael",
+            title: "Homeowner",
             stars: "★★★★★"
         }
     ];
