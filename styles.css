@@ -1060,6 +1060,21 @@ button.testimonial-click-next {
     box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
 }
 
+/* Footer section logo styling */
+.footer-section .logo {
+    background: white;
+    padding: 8px;
+    border-radius: var(--radius-md);
+    display: inline-block;
+    margin-bottom: var(--spacing-md);
+}
+
+.footer-section .logo .logo-img {
+    display: block;
+    max-width: 75px;
+    height: auto;
+}
+
 /* Social links styling */
 .social-links {
     display: flex;
