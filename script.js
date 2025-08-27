@@ -1091,38 +1091,38 @@ document.addEventListener('DOMContentLoaded', function() {
             emailBody += `Please contact me at your earliest convenience to discuss pricing and availability.\n\n`;
             emailBody += `Thank you,\n${data.firstName} ${data.lastName}`;
             
-            // Check if EmailJS is available and configured
-            if (typeof emailjs !== 'undefined' && EMAILJS_CONFIG.SERVICE_ID !== 'YOUR_SERVICE_ID') {
-                // Use EmailJS to send email
-                const templateParams = {
-                    to_email: 'deepclean.go2@gmail.com',
-                    from_name: `${data.firstName} ${data.lastName}`,
-                    from_email: data.email,
-                    phone: data.phone,
-                    subject: subject,
-                    message: emailBody,
-                    services: selectedServices.join(', '),
-                    address: data.address,
-                    property_type: data.propertyType || 'Not specified',
-                    property_size: data.propertySize || 'Not specified',
-                    urgency: data.urgency || 'Flexible',
-                    additional_details: data.message || 'None provided',
-                    photos: contactUploadedImages.length > 0 ? 
-                        contactUploadedImages.map((img, i) => `Photo ${i+1}: ${img.url}`).join('\n') : 
-                        'No photos provided'
-                };
-                
-                emailjs.send(EMAILJS_CONFIG.SERVICE_ID, EMAILJS_CONFIG.CONTACT_TEMPLATE_ID, templateParams)
+            // Prepare data for SendGrid
+            const emailData = {
+                ...data,
+                serviceType: selectedServices,
+                photos: contactUploadedImages.length > 0
+            };
+
+            // Check if SendGrid client is available
+            if (typeof window.SendGridClient !== 'undefined') {
+                // Show loading state
+                const submitButton = e.target.querySelector('button[type="submit"]');
+                const originalText = submitButton.textContent;
+                submitButton.textContent = 'Sending...';
+                submitButton.disabled = true;
+
+                // Send via SendGrid
+                window.SendGridClient.sendContactEmail(emailData)
                     .then(function(response) {
-                        console.log('Email sent successfully!', response.status, response.text);
+                        console.log('Email sent successfully!', response);
                         showSuccessMessage();
-                    }, function(error) {
+                        submitButton.textContent = originalText;
+                        submitButton.disabled = false;
+                    })
+                    .catch(function(error) {
                         console.error('Failed to send email:', error);
+                        submitButton.textContent = originalText;
+                        submitButton.disabled = false;
                         // Fallback to mailto
                         fallbackToMailto();
                     });
             } else {
-                // Fallback to mailto if EmailJS not configured
+                // Fallback to mailto if SendGrid not configured
                 fallbackToMailto();
             }
             
@@ -1137,7 +1137,13 @@ document.addEventListener('DOMContentLoaded', function() {
                 console.log('Uploaded images:', contactUploadedImages);
                 
                 // Show success message
-            alert('Email client opened! Your quote request with photos is ready to send.');
+                alert('Thank you! Your quote request has been sent successfully. We\'ll get back to you within 24 hours.');
+                
+                // Reset form
+                e.target.reset();
+                contactUploadedImages = [];
+                const preview = document.getElementById('contactImagePreview');
+                if (preview) preview.innerHTML = '';
         });
     }
 
@@ -1857,38 +1863,31 @@ document.addEventListener('DOMContentLoaded', function() {
             
             emailBody += `Submitted: ${new Date().toLocaleString('en-AU', { timeZone: 'Australia/Brisbane' })}`;
             
-            // Check if EmailJS is available and configured
-            if (typeof emailjs !== 'undefined' && EMAILJS_CONFIG.SERVICE_ID !== 'YOUR_SERVICE_ID') {
-                // Use EmailJS to send email
-                const templateParams = {
-                    to_email: 'deepclean.go2@gmail.com',
-                    subject: 'Careers Enquiry - ' + formData.fullName,
-                    from_name: formData.fullName,
-                    from_email: formData.email,
-                    phone: formData.phone,
-                    address: formData.address,
-                    job1: formData.job1 || 'Not provided',
-                    job2: formData.job2 || 'Not provided', 
-                    job3: formData.job3 || 'Not provided',
-                    availability: formData.availability,
-                    interests: formData.interests || 'Not provided',
-                    goals: formData.goals,
-                    helping_others: formData.helpingOthers,
-                    how_heard: formData.howHeard,
-                    full_message: emailBody
-                };
-                
-                emailjs.send(EMAILJS_CONFIG.SERVICE_ID, EMAILJS_CONFIG.CAREERS_TEMPLATE_ID, templateParams)
+            // Check if SendGrid client is available
+            if (typeof window.SendGridClient !== 'undefined') {
+                // Show loading state
+                const submitButton = form.querySelector('button[type="submit"]');
+                const originalText = submitButton.textContent;
+                submitButton.textContent = 'Sending...';
+                submitButton.disabled = true;
+
+                // Send via SendGrid
+                window.SendGridClient.sendApplicationEmail(formData)
                     .then(function(response) {
-                        console.log('Careers email sent successfully!', response.status, response.text);
+                        console.log('Careers enquiry sent successfully!', response);
                         showCareersSuccess();
-                    }, function(error) {
-                        console.error('Failed to send careers email:', error);
+                        submitButton.textContent = originalText;
+                        submitButton.disabled = false;
+                    })
+                    .catch(function(error) {
+                        console.error('Failed to send careers enquiry:', error);
+                        submitButton.textContent = originalText;
+                        submitButton.disabled = false;
                         // Fallback to mailto
                         fallbackToMailto();
                     });
             } else {
-                // Fallback to mailto if EmailJS not configured
+                // Fallback to mailto if SendGrid not configured
                 fallbackToMailto();
             }
             
@@ -1908,9 +1907,9 @@ document.addEventListener('DOMContentLoaded', function() {
                         <path d="M9 12l2 2 4-4"/>
                         <circle cx="12" cy="12" r="9"/>
                     </svg>
-                    <h3 style="color: var(--dark-blue); margin-bottom: 1rem;">Email Ready!</h3>
-                    <p style="color: var(--gray); margin-bottom: 1rem;">Your email client should have opened with your enquiry.</p>
-                    <p style="color: var(--gray); font-size: 0.9rem; margin-bottom: 2rem;">If it didn't open automatically, please email: <strong>deepclean.go2@gmail.com</strong></p>
+                    <h3 style="color: var(--dark-blue); margin-bottom: 1rem;">Enquiry Sent!</h3>
+                    <p style="color: var(--gray); margin-bottom: 1rem;">Thank you for your interest in joining our team!</p>
+                    <p style="color: var(--gray); font-size: 0.9rem; margin-bottom: 2rem;">We'll review your enquiry and get back to you soon.</p>
                     <button type="button" class="btn btn-primary" onclick="this.closest('.careers-modal').remove()">Close</button>
                 </div>
             `;
@@ -2215,16 +2214,79 @@ document.addEventListener('DOMContentLoaded', function() {
             
             emailBody += `Submitted: ${new Date().toLocaleString('en-AU', { timeZone: 'Australia/Brisbane' })}`;
             
-            // Create mailto link
-            const subject = encodeURIComponent(`Job Application - ${formData.get('firstName')} ${formData.get('lastName')}`);
-            const body = encodeURIComponent(emailBody);
-            const mailtoLink = `mailto:deepclean.go2@gmail.com?subject=${subject}&body=${body}`;
+            // Prepare data for SendGrid
+            const applicationData = {
+                firstName: formData.get('firstName'),
+                lastName: formData.get('lastName'),
+                email: formData.get('email'),
+                phone: formData.get('phone'),
+                dob: formData.get('dob'),
+                address: formData.get('address'),
+                residency: formData.get('residency'),
+                driversLicense: formData.get('driversLicense'),
+                availability: formData.getAll('availability').join(', '),
+                hasExperience: formData.get('hasExperience'),
+                experienceDetails: formData.get('experienceDetails'),
+                job1Company: formData.get('job1Company'),
+                job1Position: formData.get('job1Position'),
+                job1Duration: formData.get('job1Duration'),
+                job2Company: formData.get('job2Company'),
+                job2Position: formData.get('job2Position'),
+                job2Duration: formData.get('job2Duration'),
+                job3Company: formData.get('job3Company'),
+                job3Position: formData.get('job3Position'),
+                job3Duration: formData.get('job3Duration'),
+                whyJoin: formData.get('whyJoin'),
+                strengths: formData.get('strengths'),
+                ref1Name: formData.get('ref1Name'),
+                ref1Relationship: formData.get('ref1Relationship'),
+                ref1Phone: formData.get('ref1Phone'),
+                ref1Email: formData.get('ref1Email'),
+                ref2Name: formData.get('ref2Name'),
+                ref2Relationship: formData.get('ref2Relationship'),
+                ref2Phone: formData.get('ref2Phone'),
+                ref2Email: formData.get('ref2Email'),
+                hasTransport: formData.get('hasTransport'),
+                startDate: formData.get('startDate'),
+                additionalComments: formData.get('additionalComments')
+            };
+
+            // Check if SendGrid client is available
+            if (typeof window.SendGridClient !== 'undefined') {
+                // Show loading state
+                const submitButton = e.target.querySelector('button[type="submit"]');
+                const originalText = submitButton.textContent;
+                submitButton.textContent = 'Sending...';
+                submitButton.disabled = true;
+
+                // Send via SendGrid
+                window.SendGridClient.sendApplicationEmail(applicationData)
+                    .then(function(response) {
+                        console.log('Application sent successfully!', response);
+                        showApplicationSuccess();
+                    })
+                    .catch(function(error) {
+                        console.error('Failed to send application:', error);
+                        submitButton.textContent = originalText;
+                        submitButton.disabled = false;
+                        // Fallback to mailto
+                        const subject = encodeURIComponent(`Job Application - ${formData.get('firstName')} ${formData.get('lastName')}`);
+                        const body = encodeURIComponent(emailBody);
+                        const mailtoLink = `mailto:deepclean.go2@gmail.com?subject=${subject}&body=${body}`;
+                        window.location.href = mailtoLink;
+                        showApplicationSuccess();
+                    });
+            } else {
+                // Fallback to mailto if SendGrid not configured
+                const subject = encodeURIComponent(`Job Application - ${formData.get('firstName')} ${formData.get('lastName')}`);
+                const body = encodeURIComponent(emailBody);
+                const mailtoLink = `mailto:deepclean.go2@gmail.com?subject=${subject}&body=${body}`;
+                window.location.href = mailtoLink;
+                showApplicationSuccess();
+            }
             
-            // Open email client
-            window.location.href = mailtoLink;
-            
-            // Show success message
-            applicationForm.innerHTML = `
+            function showApplicationSuccess() {
+                applicationForm.innerHTML = `
                 <div class="success-content" style="text-align: center; padding: 3rem;">
                     <svg width="80" height="80" viewBox="0 0 24 24" fill="none" stroke="var(--primary-turquoise)" stroke-width="2" style="margin-bottom: 2rem;">
                         <path d="M9 12l2 2 4-4"/>

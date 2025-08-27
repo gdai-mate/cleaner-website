@@ -131,12 +131,42 @@ The website perfectly reflects DEEP CLEAN's positioning as:
 - **Experienced professionals** (30+ years combined)
 - **Detail-oriented** ("The difference is in the detail")
 
+## 📧 Email Integration (SendGrid)
+
+**Status:** ✅ Fully configured with SendGrid for automated emails
+
+### Quick Setup:
+1. **Install dependencies:** `npm install`
+2. **Get SendGrid API key:** Sign up at sendgrid.com (free)
+3. **Add key to .env:** `SENDGRID_API_KEY=your_key_here`
+4. **Start server:** `npm start`
+5. **Deploy server:** Use Render.com, Heroku, or any Node.js host
+
+### Email Features:
+- **Contact form** sends quotes to Amie's inbox
+- **Job applications** automatically forwarded
+- **Professional HTML emails** with DEEP CLEAN branding
+- **Auto-confirmations** sent to customers
+- **Fallback to mailto** if server is down
+
+### Email Configuration:
+- **Receives at:** deepclean.go2@gmail.com (Amie's Gmail)
+- **Sends from:** amie@deepclean.au (professional domain)
+- **Reply-to:** Customer's email address
+
 ## 🔧 Deployment Ready
 
-The website is complete and ready for deployment to any web hosting service. All files are optimized and the code is production-ready.
+The website is complete with email automation and ready for deployment. 
+
+### To Deploy:
+1. **Website:** Upload to any web host (GitHub Pages, Netlify, etc.)
+2. **Email Server:** Deploy to Render.com (free) or Heroku
+3. **Domain:** Point deepclean.au to your hosting
+4. **SendGrid:** Verify domain for better deliverability
 
 ---
 
 **Built for:** DEEP CLEAN Brisbane  
-**Contact:** Amy & Kath - 0433 147 018  
-**Website Status:** ✅ Complete & Deployment Ready
+**Owner:** Amie - 0433 147 018  
+**Website:** deepclean.au  
+**Status:** ✅ Complete with Email Automation
