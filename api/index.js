@@ -4,7 +4,6 @@ const sgMail = require('@sendgrid/mail');
 require('dotenv').config();
 
 const app = express();
-const PORT = process.env.PORT || 3001;
 
 // Configure SendGrid
 sgMail.setApiKey(process.env.SENDGRID_API_KEY);
@@ -492,7 +491,5 @@ app.get('/', (req, res) => {
     });
 });
 
-app.listen(PORT, () => {
-    console.log(`Server running on port ${PORT}`);
-    console.log('SendGrid configured:', !!process.env.SENDGRID_API_KEY);
-});
+// Export for Vercel
+module.exports = app;

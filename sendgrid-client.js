@@ -2,10 +2,10 @@
 // This file handles sending emails via our SendGrid backend
 
 const SENDGRID_CONFIG = {
-    // Update this to your deployed server URL when going live
+    // API server hosted on Vercel (while website is on GitHub Pages)
     API_URL: window.location.hostname === 'localhost' || window.location.hostname === '127.0.0.1' 
         ? 'http://localhost:3001' 
-        : 'https://api.deepclean.au', // Replace with your actual API domain when deployed
+        : 'https://cleaner-website-1.vercel.app', // Vercel API endpoint
     
     // Endpoints
     CONTACT_ENDPOINT: '/api/contact',
