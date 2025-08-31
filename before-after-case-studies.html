@@ -1,0 +1,806 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Before and after cleaning transformations by DEEP CLEAN across Brisbane. Real case studies from West End, Woolloongabba, Kangaroo Point, Birkdale and Brisbane Bayside cleaning projects.">
+    <meta name="keywords" content="before after cleaning Brisbane, cleaning transformations West End, house cleaning results South Brisbane, cleaning case studies Woolloongabba, deep cleaning before after Kangaroo Point, cleaning results Norman Park, house cleaning transformations Morningside, cleaning before after Bulimba, deep cleaning results Hawthorne, cleaning transformations Balmoral, before after cleaning Murarrie, house cleaning results Tingalpa, cleaning transformations Wynnum, deep cleaning before after Manly, cleaning results Lota, house cleaning transformations Thornlands, cleaning before after Capalaba, deep cleaning results Sheldon, cleaning transformations Mount Cotton, before after cleaning Alexandra Hills, house cleaning results Wellington Point, cleaning transformations Cleveland, deep cleaning before after Ormiston, cleaning results Redland Bay, house cleaning transformations Victoria Point, cleaning before after Birkdale">
+    <title>Before & After Cleaning Transformations Brisbane - DEEP CLEAN Case Studies</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    
+    <style>
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 2rem;
+        }
+        
+        .case-studies {
+            padding: 5rem 0;
+        }
+        
+        .studies-intro {
+            text-align: center;
+            margin: 5rem 0;
+            max-width: 900px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+        
+        .studies-intro h2 {
+            font-size: 2.5rem;
+            color: #1e7ca8;
+            margin-bottom: 2rem;
+        }
+        
+        .studies-intro p {
+            font-size: 1.2rem;
+            line-height: 1.7;
+            color: #555;
+        }
+        
+        .case-study {
+            background: linear-gradient(135deg, #f8fbff 0%, #ffffff 100%);
+            border-radius: 24px;
+            padding: 4rem;
+            margin: 6rem 0;
+            box-shadow: 0 16px 60px rgba(0, 0, 0, 0.12);
+            border: 1px solid rgba(30, 124, 168, 0.1);
+        }
+        
+        .case-study-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 3rem;
+            flex-wrap: wrap;
+            gap: 2rem;
+        }
+        
+        .case-study-header h3 {
+            color: #1e7ca8;
+            margin: 0;
+            font-size: 1.8rem;
+        }
+        
+        .case-details {
+            display: flex;
+            gap: 1.5rem;
+            flex-wrap: wrap;
+        }
+        
+        .case-details span {
+            background: rgba(30, 124, 168, 0.1);
+            color: #1e7ca8;
+            padding: 0.8rem 1.5rem;
+            border-radius: 25px;
+            font-size: 0.95rem;
+            font-weight: 500;
+        }
+        
+        .case-content {
+            display: grid;
+            grid-template-columns: 1fr 400px;
+            gap: 5rem;
+            align-items: start;
+        }
+        
+        .case-images {
+            position: sticky;
+            top: 2rem;
+        }
+        
+        .before-after-grid {
+            display: grid;
+            grid-template-rows: 1fr 1fr;
+            gap: 1rem;
+            height: 400px;
+        }
+        
+        .before-after-item {
+            position: relative;
+            border-radius: 12px;
+            overflow: hidden;
+            box-shadow: 0 4px 16px rgba(0, 0, 0, 0.1);
+        }
+        
+        .before-after-item img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            object-position: center center;
+        }
+        
+        .before-after-label {
+            position: absolute;
+            top: 10px;
+            left: 10px;
+            background: rgba(30, 124, 168, 0.9);
+            color: white;
+            padding: 0.3rem 0.8rem;
+            border-radius: 15px;
+            font-size: 0.8rem;
+            font-weight: 600;
+            text-transform: uppercase;
+        }
+        
+        .case-description {
+            padding: 1rem 0;
+        }
+        
+        .case-description h4 {
+            color: #1e7ca8;
+            margin-top: 3rem;
+            margin-bottom: 1.5rem;
+            font-size: 1.4rem;
+        }
+        
+        .case-description p {
+            font-size: 1.1rem;
+            line-height: 1.7;
+            margin-bottom: 1.5rem;
+            color: #555;
+        }
+        
+        .case-description ul {
+            margin: 2rem 0;
+        }
+        
+        .case-description ul li {
+            margin-bottom: 1rem;
+            line-height: 1.6;
+            font-size: 1rem;
+        }
+        
+        .client-testimonial {
+            background: linear-gradient(135deg, #1e7ca8 0%, #2a8bb8 100%);
+            color: white;
+            padding: 1.5rem;
+            border-radius: 12px;
+            margin: 2rem 0;
+            position: relative;
+            font-style: italic;
+        }
+        
+        .client-testimonial::before {
+            content: "\"";
+            font-size: 3rem;
+            position: absolute;
+            top: -0.5rem;
+            left: 1rem;
+            opacity: 0.3;
+        }
+        
+        .client-testimonial span {
+            display: block;
+            margin-top: 1rem;
+            font-style: normal;
+            font-weight: 600;
+            opacity: 0.9;
+        }
+        
+        .results-summary {
+            background: linear-gradient(135deg, #1e7ca8 0%, #2a8bb8 100%);
+            color: white;
+            padding: 3rem 2rem;
+            border-radius: 20px;
+            margin: 4rem 0;
+            text-align: center;
+        }
+        
+        .results-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+            gap: 2rem;
+            margin-top: 2rem;
+        }
+        
+        .result-stat {
+            text-align: center;
+        }
+        
+        .stat-number {
+            font-size: 2.5rem;
+            font-weight: 700;
+            margin-bottom: 0.5rem;
+            color: white;
+        }
+        
+        .stat-label {
+            font-size: 0.9rem;
+            opacity: 0.9;
+        }
+        
+        .service-promise {
+            background: #f8fbff;
+            padding: 3rem 2rem;
+            border-radius: 20px;
+            margin: 3rem 0;
+        }
+        
+        .promise-points {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+            margin-top: 2rem;
+        }
+        
+        .promise-point {
+            text-align: center;
+            padding: 1.5rem;
+        }
+        
+        .promise-point svg {
+            color: #1e7ca8;
+            margin-bottom: 1rem;
+        }
+        
+        .promise-point h4 {
+            color: #1e7ca8;
+            margin-bottom: 1rem;
+        }
+        
+        .areas-showcase {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 1.5rem;
+            margin: 2rem 0;
+        }
+        
+        .area-group {
+            background: white;
+            padding: 1.5rem;
+            border-radius: 12px;
+            box-shadow: 0 4px 16px rgba(0, 0, 0, 0.08);
+            border-left: 4px solid #1e7ca8;
+            transition: transform 0.3s ease;
+        }
+        
+        .area-group:hover {
+            transform: translateY(-4px);
+        }
+        
+        .area-group h4 {
+            color: #1e7ca8;
+            margin-bottom: 0.5rem;
+        }
+        
+        @media (max-width: 968px) {
+            .container {
+                padding: 0 1.5rem;
+            }
+            
+            .case-studies {
+                padding: 3rem 0;
+            }
+            
+            .studies-intro {
+                margin: 3rem 0;
+            }
+            
+            .studies-intro h2 {
+                font-size: 2rem;
+            }
+            
+            .studies-intro p {
+                font-size: 1.1rem;
+            }
+            
+            .case-study {
+                padding: 2.5rem;
+                margin: 4rem 0;
+            }
+            
+            .case-study-header {
+                margin-bottom: 2rem;
+                gap: 1rem;
+            }
+            
+            .case-study-header h3 {
+                font-size: 1.5rem;
+            }
+            
+            .case-content {
+                grid-template-columns: 1fr;
+                gap: 3rem;
+            }
+            
+            .case-images {
+                position: static;
+            }
+            
+            .before-after-grid {
+                grid-template-columns: 1fr 1fr;
+                grid-template-rows: 1fr;
+                height: 250px;
+            }
+            
+            .case-details {
+                gap: 1rem;
+            }
+            
+            .case-details span {
+                font-size: 0.85rem;
+                padding: 0.6rem 1rem;
+            }
+            
+            .case-description h4 {
+                font-size: 1.2rem;
+                margin-top: 2rem;
+            }
+            
+            .case-description p {
+                font-size: 1rem;
+            }
+            
+            .results-summary {
+                padding: 2rem;
+                margin: 3rem 0;
+            }
+            
+            .results-grid {
+                grid-template-columns: repeat(2, 1fr);
+                gap: 1.5rem;
+            }
+            
+            .stat-number {
+                font-size: 2rem;
+            }
+            
+            .service-promise {
+                padding: 2rem;
+            }
+            
+            .promise-points {
+                grid-template-columns: 1fr;
+                gap: 1.5rem;
+            }
+            
+            .areas-showcase {
+                grid-template-columns: repeat(2, 1fr);
+                gap: 1rem;
+            }
+        }
+        
+        @media (max-width: 480px) {
+            .container {
+                padding: 0 1rem;
+            }
+            
+            .case-study {
+                padding: 2rem;
+                border-radius: 16px;
+            }
+            
+            .case-study-header h3 {
+                font-size: 1.3rem;
+            }
+            
+            .before-after-grid {
+                grid-template-columns: 1fr;
+                grid-template-rows: 1fr 1fr;
+                height: 400px;
+            }
+            
+            .case-details {
+                flex-direction: column;
+                gap: 0.5rem;
+            }
+            
+            .results-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .areas-showcase {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+    
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "Article",
+      "headline": "Before & After Cleaning Transformations Brisbane - Case Studies",
+      "description": "Real cleaning transformation case studies from DEEP CLEAN projects across Brisbane",
+      "author": {
+        "@type": "Organization",
+        "name": "DEEP CLEAN"
+      },
+      "publisher": {
+        "@type": "Organization", 
+        "name": "DEEP CLEAN",
+        "logo": {
+          "@type": "ImageObject",
+          "url": "https://deepclean.com.au/assets/DEEP CLEAN Logo.png"
+        }
+      },
+      "datePublished": "2025-01-01",
+      "mainEntityOfPage": "https://deepclean.com.au/before-after-case-studies"
+    }
+    </script>
+</head>
+<body>
+    <header class="header">
+        <nav class="nav">
+            <div class="nav-container">
+                <div class="logo">
+                    <a href="index.html">
+                        <img src="assets/DEEP CLEAN Logo.png" alt="DEEP CLEAN Logo" class="logo-img">
+                    </a>
+                </div>
+                <ul class="nav-menu">
+                    <li><a href="index.html" class="nav-link">Home</a></li>
+                    <li><a href="services.html" class="nav-link">Services</a></li>
+                    <li><a href="about.html" class="nav-link">About</a></li>
+                    <li><a href="gallery.html" class="nav-link">Gallery</a></li>
+                    <li><a href="contact.html" class="nav-link">Contact</a></li>
+                    <li><a href="careers.html" class="nav-link">Careers</a></li>
+                </ul>
+                <div class="header-cta-buttons">
+                    <a href="tel:0433147018" class="call-button">Call Now</a>
+                    <a href="contact.html" class="cta-button">Get Quote</a>
+                </div>
+                <button class="hamburger" aria-label="Menu" type="button" onclick="document.querySelector('.nav-menu').classList.toggle('active'); this.classList.toggle('active');">
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                </button>
+            </div>
+        </nav>
+    </header>
+
+    <main>
+        <section class="page-hero">
+            <div class="container">
+                <div class="page-hero-content">
+                    <h1>Before & After Cleaning Transformations</h1>
+                    <p>Real results from our Brisbane cleaning projects - See the DEEP CLEAN difference</p>
+                </div>
+            </div>
+        </section>
+
+        <section class="case-studies">
+            <div class="container">
+                <div class="studies-intro">
+                    <h2>Real Transformations Across Brisbane</h2>
+                    <p>These case studies showcase the dramatic transformations we achieve for our clients across Brisbane, from heritage Queenslanders in West End to modern homes in Birkdale. Each project demonstrates our commitment to delivering exceptional results tailored to Brisbane's unique cleaning challenges.</p>
+                </div>
+
+                <div class="case-study">
+                    <div class="case-study-header">
+                        <h3>Heritage Queenslander Revival - West End</h3>
+                        <div class="case-details">
+                            <span class="location">West End, Brisbane</span>
+                            <span class="service-type">Deep Clean & Restoration</span>
+                            <span class="duration">2 Days</span>
+                        </div>
+                    </div>
+                    <div class="case-content">
+                        <div class="case-description">
+                            <h4>The Challenge</h4>
+                            <p>This beautiful 1920s Queenslander had been neglected for several months. The humid Brisbane climate had taken its toll, with mould growth in bathrooms, dust accumulation on intricate period features, and deteriorated hardwood floors throughout.</p>
+                            
+                            <h4>Our Approach</h4>
+                            <ul>
+                                <li>Gentle cleaning of heritage timber features using specialized products</li>
+                                <li>Professional mould remediation in high-humidity areas</li>
+                                <li>Restoration cleaning of original hardwood floors</li>
+                                <li>Detailed cleaning of period light fixtures and ceiling roses</li>
+                                <li>Window restoration including heritage sash windows</li>
+                            </ul>
+                            
+                            <h4>Results Achieved</h4>
+                            <p>The home was transformed from a tired, neglected property to a stunning showcase of Brisbane's architectural heritage. Original timber features now gleam, floors have been restored to their former glory, and the entire home feels fresh and revitalized.</p>
+                            
+                            <div class="client-testimonial">
+                                <p><em>"I couldn't believe it was the same house. DEEP CLEAN understood how to care for the heritage features while bringing everything back to life. The attention to detail was incredible."</em></p>
+                                <span>- Sarah M., West End</span>
+                            </div>
+                        </div>
+                        
+                        <div class="case-images">
+                            <div class="before-after-grid">
+                                <div class="before-after-item">
+                                    <img src="assets/images/gallery/Website photos/Builders clean- West End/PXL_20250505_015509192~2.jpg" alt="West End heritage home before cleaning" loading="lazy">
+                                    <div class="before-after-label">Before</div>
+                                </div>
+                                <div class="before-after-item">
+                                    <img src="assets/images/gallery/Website photos/Builders clean- West End/20250807_114325-COLLAGE~2.jpg" alt="West End heritage home after professional cleaning" loading="lazy">
+                                    <div class="before-after-label">After</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="case-study">
+                    <div class="case-study-header">
+                        <h3>Post-Construction Clean - Birkdale New Build</h3>
+                        <div class="case-details">
+                            <span class="location">Birkdale, Brisbane Bayside</span>
+                            <span class="service-type">3-Phase Construction Clean</span>
+                            <span class="duration">3 Days</span>
+                        </div>
+                    </div>
+                    <div class="case-content">
+                        <div class="case-description">
+                            <h4>The Challenge</h4>
+                            <p>A newly constructed 4-bedroom home in Birkdale required comprehensive post-construction cleaning. Construction dust had settled throughout, windows were covered in residue, and the coastal location meant salt air exposure during the build process.</p>
+                            
+                            <h4>Our 3-Phase Process</h4>
+                            <ul>
+                                <li><strong>Phase 1:</strong> Initial dust and debris removal from all surfaces</li>
+                                <li><strong>Phase 2:</strong> Detailed cleaning of all fixtures, fittings, and surfaces</li>
+                                <li><strong>Phase 3:</strong> Final polish including floor sealing and window treatment</li>
+                                <li>Specialized attention to coastal environment challenges</li>
+                                <li>Premium floor protection and final clean before handover</li>
+                            </ul>
+                            
+                            <h4>Results Achieved</h4>
+                            <p>The home was delivered in pristine, move-in condition. Every surface sparkled, all construction residue was completely removed, and the new owners received their dream home exactly as intended by the architect's vision.</p>
+                            
+                            <div class="client-testimonial">
+                                <p><em>"The builder recommended DEEP CLEAN and we're so glad they did. The house was absolutely perfect when we got the keys - not a speck of dust anywhere."</em></p>
+                                <span>- Michael & Lisa T., Birkdale</span>
+                            </div>
+                        </div>
+                        
+                        <div class="case-images">
+                            <div class="before-after-grid">
+                                <div class="before-after-item">
+                                    <img src="assets/images/gallery/Website photos/Builders clean- Camp Hill/PXL_20250226_125220558.jpg" alt="New build construction site before cleaning" loading="lazy">
+                                    <div class="before-after-label">Before</div>
+                                </div>
+                                <div class="before-after-item">
+                                    <img src="assets/images/gallery/Website photos/Builders clean- Camp Hill/PXL_20250226_130220053.jpg" alt="New build move-in ready after professional cleaning" loading="lazy">
+                                    <div class="before-after-label">After</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="case-study">
+                    <div class="case-study-header">
+                        <h3>Riverfront Apartment Deep Clean - Kangaroo Point</h3>
+                        <div class="case-details">
+                            <span class="location">Kangaroo Point, Brisbane</span>
+                            <span class="service-type">Humidity Recovery Clean</span>
+                            <span class="duration">1 Day</span>
+                        </div>
+                    </div>
+                    <div class="case-content">
+                        <div class="case-description">
+                            <h4>The Challenge</h4>
+                            <p>This modern riverfront apartment had been vacant for 6 months during summer. The combination of Brisbane's humidity and river proximity had created mould issues, while floor-to-ceiling windows showed significant water marking from storms.</p>
+                            
+                            <h4>Our Specialized Approach</h4>
+                            <ul>
+                                <li>Professional mould treatment using hospital-grade products</li>
+                                <li>Specialized river-view window cleaning (12 floors up)</li>
+                                <li>HVAC system deep clean and filter replacement</li>
+                                <li>Humidity damage assessment and treatment</li>
+                                <li>Balcony deep clean including glass balustrade treatment</li>
+                            </ul>
+                            
+                            <h4>Results Achieved</h4>
+                            <p>The apartment was completely restored to its modern, pristine condition. All mould issues were eliminated, windows provided crystal-clear river views, and the space felt fresh and welcoming for new tenants.</p>
+                            
+                            <div class="client-testimonial">
+                                <p><em>"I was worried the apartment might have permanent damage from being closed up, but DEEP CLEAN made it look better than when it was first built."</em></p>
+                                <span>- David P., Property Manager</span>
+                            </div>
+                        </div>
+                        
+                        <div class="case-images">
+                            <div class="before-after-grid">
+                                <div class="before-after-item">
+                                    <img src="assets/images/hero/hero-2.jpg" alt="Riverfront apartment before humidity recovery clean" loading="lazy">
+                                    <div class="before-after-label">Before</div>
+                                </div>
+                                <div class="before-after-item">
+                                    <img src="assets/images/gallery/Website photos/Deep clean- Norman Park/20250805_143223-COLLAGE~2.jpg" alt="Kangaroo Point apartment after professional cleaning" loading="lazy">
+                                    <div class="before-after-label">After</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="case-study">
+                    <div class="case-study-header">
+                        <h3>Family Home Spring Clean - Cleveland</h3>
+                        <div class="case-details">
+                            <span class="location">Cleveland, Brisbane Bayside</span>
+                            <span class="service-type">Comprehensive Spring Clean</span>
+                            <span class="duration">2 Days</span>
+                        </div>
+                    </div>
+                    <div class="case-content">
+                        <div class="case-description">
+                            <h4>The Challenge</h4>
+                            <p>A busy family of five needed help with their annual spring clean. Pet hair, children's mess, and the coastal environment had created challenging cleaning requirements throughout their large family home.</p>
+                            
+                            <h4>Our Family-Focused Approach</h4>
+                            <ul>
+                                <li>Pet-safe deep cleaning products throughout</li>
+                                <li>Specialized carpet treatment for pet hair and stains</li>
+                                <li>Child-safe cleaning of play areas and bedrooms</li>
+                                <li>Outdoor entertainment area restoration</li>
+                                <li>Detailed cleaning of high-touch family surfaces</li>
+                            </ul>
+                            
+                            <h4>Results Achieved</h4>
+                            <p>The family home was transformed into a spotless, healthy environment. All pet odors were eliminated, carpets looked new again, and busy parents could focus on their family instead of endless cleaning tasks.</p>
+                            
+                            <div class="client-testimonial">
+                                <p><em>"Having three kids and two dogs, I thought our carpets were beyond help. DEEP CLEAN proved me wrong - everything looks and smells amazing now!"</em></p>
+                                <span>- Jennifer S., Cleveland</span>
+                            </div>
+                        </div>
+                        
+                        <div class="case-images">
+                            <div class="before-after-grid">
+                                <div class="before-after-item">
+                                    <img src="assets/images/hero/hero-3.jpg" alt="Family home before spring cleaning" loading="lazy">
+                                    <div class="before-after-label">Before</div>
+                                </div>
+                                <div class="before-after-item">
+                                    <img src="assets/images/gallery/Website photos/Recurring residential- Birkdale/PXL_20241120_013228192.jpg" alt="Cleveland family home after comprehensive spring clean" loading="lazy">
+                                    <div class="before-after-label">After</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="results-summary">
+                    <h2>Why Our Results Speak for Themselves</h2>
+                    <div class="results-grid">
+                        <div class="result-stat">
+                            <div class="stat-number">100%</div>
+                            <div class="stat-label">Client Satisfaction</div>
+                        </div>
+                        <div class="result-stat">
+                            <div class="stat-number">500+</div>
+                            <div class="stat-label">Brisbane Homes Transformed</div>
+                        </div>
+                        <div class="result-stat">
+                            <div class="stat-number">24hr</div>
+                            <div class="stat-label">Average Response Time</div>
+                        </div>
+                        <div class="result-stat">
+                            <div class="stat-number">5★</div>
+                            <div class="stat-label">Average Review Rating</div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="service-promise">
+                    <h2>Our Promise to Every Brisbane Client</h2>
+                    <p>These case studies represent just a fraction of the transformations we've achieved across Brisbane. From heritage homes in West End to modern residences in Birkdale, we bring the same attention to detail and professional expertise to every project.</p>
+                    
+                    <div class="promise-points">
+                        <div class="promise-point">
+                            <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <path d="M9 12l2 2 4-4"/>
+                                <circle cx="12" cy="12" r="9"/>
+                            </svg>
+                            <h4>Guaranteed Results</h4>
+                            <p>We guarantee our work and won't rest until you're completely satisfied with the transformation.</p>
+                        </div>
+                        <div class="promise-point">
+                            <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/>
+                                <circle cx="9" cy="7" r="4"/>
+                                <path d="M23 21v-2a4 4 0 0 0-3-3.87"/>
+                                <path d="M16 3.13a4 4 0 0 1 0 7.75"/>
+                            </svg>
+                            <h4>Local Expertise</h4>
+                            <p>We understand Brisbane's unique climate challenges and adapt our methods accordingly.</p>
+                        </div>
+                        <div class="promise-point">
+                            <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <circle cx="12" cy="12" r="3"/>
+                                <path d="M12 1v6M12 17v6M4.22 4.22l4.24 4.24M15.54 15.54l4.24 4.24M1 12h6M17 12h6M4.22 19.78l4.24-4.24M15.54 8.46l4.24-4.24"/>
+                            </svg>
+                            <h4>Professional Equipment</h4>
+                            <p>We use commercial-grade equipment and professional cleaning products for superior results.</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="service-areas-showcase">
+                    <h2>Transforming Homes Across Brisbane</h2>
+                    <p>We've delivered these kinds of results throughout Brisbane's diverse suburbs:</p>
+                    
+                    <div class="areas-showcase">
+                        <div class="area-group">
+                            <h4>Inner Brisbane</h4>
+                            <p>West End, South Brisbane, Woolloongabba, Kangaroo Point</p>
+                        </div>
+                        <div class="area-group">
+                            <h4>Eastern Suburbs</h4>
+                            <p>Norman Park, Morningside, Bulimba, Hawthorne, Balmoral</p>
+                        </div>
+                        <div class="area-group">
+                            <h4>Mid-Eastern Areas</h4>
+                            <p>Murarrie, Tingalpa, Wynnum, Manly, Lota</p>
+                        </div>
+                        <div class="area-group">
+                            <h4>Outer Eastern</h4>
+                            <p>Thornlands, Capalaba, Sheldon, Mount Cotton</p>
+                        </div>
+                        <div class="area-group">
+                            <h4>Brisbane Bayside</h4>
+                            <p>Alexandra Hills, Wellington Point, Cleveland, Ormiston</p>
+                        </div>
+                        <div class="area-group">
+                            <h4>Redlands</h4>
+                            <p>Redland Bay, Victoria Point, Birkdale</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="cta-section">
+                    <h2>Ready for Your Own Transformation?</h2>
+                    <p>See what DEEP CLEAN can achieve for your Brisbane home. Every cleaning project is a chance to create the fresh, healthy environment you deserve.</p>
+                    <div class="cta-buttons">
+                        <a href="contact.html" class="btn btn-primary">Get Your Transformation Quote</a>
+                        <a href="tel:0433147018" class="btn btn-secondary">Call 0433 147 018</a>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <div class="logo">
+                        <img src="assets/DEEP CLEAN Logo.png" alt="DEEP CLEAN Logo" class="logo-img">
+                    </div>
+                    <p>Premium cleaning services you can trust. Professional, reliable, and thorough.</p>
+                </div>
+                <div class="footer-section">
+                    <h4>Services</h4>
+                    <ul>
+                        <li><a href="services.html">One-off Deep Clean</a></li>
+                        <li><a href="services.html">Recurring Domestic Clean</a></li>
+                        <li><a href="services.html">Post Construction Clean</a></li>
+                        <li><a href="services.html">NIISQ/Funded Services</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h4>Company</h4>
+                    <ul>
+                        <li><a href="about.html">About Us</a></li>
+                        <li><a href="gallery.html">Gallery</a></li>
+                        <li><a href="contact.html">Contact</a></li>
+                        <li><a href="contact.html">Get Quote</a></li>
+                        <li><a href="careers.html">Join Our Team</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h4>Contact Info</h4>
+                    <p>Phone: 0433 147 018<br>
+                    Email: deepclean.go2@gmail.com<br>
+                    ABN: 57 805 931 28<br>
+                    Service Area: Brisbane Bayside & Southeast<br>
+<a href="https://www.facebook.com/share/1JCe6ozY2t/" target="_blank" style="color: rgba(255, 255, 255, 0.8); text-decoration: none; display: inline-flex; align-items: center; gap: 8px; transition: color 0.3s ease;" onmouseover="this.style.color='#1e7ca8'" onmouseout="this.style.color='rgba(255, 255, 255, 0.8)'"><svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/></svg>Follow us on Facebook</a></p>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2025 DEEP CLEAN. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+</html>

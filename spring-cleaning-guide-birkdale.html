@@ -1,0 +1,773 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Complete spring cleaning guide for Birkdale homes. Professional tips from DEEP CLEAN for deep cleaning your Brisbane Bayside home including West End, South Brisbane, Woolloongabba to Birkdale areas.">
+    <meta name="keywords" content="spring cleaning Birkdale, house cleaning West End Brisbane, cleaning services South Brisbane, Woolloongabba cleaners, Kangaroo Point cleaning, Norman Park house cleaning, Morningside cleaners, Bulimba cleaning service, Hawthorne house cleaning, Balmoral cleaning, Murarrie cleaners, Tingalpa cleaning service, Wynnum house cleaning, Manly cleaning services, Lota cleaners, Thornlands cleaning, Capalaba house cleaning, Sheldon cleaning service, Mount Cotton cleaners, Alexandra Hills cleaning, Wellington Point house cleaning, Cleveland cleaning service, Ormiston cleaners, Redland Bay cleaning, Victoria Point house cleaning, Birkdale cleaning service">
+    <title>Complete Spring Cleaning Guide for Birkdale & Brisbane - DEEP CLEAN</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    
+    <style>
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 2rem;
+        }
+        
+        .blog-content {
+            padding: 5rem 0;
+        }
+        
+        .blog-article {
+            max-width: 1100px;
+            margin: 0 auto;
+        }
+        
+        .article-hero-section {
+            position: relative;
+            margin: 4rem 0 7rem 0;
+            border-radius: 24px;
+            overflow: hidden;
+            box-shadow: 0 24px 60px rgba(0, 0, 0, 0.2);
+        }
+        
+        .hero-image-grid {
+            display: grid;
+            grid-template-columns: 2fr 1fr;
+            gap: 0;
+            height: 500px;
+        }
+        
+        .hero-main-image {
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .hero-main-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            object-position: center center;
+        }
+        
+        .hero-secondary-images {
+            display: grid;
+            grid-template-rows: 1fr 1fr;
+            gap: 2px;
+        }
+        
+        .secondary-image {
+            overflow: hidden;
+        }
+        
+        .secondary-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            object-position: center center;
+        }
+        
+        .hero-overlay {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            background: linear-gradient(transparent, rgba(30, 124, 168, 0.9));
+            color: white;
+            padding: 3rem;
+        }
+        
+        .hero-overlay h3 {
+            font-size: 1.8rem;
+            margin-bottom: 0.5rem;
+        }
+        
+        .hero-overlay p {
+            font-size: 1.1rem;
+            opacity: 0.9;
+        }
+        
+        .article-intro {
+            font-size: 1.15rem;
+            line-height: 1.8;
+            color: #555;
+            margin: 5rem 0;
+            text-align: center;
+            max-width: 900px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+        
+        .article-section {
+            margin: 7rem 0;
+        }
+        
+        .article-section h2 {
+            font-size: 2.2rem;
+            color: #1e7ca8;
+            margin-bottom: 2.5rem;
+            text-align: center;
+        }
+        
+        .article-section > p {
+            font-size: 1.1rem;
+            line-height: 1.7;
+            margin-bottom: 3rem;
+            color: #555;
+            text-align: center;
+            max-width: 750px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+        
+        .checklist-with-images {
+            display: grid;
+            grid-template-columns: 1fr 400px;
+            gap: 5rem;
+            margin: 6rem 0;
+            align-items: start;
+        }
+        
+        .checklist-content {
+            padding: 2rem 0;
+        }
+        
+        .checklist-content h3 {
+            color: #1e7ca8;
+            margin-bottom: 1.5rem;
+            font-size: 1.6rem;
+        }
+        
+        .checklist-content p {
+            font-size: 1.1rem;
+            line-height: 1.7;
+            margin-bottom: 1.5rem;
+        }
+        
+        .checklist-content ul {
+            margin: 1.5rem 0;
+        }
+        
+        .checklist-content li {
+            margin-bottom: 1rem;
+            line-height: 1.6;
+            font-size: 1rem;
+        }
+        
+        .checklist-images {
+            position: sticky;
+            top: 3rem;
+        }
+        
+        .checklist-image {
+            margin-bottom: 2rem;
+        }
+        
+        .checklist-image img {
+            width: 100%;
+            height: 250px;
+            object-fit: cover;
+            object-position: center center;
+            border-radius: 20px;
+            box-shadow: 0 16px 40px rgba(0, 0, 0, 0.15);
+        }
+        
+        .checklist-image-caption {
+            text-align: center;
+            margin-top: 1rem;
+            font-size: 0.95rem;
+            color: #666;
+            font-style: italic;
+        }
+        
+        .timeline-section {
+            background: linear-gradient(135deg, #f8fbff 0%, #e8f4f8 100%);
+            padding: 5rem 3rem;
+            border-radius: 24px;
+            margin: 7rem 0;
+            text-align: center;
+        }
+        
+        .timeline-section h2 {
+            font-size: 2.2rem;
+            color: #1e7ca8;
+            margin-bottom: 1.5rem;
+        }
+        
+        .timeline-section > p {
+            font-size: 1.1rem;
+            line-height: 1.7;
+            color: #555;
+            max-width: 600px;
+            margin: 0 auto 3rem;
+        }
+        
+        .timeline-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 3rem;
+            margin-top: 3rem;
+        }
+        
+        .timeline-item {
+            background: white;
+            padding: 2.5rem;
+            border-radius: 20px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
+            border-top: 6px solid #1e7ca8;
+            text-align: left;
+        }
+        
+        .timeline-week {
+            color: #1e7ca8;
+            font-weight: 600;
+            font-size: 1.2rem;
+            margin-bottom: 1rem;
+        }
+        
+        .timeline-item ul {
+            margin: 1rem 0;
+        }
+        
+        .timeline-item li {
+            margin-bottom: 0.8rem;
+            line-height: 1.5;
+        }
+        
+        .expert-insight {
+            background: linear-gradient(135deg, #1e7ca8 0%, #2a8bb8 100%);
+            color: white;
+            padding: 4rem 3rem;
+            border-radius: 24px;
+            margin: 7rem 0;
+            position: relative;
+            overflow: hidden;
+            text-align: center;
+        }
+        
+        .expert-insight h3 {
+            font-size: 1.6rem;
+            margin-bottom: 1.5rem;
+        }
+        
+        .expert-insight p {
+            font-size: 1.1rem;
+            line-height: 1.7;
+            margin-bottom: 1.5rem;
+            max-width: 800px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+        
+        .expert-insight::before {
+            content: "\"";
+            font-size: 8rem;
+            position: absolute;
+            top: -2rem;
+            left: 2rem;
+            opacity: 0.15;
+            font-family: serif;
+        }
+        
+        .service-showcase {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 2rem;
+            margin: 4rem 0;
+        }
+        
+        .area-highlight {
+            background: white;
+            padding: 2rem;
+            border-radius: 16px;
+            box-shadow: 0 8px 24px rgba(0, 0, 0, 0.08);
+            border-left: 6px solid #1e7ca8;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+        
+        .area-highlight:hover {
+            transform: translateY(-6px);
+            box-shadow: 0 16px 40px rgba(0, 0, 0, 0.12);
+        }
+        
+        .area-highlight h4 {
+            color: #1e7ca8;
+            margin-bottom: 1rem;
+            font-size: 1.2rem;
+        }
+        
+        .area-highlight p {
+            line-height: 1.6;
+            color: #555;
+        }
+        
+        @media (max-width: 968px) {
+            .container {
+                padding: 0 1.5rem;
+            }
+            
+            .blog-content {
+                padding: 3rem 0;
+            }
+            
+            .hero-image-grid {
+                grid-template-columns: 1fr;
+                height: 350px;
+            }
+            
+            .hero-secondary-images {
+                display: none;
+            }
+            
+            .hero-overlay {
+                padding: 2rem;
+            }
+            
+            .hero-overlay h3 {
+                font-size: 1.4rem;
+            }
+            
+            .article-intro {
+                margin: 3rem 0;
+                font-size: 1.1rem;
+            }
+            
+            .article-section {
+                margin: 4rem 0;
+            }
+            
+            .article-section h2 {
+                font-size: 1.8rem;
+                margin-bottom: 2rem;
+            }
+            
+            .checklist-with-images {
+                grid-template-columns: 1fr;
+                gap: 3rem;
+                margin: 4rem 0;
+            }
+            
+            .checklist-images {
+                position: static;
+                display: grid;
+                grid-template-columns: 1fr;
+                gap: 2rem;
+            }
+            
+            .checklist-image img {
+                height: 200px;
+            }
+            
+            .timeline-section {
+                padding: 3rem 2rem;
+                margin: 4rem 0;
+            }
+            
+            .timeline-section h2 {
+                font-size: 1.8rem;
+            }
+            
+            .timeline-grid {
+                grid-template-columns: 1fr;
+                gap: 2rem;
+            }
+            
+            .timeline-item {
+                padding: 2rem;
+            }
+            
+            .expert-insight {
+                padding: 3rem 2rem;
+                margin: 4rem 0;
+                text-align: left;
+            }
+            
+            .expert-insight h3 {
+                font-size: 1.4rem;
+            }
+            
+            .expert-insight p {
+                font-size: 1rem;
+            }
+            
+            .expert-insight::before {
+                font-size: 5rem;
+                top: -1rem;
+                left: 1rem;
+            }
+            
+            .service-showcase {
+                grid-template-columns: 1fr;
+                margin: 3rem 0;
+            }
+        }
+        
+        @media (max-width: 480px) {
+            .container {
+                padding: 0 1rem;
+            }
+            
+            .article-hero-section {
+                border-radius: 16px;
+                margin: 2rem 0 4rem 0;
+            }
+            
+            .hero-image-grid {
+                height: 280px;
+            }
+            
+            .timeline-section {
+                padding: 2rem 1rem;
+            }
+            
+            .timeline-item {
+                padding: 1.5rem;
+            }
+            
+            .expert-insight {
+                padding: 2rem 1.5rem;
+            }
+        }
+    </style>
+    
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "Article",
+      "headline": "Complete Spring Cleaning Guide for Birkdale & Brisbane",
+      "description": "Professional spring cleaning guide for Brisbane homes from West End to Birkdale",
+      "author": {
+        "@type": "Organization",
+        "name": "DEEP CLEAN"
+      },
+      "publisher": {
+        "@type": "Organization", 
+        "name": "DEEP CLEAN",
+        "logo": {
+          "@type": "ImageObject",
+          "url": "https://deepclean.com.au/assets/DEEP CLEAN Logo.png"
+        }
+      },
+      "datePublished": "2025-01-01",
+      "mainEntityOfPage": "https://deepclean.com.au/spring-cleaning-guide-birkdale"
+    }
+    </script>
+</head>
+<body>
+    <header class="header">
+        <nav class="nav">
+            <div class="nav-container">
+                <div class="logo">
+                    <a href="index.html">
+                        <img src="assets/DEEP CLEAN Logo.png" alt="DEEP CLEAN Logo" class="logo-img">
+                    </a>
+                </div>
+                <ul class="nav-menu">
+                    <li><a href="index.html" class="nav-link">Home</a></li>
+                    <li><a href="services.html" class="nav-link">Services</a></li>
+                    <li><a href="about.html" class="nav-link">About</a></li>
+                    <li><a href="gallery.html" class="nav-link">Gallery</a></li>
+                    <li><a href="contact.html" class="nav-link">Contact</a></li>
+                    <li><a href="careers.html" class="nav-link">Careers</a></li>
+                </ul>
+                <div class="header-cta-buttons">
+                    <a href="tel:0433147018" class="call-button">Call Now</a>
+                    <a href="contact.html" class="cta-button">Get Quote</a>
+                </div>
+                <button class="hamburger" aria-label="Menu" type="button" onclick="document.querySelector('.nav-menu').classList.toggle('active'); this.classList.toggle('active');">
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                </button>
+            </div>
+        </nav>
+    </header>
+
+    <main>
+        <section class="page-hero">
+            <div class="container">
+                <div class="page-hero-content">
+                    <h1>Complete Spring Cleaning Guide for Brisbane</h1>
+                    <p>From West End to Birkdale - Your comprehensive spring cleaning checklist</p>
+                </div>
+            </div>
+        </section>
+
+        <section class="blog-content">
+            <div class="container">
+                <article class="blog-article">
+                    <div class="article-hero-section">
+                        <div class="hero-image-grid">
+                            <div class="hero-main-image">
+                                <img src="assets/images/gallery/Website photos/Deep clean- Norman Park/20250805_143223-COLLAGE~2.jpg" alt="Spring cleaning Brisbane homes" loading="lazy">
+                                <div class="hero-overlay">
+                                    <h3>Professional Spring Cleaning Results</h3>
+                                    <p>Transform your Brisbane home this spring</p>
+                                </div>
+                            </div>
+                            <div class="hero-secondary-images">
+                                <div class="secondary-image">
+                                    <img src="assets/images/gallery/Website photos/Builders clean- West End/20250807_114325-COLLAGE~2.jpg" alt="West End cleaning transformation" loading="lazy">
+                                </div>
+                                <div class="secondary-image">
+                                    <img src="assets/images/gallery/Website photos/Recurring residential- Birkdale/20240722_223853~2.jpg" alt="Birkdale residential cleaning" loading="lazy">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="article-intro">
+                        <p>Spring in Brisbane brings renewed energy and the perfect opportunity for a thorough home refresh. Whether you're in a historic Queenslander in West End or a modern home in Birkdale, this comprehensive guide will help you tackle spring cleaning like a professional.</p>
+                        <p>As local cleaners serving from West End through to Birkdale and everywhere in between, we understand the unique cleaning challenges each area presents.</p>
+                    </div>
+
+                    <div class="article-section">
+                        <h2>Why Spring Cleaning is Essential in Brisbane</h2>
+                        <p>Brisbane's subtropical climate means our homes accumulate moisture, dust, and allergens throughout the year. Spring cleaning isn't just about aesthetics - it's about creating a healthier living environment after the humid summer months.</p>
+                        
+                        <h3>Benefits of Professional-Level Spring Cleaning</h3>
+                        <ul>
+                            <li>Removes built-up allergens and dust mites</li>
+                            <li>Prevents mould and mildew growth</li>
+                            <li>Improves indoor air quality</li>
+                            <li>Extends the life of your furnishings and appliances</li>
+                            <li>Creates a fresh, organized living space</li>
+                        </ul>
+                    </div>
+
+                    <div class="article-section">
+                        <h2>Room-by-Room Spring Cleaning Checklist</h2>
+                        
+                        <div class="checklist-with-images">
+                            <div class="checklist-content">
+                                <h3>Kitchen Deep Clean</h3>
+                                <p><strong>Essential tasks for Brisbane kitchens:</strong></p>
+                                <ul>
+                                    <li><strong>Range hood and filters:</strong> Critical in Brisbane's humid climate - clean monthly</li>
+                                    <li><strong>Refrigerator coils:</strong> Clean behind and underneath for energy efficiency</li>
+                                    <li><strong>Pantry organization:</strong> Check for moisture damage in stored goods</li>
+                                    <li><strong>Dishwasher maintenance:</strong> Clean filters and run empty cycle with vinegar</li>
+                                    <li><strong>Cabinet interiors:</strong> Wipe down with anti-bacterial cleaner</li>
+                                </ul>
+
+                                <h3>Bathroom Revival</h3>
+                                <p><strong>Focus areas for Brisbane homes:</strong></p>
+                                <ul>
+                                    <li><strong>Grout and tile deep clean:</strong> Use hydrogen peroxide-based cleaners</li>
+                                    <li><strong>Exhaust fan cleaning:</strong> Essential for mould prevention</li>
+                                    <li><strong>Shower screen descaling:</strong> Remove mineral buildup from Brisbane water</li>
+                                    <li><strong>Medicine cabinet organization:</strong> Check expiry dates and dispose safely</li>
+                                    <li><strong>Toilet deep clean:</strong> Including behind and around the base</li>
+                                </ul>
+
+                                <h3>Living Areas and Bedrooms</h3>
+                                <p><strong>Comprehensive cleaning approach:</strong></p>
+                                <ul>
+                                    <li><strong>Carpet deep cleaning:</strong> Essential every 6 months in Brisbane climate</li>
+                                    <li><strong>Upholstery treatment:</strong> Steam clean or professional service</li>
+                                    <li><strong>Window cleaning:</strong> Inside and out, including tracks and frames</li>
+                                    <li><strong>Ceiling fan maintenance:</strong> Clean blades and check for wobbling</li>
+                                    <li><strong>Air conditioning service:</strong> Clean filters and vents</li>
+                                </ul>
+                            </div>
+                            
+                            <div class="checklist-images">
+                                <div class="checklist-image">
+                                    <img src="assets/images/gallery/Website photos/Builders clean- Camp Hill/PXL_20250226_125230027.jpg" alt="Kitchen deep cleaning Camp Hill" loading="lazy">
+                                    <div class="checklist-image-caption">Kitchen deep cleaning techniques</div>
+                                </div>
+                                <div class="checklist-image">
+                                    <img src="assets/images/gallery/Website photos/Deep clean- Norman Park/20250805_143403-COLLAGE~2.jpg" alt="Bathroom cleaning Norman Park" loading="lazy">
+                                    <div class="checklist-image-caption">Professional bathroom cleaning</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="article-section">
+                        <h2>Area-Specific Cleaning Considerations</h2>
+                        
+                        <h3>Inner Brisbane Areas (West End to Woolloongabba)</h3>
+                        <p>Older homes in areas like West End, South Brisbane, and Woolloongabba often feature:</p>
+                        <ul>
+                            <li><strong>Heritage features:</strong> Require gentle, specialized cleaning products</li>
+                            <li><strong>Hardwood floors:</strong> Need regular maintenance and proper humidity control</li>
+                            <li><strong>High ceilings:</strong> Collect dust and require professional equipment to clean safely</li>
+                            <li><strong>Period fixtures:</strong> May need restoration cleaning techniques</li>
+                        </ul>
+
+                        <h3>Eastern Suburbs (Kangaroo Point to Hawthorne)</h3>
+                        <p>River-adjacent areas like Kangaroo Point, Norman Park, and Hawthorne face:</p>
+                        <ul>
+                            <li><strong>Higher humidity:</strong> Increased focus on mould prevention</li>
+                            <li><strong>River silt:</strong> More frequent window and exterior cleaning needed</li>
+                            <li><strong>Seasonal flooding risk:</strong> Basement and lower level moisture control</li>
+                        </ul>
+
+                        <h3>Bayside Communities (Wynnum to Birkdale)</h3>
+                        <p>Coastal homes from Wynnum through to Birkdale require:</p>
+                        <ul>
+                            <li><strong>Salt air protection:</strong> Regular cleaning of metal fixtures and fittings</li>
+                            <li><strong>Sand management:</strong> Specialized approaches for coastal debris</li>
+                            <li><strong>Moisture control:</strong> Extra attention to ventilation and dehumidification</li>
+                            <li><strong>Outdoor entertainment areas:</strong> Regular maintenance of decks and patios</li>
+                        </ul>
+                    </div>
+
+                    <div class="timeline-section">
+                        <h2>Professional Spring Cleaning Timeline</h2>
+                        <p>For a thorough spring clean, we recommend spreading tasks over 2-3 weeks:</p>
+                        
+                        <div class="timeline-grid">
+                            <div class="timeline-item">
+                                <div class="timeline-week">Week 1: Preparation</div>
+                                <ul>
+                                    <li>Go through each room and declutter</li>
+                                    <li>Organize donations and disposal items</li>
+                                    <li>Plan room-by-room approach</li>
+                                    <li>Gather or purchase cleaning supplies</li>
+                                </ul>
+                            </div>
+
+                            <div class="timeline-item">
+                                <div class="timeline-week">Week 2: Deep Cleaning</div>
+                                <ul>
+                                    <li>Kitchen and bathroom deep cleans</li>
+                                    <li>Carpet and upholstery cleaning</li>
+                                    <li>Window and blind cleaning</li>
+                                    <li>Appliance maintenance</li>
+                                </ul>
+                            </div>
+
+                            <div class="timeline-item">
+                                <div class="timeline-week">Week 3: Finishing Touches</div>
+                                <ul>
+                                    <li>Outdoor areas and patios</li>
+                                    <li>Garage and storage areas</li>
+                                    <li>Final touch-ups and organization</li>
+                                    <li>Maintenance schedule planning</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="article-section">
+                        <h2>Essential Spring Cleaning Supplies</h2>
+                        <p>Brisbane-specific recommendations from our professional team:</p>
+                        
+                        <h3>Must-Have Products</h3>
+                        <ul>
+                            <li><strong>Anti-mould spray:</strong> Hydrogen peroxide-based for Brisbane humidity</li>
+                            <li><strong>Microfibre cloths:</strong> Superior moisture absorption</li>
+                            <li><strong>HEPA vacuum:</strong> Essential for allergen control</li>
+                            <li><strong>Natural stone cleaner:</strong> For Brisbane's popular stone benchtops</li>
+                            <li><strong>Stainless steel cleaner:</strong> Prevents salt air corrosion</li>
+                        </ul>
+
+                        <h3>Professional Equipment Worth Renting</h3>
+                        <ul>
+                            <li>Steam cleaner for carpets and upholstery</li>
+                            <li>High-pressure water cleaner for exteriors</li>
+                            <li>Professional window cleaning squeegees</li>
+                            <li>Wet/dry vacuum for deep carpet cleaning</li>
+                        </ul>
+                    </div>
+
+                    <div class="expert-insight">
+                        <h3>Professional Insight</h3>
+                        <p>"The biggest mistake we see in Brisbane spring cleaning is trying to do everything in one weekend. Your home has had months to accumulate dirt and grime - give yourself adequate time to address it properly. Also, always start with the highest points and work down - ceiling fans first, floors last."</p>
+                        <p><em>- DEEP CLEAN Professional Team</em></p>
+                    </div>
+
+                    <div class="article-section">
+                        <h2>When to Call Professional Cleaners</h2>
+                        <p>Some spring cleaning tasks are best left to professionals:</p>
+                        <ul>
+                            <li><strong>High ceiling cleaning:</strong> Safety and proper equipment required</li>
+                            <li><strong>Carpet steam cleaning:</strong> Professional-grade equipment delivers better results</li>
+                            <li><strong>Mould remediation:</strong> If covering more than 1 square meter</li>
+                            <li><strong>Exterior house washing:</strong> Pressure washing requires experience</li>
+                            <li><strong>Oven and range hood deep cleaning:</strong> Professional products and techniques</li>
+                        </ul>
+                    </div>
+
+                    <div class="service-areas">
+                        <h2>Professional Spring Cleaning Across Brisbane</h2>
+                        <p>DEEP CLEAN provides professional spring cleaning services throughout Brisbane, from the heritage homes of West End to the modern residences of Birkdale. Our team understands the unique requirements of each area:</p>
+                        
+                        <div class="areas-list">
+                            <h3>Inner Brisbane Service Areas:</h3>
+                            <p>West End, South Brisbane, Woolloongabba, Kangaroo Point, Norman Park, Morningside, Bulimba, Hawthorne, Balmoral</p>
+                            
+                            <h3>Eastern Suburbs:</h3>
+                            <p>Murarrie, Tingalpa, Wynnum, Manly, Lota, Thornlands, Capalaba, Sheldon, Mount Cotton</p>
+                            
+                            <h3>Bayside Communities:</h3>
+                            <p>Alexandra Hills, Wellington Point, Cleveland, Ormiston, Redland Bay, Victoria Point, Birkdale</p>
+                        </div>
+                    </div>
+
+                    <div class="article-conclusion">
+                        <h2>Ready for Your Brisbane Spring Clean?</h2>
+                        <p>Whether you're tackling spring cleaning yourself or prefer professional help, the key is thoroughness and attention to Brisbane's unique climate challenges. Don't let the task overwhelm you - break it down room by room and celebrate each accomplishment.</p>
+                        <p>If you'd prefer to leave the hard work to the professionals, our experienced Brisbane team is here to help. We bring professional-grade equipment, eco-friendly products, and years of local experience to every spring cleaning project.</p>
+                        <div class="cta-buttons">
+                            <a href="contact.html" class="btn btn-primary">Get Your Spring Clean Quote</a>
+                            <a href="tel:0433147018" class="btn btn-secondary">Call 0433 147 018</a>
+                        </div>
+                    </div>
+                </article>
+            </div>
+        </section>
+    </main>
+
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <div class="logo">
+                        <img src="assets/DEEP CLEAN Logo.png" alt="DEEP CLEAN Logo" class="logo-img">
+                    </div>
+                    <p>Premium cleaning services you can trust. Professional, reliable, and thorough.</p>
+                </div>
+                <div class="footer-section">
+                    <h4>Services</h4>
+                    <ul>
+                        <li><a href="services.html">One-off Deep Clean</a></li>
+                        <li><a href="services.html">Recurring Domestic Clean</a></li>
+                        <li><a href="services.html">Post Construction Clean</a></li>
+                        <li><a href="services.html">NIISQ/Funded Services</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h4>Company</h4>
+                    <ul>
+                        <li><a href="about.html">About Us</a></li>
+                        <li><a href="gallery.html">Gallery</a></li>
+                        <li><a href="contact.html">Contact</a></li>
+                        <li><a href="contact.html">Get Quote</a></li>
+                        <li><a href="careers.html">Join Our Team</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h4>Contact Info</h4>
+                    <p>Phone: 0433 147 018<br>
+                    Email: deepclean.go2@gmail.com<br>
+                    ABN: 57 805 931 28<br>
+                    Service Area: Brisbane Bayside & Southeast<br>
+<a href="https://www.facebook.com/share/1JCe6ozY2t/" target="_blank" style="color: rgba(255, 255, 255, 0.8); text-decoration: none; display: inline-flex; align-items: center; gap: 8px; transition: color 0.3s ease;" onmouseover="this.style.color='#1e7ca8'" onmouseout="this.style.color='rgba(255, 255, 255, 0.8)'"><svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/></svg>Follow us on Facebook</a></p>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2025 DEEP CLEAN. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+</html>

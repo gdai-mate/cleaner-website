@@ -496,8 +496,7 @@ a.btn-outline {
     overflow: hidden;
     box-shadow: var(--shadow-md);
     transition: transform 0.3s ease;
-    background: white;
-    padding: 4px;
+    border: 3px solid white;
 }
 
 .cleaning-image::before {
@@ -524,36 +523,65 @@ a.btn-outline {
     height: 100%;
     object-fit: cover;
     display: block;
-    border-radius: calc(var(--radius-xl) - 6px);
     position: relative;
     z-index: 2;
 }
 
 .image-1 {
-    width: 320px;
-    height: 240px;
-    top: 0;
+    width: 270px;
+    height: 220px;
+    top: 20px;
     left: -20px;
     z-index: 3;
     /* Removed animation for minimalist design */
 }
 
 .image-2 {
-    width: 350px;
-    height: 260px;
-    top: 120px;
+    width: 300px;
+    height: 240px;
+    top: 140px;
     right: 60px;
     z-index: 2;
     /* Removed animation for minimalist design */
 }
 
 .image-3 {
-    width: 280px;
+    width: 240px;
     height: 200px;
-    bottom: 0;
+    bottom: 20px;
     left: 80px;
     z-index: 1;
     /* Removed animation for minimalist design */
+}
+
+/* Hero section image positioning fix */
+.hero-images .cleaning-image img {
+    object-position: center 25% !important;
+    border-radius: 12px !important;
+}
+
+.hero-images .image-1 img,
+.hero-images .image-3 img {
+    object-position: center 25% !important;
+    border-radius: 12px !important;
+}
+
+.hero-images .image-2 img {
+    object-position: center 35% !important;
+    border-radius: 12px !important;
+}
+
+/* Force image-2 positioning with maximum specificity - Updated 2025 */
+.hero .hero-visual-section .hero-images .cleaning-image.image-2 img {
+    object-position: center 35% !important;
+    transform: none !important;
+    background-position: center 35% !important;
+}
+
+/* Alternative approach using transform */
+.image-2 img {
+    object-position: center 35% !important;
+    transform: translateY(-20px) !important;
 }
 
 /* Hero Content Updates */

@@ -1,0 +1,546 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Professional cleaning services in Brisbane Bayside including Birkdale, Cleveland, Wellington Point & Redland Bay. Local DEEP CLEAN team providing premium residential & commercial cleaning.">
+    <meta name="keywords" content="Brisbane Bayside cleaning, Birkdale cleaner, Cleveland cleaning service, Wellington Point house cleaning, Redland Bay cleaners, South East Brisbane cleaning">
+    <title>Brisbane Bayside Cleaning Services | Birkdale, Cleveland & Wellington Point - DEEP CLEAN</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    
+    <style>
+        .location-hero {
+            background: linear-gradient(135deg, #1e7ca8 0%, #2a8bb8 100%);
+            color: white;
+            padding: 4rem 0;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .location-hero::before {
+            content: "";
+            position: absolute;
+            top: 0;
+            right: 0;
+            width: 50%;
+            height: 100%;
+            background: url('assets/images/gallery/Website photos/Recurring residential- Birkdale/PXL_20241120_013243430.jpg') center/cover;
+            opacity: 0.2;
+        }
+        
+        .location-services {
+            padding: 5rem 0;
+        }
+        
+        .location-intro {
+            background: #f8fbff;
+            padding: 4rem 3rem;
+            border-radius: 24px;
+            margin: 5rem 0;
+            text-align: center;
+            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.08);
+        }
+        
+        .location-intro h2 {
+            color: #1e7ca8;
+            font-size: 2.2rem;
+            margin-bottom: 2rem;
+        }
+        
+        .location-intro p {
+            font-size: 1.15rem;
+            line-height: 1.7;
+            color: #555;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+        
+        .service-areas {
+            margin: 6rem 0;
+        }
+        
+        .service-areas h3 {
+            font-size: 2rem;
+            color: #1e7ca8;
+            text-align: center;
+            margin-bottom: 3rem;
+        }
+        
+        .areas-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 3rem;
+            margin: 4rem 0;
+        }
+        
+        .area-card {
+            background: white;
+            border-radius: 20px;
+            padding: 3rem;
+            box-shadow: 0 12px 40px rgba(0, 0, 0, 0.1);
+            border-left: 6px solid #1e7ca8;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .area-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.15);
+        }
+        
+        .area-card::before {
+            content: "";
+            position: absolute;
+            top: 0;
+            right: 0;
+            width: 80px;
+            height: 80px;
+            background: linear-gradient(135deg, rgba(30, 124, 168, 0.1), rgba(30, 124, 168, 0.2));
+            border-radius: 0 20px 0 100%;
+        }
+        
+        .area-card h4 {
+            color: #1e7ca8;
+            margin-bottom: 1.5rem;
+            font-size: 1.4rem;
+        }
+        
+        .area-card p {
+            line-height: 1.7;
+            color: #555;
+            font-size: 1.05rem;
+        }
+        
+        .benefits-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+            margin: 3rem 0;
+        }
+        
+        .benefit {
+            text-align: center;
+            padding: 2rem;
+            background: white;
+            border-radius: 16px;
+            box-shadow: 0 6px 24px rgba(0, 0, 0, 0.08);
+            transition: transform 0.3s ease;
+        }
+        
+        .benefit:hover {
+            transform: translateY(-4px);
+        }
+        
+        .benefit svg {
+            color: #1e7ca8;
+            margin-bottom: 1rem;
+        }
+        
+        .benefit h4 {
+            color: #1e7ca8;
+            margin-bottom: 1rem;
+        }
+        
+        .service-guarantee {
+            background: linear-gradient(135deg, #f8fbff 0%, #e8f4f8 100%);
+            padding: 3rem 2rem;
+            border-radius: 20px;
+            margin: 3rem 0;
+            text-align: center;
+        }
+        
+        .service-guarantee h3 {
+            color: #1e7ca8;
+            margin-bottom: 1.5rem;
+        }
+        
+        .service-guarantee ul {
+            list-style: none;
+            padding: 0;
+            max-width: 600px;
+            margin: 2rem auto 0;
+        }
+        
+        .service-guarantee li {
+            padding: 0.5rem 0;
+            font-weight: 500;
+            color: #333;
+        }
+        
+        .gallery-showcase {
+            margin: 4rem 0;
+        }
+        
+        .gallery-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 1.5rem;
+            margin: 2rem 0;
+        }
+        
+        .gallery-item {
+            position: relative;
+            border-radius: 16px;
+            overflow: hidden;
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s ease;
+        }
+        
+        .gallery-item:hover {
+            transform: scale(1.02);
+        }
+        
+        .gallery-item img {
+            width: 100%;
+            height: 250px;
+            object-fit: cover;
+            object-position: center center;
+        }
+        
+        .gallery-overlay {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            background: linear-gradient(transparent, rgba(0, 0, 0, 0.8));
+            color: white;
+            padding: 1.5rem;
+        }
+        
+        .gallery-overlay h4 {
+            color: white;
+            margin-bottom: 0.5rem;
+        }
+        
+        @media (max-width: 968px) {
+            .container {
+                padding: 0 1.5rem;
+            }
+            
+            .location-services {
+                padding: 3rem 0;
+            }
+            
+            .location-hero::before {
+                width: 100%;
+                opacity: 0.1;
+            }
+            
+            .location-intro {
+                padding: 3rem 2rem;
+                margin: 3rem 0;
+            }
+            
+            .location-intro h2 {
+                font-size: 1.8rem;
+            }
+            
+            .service-areas {
+                margin: 4rem 0;
+            }
+            
+            .service-areas h3 {
+                font-size: 1.6rem;
+            }
+            
+            .areas-grid {
+                grid-template-columns: 1fr;
+                gap: 2rem;
+                margin: 3rem 0;
+            }
+            
+            .area-card {
+                padding: 2rem;
+            }
+            
+            .area-card h4 {
+                font-size: 1.2rem;
+            }
+            
+            .benefits-grid {
+                grid-template-columns: 1fr;
+                gap: 1.5rem;
+            }
+            
+            .benefit {
+                padding: 1.5rem;
+            }
+            
+            .gallery-grid {
+                grid-template-columns: 1fr;
+                gap: 1rem;
+            }
+            
+            .gallery-item img {
+                height: 200px;
+            }
+        }
+        
+        @media (max-width: 480px) {
+            .container {
+                padding: 0 1rem;
+            }
+            
+            .location-intro {
+                padding: 2rem 1.5rem;
+            }
+            
+            .location-intro h2 {
+                font-size: 1.5rem;
+            }
+            
+            .areas-grid {
+                grid-template-columns: 1fr;
+                gap: 1.5rem;
+            }
+            
+            .area-card {
+                padding: 1.5rem;
+                border-radius: 16px;
+            }
+        }
+    </style>
+    
+    <!-- Local Business Structured Data for Brisbane Bayside -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "LocalBusiness",
+      "name": "DEEP CLEAN - Brisbane Bayside",
+      "description": "Professional cleaning services serving Brisbane Bayside including Birkdale, Cleveland, Wellington Point, and Redland Bay. Premium residential and commercial cleaning.",
+      "url": "https://deepclean.com.au/brisbane-bayside-cleaning",
+      "telephone": "0433147018",
+      "email": "deepclean.go2@gmail.com",
+      "address": {
+        "@type": "PostalAddress",
+        "addressLocality": "Brisbane Bayside",
+        "addressRegion": "QLD",
+        "addressCountry": "AU"
+      },
+      "areaServed": [
+        {"@type": "City", "name": "Birkdale"},
+        {"@type": "City", "name": "Cleveland"}, 
+        {"@type": "City", "name": "Wellington Point"},
+        {"@type": "City", "name": "Redland Bay"},
+        {"@type": "City", "name": "Thornlands"},
+        {"@type": "City", "name": "Victoria Point"}
+      ],
+      "serviceType": ["House Cleaning", "Office Cleaning", "Deep Cleaning", "Post Construction Cleaning"],
+      "priceRange": "$$"
+    }
+    </script>
+</head>
+<body>
+    <header class="header">
+        <nav class="nav">
+            <div class="nav-container">
+                <div class="logo">
+                    <a href="index.html">
+                        <img src="assets/DEEP CLEAN Logo.png" alt="DEEP CLEAN Logo" class="logo-img">
+                    </a>
+                </div>
+                <ul class="nav-menu">
+                    <li><a href="index.html" class="nav-link">Home</a></li>
+                    <li><a href="services.html" class="nav-link">Services</a></li>
+                    <li><a href="about.html" class="nav-link">About</a></li>
+                    <li><a href="gallery.html" class="nav-link">Gallery</a></li>
+                    <li><a href="contact.html" class="nav-link">Contact</a></li>
+                    <li><a href="careers.html" class="nav-link">Careers</a></li>
+                </ul>
+                <div class="header-cta-buttons">
+                    <a href="tel:0433147018" class="call-button">Call Now</a>
+                    <a href="contact.html" class="cta-button">Get Quote</a>
+                </div>
+                <button class="hamburger" aria-label="Menu" type="button" onclick="document.querySelector('.nav-menu').classList.toggle('active'); this.classList.toggle('active');">
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                </button>
+            </div>
+        </nav>
+    </header>
+
+    <main>
+        <section class="page-hero">
+            <div class="container">
+                <div class="page-hero-content">
+                    <h1>Brisbane Bayside Cleaning Services</h1>
+                    <p>Professional cleaning services for Birkdale, Cleveland, Wellington Point & surrounding areas</p>
+                </div>
+            </div>
+        </section>
+
+        <section class="location-services">
+            <div class="container">
+                <div class="location-intro">
+                    <h2>Your Local Brisbane Bayside Cleaning Team</h2>
+                    <p>As locals to the Brisbane Bayside area, we understand the unique needs of homes and businesses in our community. From the waterfront properties in Wellington Point to the family homes in Birkdale, we provide personalized cleaning services that respect your property and lifestyle.</p>
+                </div>
+
+                <div class="service-areas">
+                    <h3>Areas We Service in Brisbane Bayside</h3>
+                    <div class="areas-grid">
+                        <div class="area-card">
+                            <h4>Birkdale</h4>
+                            <p>Comprehensive house cleaning services for Birkdale residents. From regular maintenance cleans to deep spring cleaning, we keep your Birkdale home spotless.</p>
+                        </div>
+                        <div class="area-card">
+                            <h4>Cleveland</h4>
+                            <p>Professional cleaning services for Cleveland homes and offices. Our team provides reliable, thorough cleaning that fits your busy Cleveland lifestyle.</p>
+                        </div>
+                        <div class="area-card">
+                            <h4>Wellington Point</h4>
+                            <p>Specialized cleaning for Wellington Point waterfront properties. We understand the unique maintenance needs of coastal homes.</p>
+                        </div>
+                        <div class="area-card">
+                            <h4>Redland Bay</h4>
+                            <p>Quality cleaning services for Redland Bay families. From weekly maintenance to one-off deep cleans, we're your local cleaning solution.</p>
+                        </div>
+                        <div class="area-card">
+                            <h4>Thornlands</h4>
+                            <p>Reliable house cleaning services for busy Thornlands families. Let us handle the cleaning while you enjoy more time with loved ones.</p>
+                        </div>
+                        <div class="area-card">
+                            <h4>Victoria Point</h4>
+                            <p>Professional cleaning services for Victoria Point homes and businesses. Quality cleaning you can trust, delivered by your local team.</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="local-benefits">
+                    <h3>Why Choose Local Brisbane Bayside Cleaners?</h3>
+                    <div class="benefits-grid">
+                        <div class="benefit">
+                            <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/>
+                                <circle cx="12" cy="10" r="3"/>
+                            </svg>
+                            <h4>Local Knowledge</h4>
+                            <p>We understand the local area, weather patterns, and community needs specific to Brisbane Bayside.</p>
+                        </div>
+                        <div class="benefit">
+                            <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/>
+                            </svg>
+                            <h4>Community Focused</h4>
+                            <p>We're invested in our local community and build lasting relationships with our Brisbane Bayside neighbors.</p>
+                        </div>
+                        <div class="benefit">
+                            <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <circle cx="12" cy="12" r="3"/>
+                                <path d="M12 1v6M12 17v6M4.22 4.22l4.24 4.24M15.54 15.54l4.24 4.24M1 12h6M17 12h6M4.22 19.78l4.24-4.24M15.54 8.46l4.24-4.24"/>
+                            </svg>
+                            <h4>Quick Response</h4>
+                            <p>Being local means faster response times and flexible scheduling to suit your Brisbane Bayside lifestyle.</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="service-guarantee">
+                    <h3>Our Brisbane Bayside Service Promise</h3>
+                    <p>As your local Brisbane Bayside cleaning team, we guarantee:</p>
+                    <ul>
+                        <li>✓ Fully insured and police-checked cleaners</li>
+                        <li>✓ Eco-friendly cleaning products safe for Brisbane's environment</li>
+                        <li>✓ Flexible scheduling to suit your lifestyle</li>
+                        <li>✓ 100% satisfaction guarantee</li>
+                        <li>✓ No lock-in contracts - service when you need it</li>
+                    </ul>
+                </div>
+                
+                <div class="gallery-showcase">
+                    <h2>Our Work Across Brisbane Bayside</h2>
+                    <p>See the difference we make in homes throughout our local area</p>
+                    
+                    <div class="gallery-grid">
+                        <div class="gallery-item">
+                            <img src="assets/images/gallery/Website photos/Recurring residential- Birkdale/20240722_223853~2.jpg" alt="Birkdale residential cleaning results" loading="lazy">
+                            <div class="gallery-overlay">
+                                <h4>Birkdale Home</h4>
+                                <p>Recurring residential clean</p>
+                            </div>
+                        </div>
+                        <div class="gallery-item">
+                            <img src="assets/images/gallery/Website photos/Deep clean- Norman Park/20250805_143403-COLLAGE~2.jpg" alt="Norman Park deep cleaning transformation" loading="lazy">
+                            <div class="gallery-overlay">
+                                <h4>Norman Park</h4>
+                                <p>Deep clean transformation</p>
+                            </div>
+                        </div>
+                        <div class="gallery-item">
+                            <img src="assets/images/gallery/Website photos/Builders clean- Camp Hill/PXL_20250226_132712204.jpg" alt="Camp Hill post-construction clean" loading="lazy">
+                            <div class="gallery-overlay">
+                                <h4>Camp Hill Build</h4>
+                                <p>Post-construction clean</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="cta-section">
+            <div class="container">
+                <div class="cta-content">
+                    <h2>Ready for a Spotless Brisbane Bayside Home?</h2>
+                    <p>Contact your local Brisbane Bayside cleaning team for a free, personalized quote.</p>
+                    <div class="cta-buttons">
+                        <a href="contact.html" class="btn btn-primary">Get Free Quote</a>
+                        <a href="tel:0433147018" class="btn btn-secondary">Call 0433 147 018</a>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <div class="logo">
+                        <img src="assets/DEEP CLEAN Logo.png" alt="DEEP CLEAN Logo" class="logo-img">
+                    </div>
+                    <p>Premium cleaning services you can trust. Professional, reliable, and thorough throughout Brisbane Bayside.</p>
+                </div>
+                <div class="footer-section">
+                    <h4>Services</h4>
+                    <ul>
+                        <li><a href="services.html">One-off Deep Clean</a></li>
+                        <li><a href="services.html">Recurring Domestic Clean</a></li>
+                        <li><a href="services.html">Post Construction Clean</a></li>
+                        <li><a href="services.html">NIISQ/Funded Services</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h4>Service Areas</h4>
+                    <ul>
+                        <li>Birkdale</li>
+                        <li>Cleveland</li>
+                        <li>Wellington Point</li>
+                        <li>Redland Bay</li>
+                        <li>Thornlands</li>
+                        <li>Victoria Point</li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h4>Contact Info</h4>
+                    <p>Phone: 0433 147 018<br>
+                    Email: deepclean.go2@gmail.com<br>
+                    ABN: 57 805 931 28<br>
+                    Service Area: Brisbane Bayside & Southeast<br>
+<a href="https://www.facebook.com/share/1JCe6ozY2t/" target="_blank" style="color: rgba(255, 255, 255, 0.8); text-decoration: none; display: inline-flex; align-items: center; gap: 8px; transition: color 0.3s ease;" onmouseover="this.style.color='#1e7ca8'" onmouseout="this.style.color='rgba(255, 255, 255, 0.8)'"><svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/></svg>Follow us on Facebook</a></p>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2025 DEEP CLEAN. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+</html>
