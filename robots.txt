@@ -1,0 +1,21 @@
+User-agent: *
+Allow: /
+
+# Sitemaps
+Sitemap: https://deepclean.au/sitemap.xml
+
+# Disallow admin or sensitive areas (if any)
+# Disallow: /admin/
+# Disallow: /private/
+
+# Allow all search engines to crawl the site
+# Priority pages for crawling
+Allow: /index.html
+Allow: /services.html
+Allow: /about.html
+Allow: /gallery.html
+Allow: /contact.html
+Allow: /careers.html
+
+# Crawl delay (optional - removes if causing issues)
+# Crawl-delay: 1
