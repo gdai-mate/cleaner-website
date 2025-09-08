@@ -66,6 +66,12 @@ function initializeSmoothCarousel(track, prevBtn, nextBtn, page) {
             name: "Rachael",
             title: "Homeowner",
             stars: "★★★★★"
+        },
+        {
+            quote: "We have worked with Amie from Deep Clean for our construction handover cleans for over two years now. Her end result is the best I've seen and is a huge help for us knowing that we can hand over a spotless job. The team are super friendly and diligent and are a pleasure to work with.",
+            name: "Dan",
+            title: "In-House Projects",
+            stars: "★★★★★"
         }
     ] : [
         {
@@ -108,6 +114,12 @@ function initializeSmoothCarousel(track, prevBtn, nextBtn, page) {
             quote: "Deep Clean is amazing! Having a super clean house is essential & a top priority as I have no immune system. The staff at Deep Cleans achieve this every clean. They are extremely thorough, professional, very reliable & my house is always left spotlessly clean & smelling fresh every clean.",
             name: "Rachael",
             title: "Homeowner",
+            stars: "★★★★★"
+        },
+        {
+            quote: "We have worked with Amie from Deep Clean for our construction handover cleans for over two years now. Her end result is the best I've seen and is a huge help for us knowing that we can hand over a spotless job. The team are super friendly and diligent and are a pleasure to work with.",
+            name: "Dan",
+            title: "In-House Projects",
             stars: "★★★★★"
         }
     ];
