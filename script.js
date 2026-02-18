@@ -1,9 +1,44 @@
-// EmailJS Configuration
-const EMAILJS_CONFIG = {
-    SERVICE_ID: 'YOUR_SERVICE_ID', // Replace with your EmailJS service ID
-    CONTACT_TEMPLATE_ID: 'YOUR_CONTACT_TEMPLATE_ID', // Replace with your contact form template ID
-    CAREERS_TEMPLATE_ID: 'YOUR_CAREERS_TEMPLATE_ID', // Replace with your careers form template ID
+// Web3Forms Configuration
+// Get your free access key at https://web3forms.com (250 submissions/month free)
+const WEB3FORMS_CONFIG = {
+    ACCESS_KEY: '903713a9-09b9-4fc5-8088-05dc449eca97',
+    API_URL: 'https://api.web3forms.com/submit',
+    TO_EMAIL: 'deepclean.go2@gmail.com'
 };
+
+// Web3Forms submission function
+async function sendToWeb3Forms(formData, formType = 'contact') {
+    const data = {
+        access_key: WEB3FORMS_CONFIG.ACCESS_KEY,
+        from_name: formData.firstName + ' ' + formData.lastName,
+        email: formData.email,
+        ...formData
+    };
+
+    // Set subject based on form type
+    if (formType === 'contact') {
+        data.subject = `New Quote Request from ${formData.firstName} ${formData.lastName}`;
+    } else if (formType === 'application') {
+        data.subject = `New Job Application from ${formData.firstName} ${formData.lastName}`;
+    }
+
+    const response = await fetch(WEB3FORMS_CONFIG.API_URL, {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json',
+            'Accept': 'application/json'
+        },
+        body: JSON.stringify(data)
+    });
+
+    const result = await response.json();
+
+    if (!result.success) {
+        throw new Error(result.message || 'Failed to send form');
+    }
+
+    return result;
+}
 
 // Wait for DOM to be fully loaded
 document.addEventListener('DOMContentLoaded', function() {
@@ -1091,23 +1126,24 @@ document.addEventListener('DOMContentLoaded', function() {
             emailBody += `Please contact me at your earliest convenience to discuss pricing and availability.\n\n`;
             emailBody += `Thank you,\n${data.firstName} ${data.lastName}`;
             
-            // Prepare data for SendGrid
+            // Prepare data for Web3Forms
             const emailData = {
                 ...data,
-                serviceType: selectedServices,
-                photos: contactUploadedImages.length > 0
+                serviceType: selectedServices.join(', '),
+                photos: contactUploadedImages.length > 0 ? contactUploadedImages.map(img => img.url).join('\n') : 'None',
+                message: emailBody
             };
 
-            // Check if SendGrid client is available
-            if (typeof window.SendGridClient !== 'undefined') {
-                // Show loading state
-                const submitButton = e.target.querySelector('button[type="submit"]');
-                const originalText = submitButton.textContent;
-                submitButton.textContent = 'Sending...';
-                submitButton.disabled = true;
+            // Show loading state
+            const submitButton = e.target.querySelector('button[type="submit"]');
+            const originalText = submitButton.textContent;
+            submitButton.textContent = 'Sending...';
+            submitButton.disabled = true;
 
-                // Send via SendGrid
-                window.SendGridClient.sendContactEmail(emailData)
+            // Check if Web3Forms is configured
+            if (WEB3FORMS_CONFIG.ACCESS_KEY !== 'YOUR_ACCESS_KEY_HERE') {
+                // Send via Web3Forms
+                sendToWeb3Forms(emailData, 'contact')
                     .then(function(response) {
                         console.log('Email sent successfully!', response);
                         showSuccessMessage();
@@ -1122,28 +1158,31 @@ document.addEventListener('DOMContentLoaded', function() {
                         fallbackToMailto();
                     });
             } else {
-                // Fallback to mailto if SendGrid not configured
+                // Fallback to mailto if Web3Forms not configured
+                submitButton.textContent = originalText;
+                submitButton.disabled = false;
                 fallbackToMailto();
             }
-            
+
             function fallbackToMailto() {
                 const mailtoLink = `mailto:deepclean.go2@gmail.com?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(emailBody)}`;
                 window.location.href = mailtoLink;
                 showSuccessMessage();
             }
-            
+
             function showSuccessMessage() {
                 console.log('Contact form submitted:', data);
                 console.log('Uploaded images:', contactUploadedImages);
-                
+
                 // Show success message
                 alert('Thank you! Your quote request has been sent successfully. We\'ll get back to you within 24 hours.');
-                
+
                 // Reset form
                 e.target.reset();
                 contactUploadedImages = [];
                 const preview = document.getElementById('contactImagePreview');
                 if (preview) preview.innerHTML = '';
+            }
         });
     }
 
@@ -1863,16 +1902,27 @@ document.addEventListener('DOMContentLoaded', function() {
             
             emailBody += `Submitted: ${new Date().toLocaleString('en-AU', { timeZone: 'Australia/Brisbane' })}`;
             
-            // Check if SendGrid client is available
-            if (typeof window.SendGridClient !== 'undefined') {
-                // Show loading state
-                const submitButton = form.querySelector('button[type="submit"]');
-                const originalText = submitButton.textContent;
-                submitButton.textContent = 'Sending...';
-                submitButton.disabled = true;
+            // Show loading state
+            const submitButton = form.querySelector('button[type="submit"]');
+            const originalText = submitButton.textContent;
+            submitButton.textContent = 'Sending...';
+            submitButton.disabled = true;
 
-                // Send via SendGrid
-                window.SendGridClient.sendApplicationEmail(formData)
+            // Prepare data for Web3Forms (split fullName for compatibility)
+            const nameParts = formData.fullName.split(' ');
+            const web3Data = {
+                firstName: nameParts[0] || formData.fullName,
+                lastName: nameParts.slice(1).join(' ') || '',
+                email: formData.email,
+                phone: formData.phone,
+                message: emailBody,
+                formType: 'careers'
+            };
+
+            // Check if Web3Forms is configured
+            if (WEB3FORMS_CONFIG.ACCESS_KEY !== 'YOUR_ACCESS_KEY_HERE') {
+                // Send via Web3Forms
+                sendToWeb3Forms(web3Data, 'application')
                     .then(function(response) {
                         console.log('Careers enquiry sent successfully!', response);
                         showCareersSuccess();
@@ -1887,10 +1937,12 @@ document.addEventListener('DOMContentLoaded', function() {
                         fallbackToMailto();
                     });
             } else {
-                // Fallback to mailto if SendGrid not configured
+                // Fallback to mailto if Web3Forms not configured
+                submitButton.textContent = originalText;
+                submitButton.disabled = false;
                 fallbackToMailto();
             }
-            
+
             function fallbackToMailto() {
                 const subject = encodeURIComponent('Careers Enquiry - ' + formData.fullName);
                 const body = encodeURIComponent(emailBody);
@@ -2251,16 +2303,16 @@ document.addEventListener('DOMContentLoaded', function() {
                 additionalComments: formData.get('additionalComments')
             };
 
-            // Check if SendGrid client is available
-            if (typeof window.SendGridClient !== 'undefined') {
-                // Show loading state
-                const submitButton = e.target.querySelector('button[type="submit"]');
-                const originalText = submitButton.textContent;
-                submitButton.textContent = 'Sending...';
-                submitButton.disabled = true;
+            // Show loading state
+            const submitButton = e.target.querySelector('button[type="submit"]');
+            const originalText = submitButton.textContent;
+            submitButton.textContent = 'Sending...';
+            submitButton.disabled = true;
 
-                // Send via SendGrid
-                window.SendGridClient.sendApplicationEmail(applicationData)
+            // Check if Web3Forms is configured
+            if (WEB3FORMS_CONFIG.ACCESS_KEY !== 'YOUR_ACCESS_KEY_HERE') {
+                // Send via Web3Forms
+                sendToWeb3Forms(applicationData, 'application')
                     .then(function(response) {
                         console.log('Application sent successfully!', response);
                         showApplicationSuccess();
@@ -2270,21 +2322,23 @@ document.addEventListener('DOMContentLoaded', function() {
                         submitButton.textContent = originalText;
                         submitButton.disabled = false;
                         // Fallback to mailto
-                        const subject = encodeURIComponent(`Job Application - ${formData.get('firstName')} ${formData.get('lastName')}`);
-                        const body = encodeURIComponent(emailBody);
-                        const mailtoLink = `mailto:deepclean.go2@gmail.com?subject=${subject}&body=${body}`;
-                        window.location.href = mailtoLink;
-                        showApplicationSuccess();
+                        fallbackToMailto();
                     });
             } else {
-                // Fallback to mailto if SendGrid not configured
+                // Fallback to mailto if Web3Forms not configured
+                submitButton.textContent = originalText;
+                submitButton.disabled = false;
+                fallbackToMailto();
+            }
+
+            function fallbackToMailto() {
                 const subject = encodeURIComponent(`Job Application - ${formData.get('firstName')} ${formData.get('lastName')}`);
                 const body = encodeURIComponent(emailBody);
                 const mailtoLink = `mailto:deepclean.go2@gmail.com?subject=${subject}&body=${body}`;
                 window.location.href = mailtoLink;
                 showApplicationSuccess();
             }
-            
+
             function showApplicationSuccess() {
                 applicationForm.innerHTML = `
                 <div class="success-content" style="text-align: center; padding: 3rem;">
@@ -2292,16 +2346,17 @@ document.addEventListener('DOMContentLoaded', function() {
                         <path d="M9 12l2 2 4-4"/>
                         <circle cx="12" cy="12" r="9"/>
                     </svg>
-                    <h2 style="color: var(--dark-blue); margin-bottom: 1rem;">Application Ready!</h2>
-                    <p style="color: var(--gray); margin-bottom: 1rem; font-size: 1.1rem;">Your email client should have opened with your application.</p>
-                    <p style="color: var(--gray); margin-bottom: 2rem;">If it didn't open automatically, please email your application to: <strong>deepclean.go2@gmail.com</strong></p>
+                    <h2 style="color: var(--dark-blue); margin-bottom: 1rem;">Application Submitted!</h2>
+                    <p style="color: var(--gray); margin-bottom: 1rem; font-size: 1.1rem;">Thank you for applying to join the DEEP CLEAN team!</p>
+                    <p style="color: var(--gray); margin-bottom: 2rem;">We've received your application and will review it carefully.</p>
                     <p style="color: var(--primary-turquoise); font-weight: var(--font-weight-medium); margin-bottom: 2rem;">We're excited to hear from you and will be in touch soon!</p>
                     <a href="careers.html" class="btn btn-primary">Back to Careers</a>
                 </div>
             `;
-            
-            // Scroll to top
-            window.scrollTo({ top: 0, behavior: 'smooth' });
+
+                // Scroll to top
+                window.scrollTo({ top: 0, behavior: 'smooth' });
+            }
         });
     }
 });
