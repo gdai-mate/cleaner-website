@@ -31,3 +31,4 @@ Thumbs.db
 dist/
 build/
 .vercel
+_site/
