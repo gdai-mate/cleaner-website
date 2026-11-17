@@ -1,43 +1,9 @@
-// Web3Forms Configuration
-// Get your free access key at https://web3forms.com (250 submissions/month free)
-const WEB3FORMS_CONFIG = {
-    ACCESS_KEY: '903713a9-09b9-4fc5-8088-05dc449eca97',
-    API_URL: 'https://api.web3forms.com/submit',
-    TO_EMAIL: 'deepclean.go2@gmail.com'
-};
+// All forms send through deepclean-site.js (window.dcSubmitEnquiry), the one Web3Forms path.
+// The careers and application code below still calls sendToWeb3Forms, so keep this shim.
+const WEB3FORMS_CONFIG = { ACCESS_KEY: (window.DC_CONFIG || {}).WEB3FORMS_KEY || '' };
 
-// Web3Forms submission function
-async function sendToWeb3Forms(formData, formType = 'contact') {
-    const data = {
-        access_key: WEB3FORMS_CONFIG.ACCESS_KEY,
-        from_name: formData.firstName + ' ' + formData.lastName,
-        email: formData.email,
-        ...formData
-    };
-
-    // Set subject based on form type
-    if (formType === 'contact') {
-        data.subject = `New Quote Request from ${formData.firstName} ${formData.lastName}`;
-    } else if (formType === 'application') {
-        data.subject = `New Job Application from ${formData.firstName} ${formData.lastName}`;
-    }
-
-    const response = await fetch(WEB3FORMS_CONFIG.API_URL, {
-        method: 'POST',
-        headers: {
-            'Content-Type': 'application/json',
-            'Accept': 'application/json'
-        },
-        body: JSON.stringify(data)
-    });
-
-    const result = await response.json();
-
-    if (!result.success) {
-        throw new Error(result.message || 'Failed to send form');
-    }
-
-    return result;
+function sendToWeb3Forms(formData, formType = 'contact') {
+    return window.dcSubmitEnquiry(formData, formType, formType + '_form');
 }
 
 // Wait for DOM to be fully loaded
@@ -49,47 +15,13 @@ document.addEventListener('DOMContentLoaded', function() {
         initTestimonialSlider();
     }, 100);
     
-    // Mobile navigation toggle
-    try {
-        const hamburger = document.querySelector('.hamburger');
-        const navMenu = document.querySelector('.nav-menu');
-        const navLinks = document.querySelectorAll('.nav-link');
-
-        console.log('Hamburger element:', hamburger);
-        console.log('Nav menu element:', navMenu);
-        
-        // Add visual indicator
-        if (hamburger) {
-            hamburger.style.backgroundColor = 'rgba(255, 0, 0, 0.1)';
-            console.log('Hamburger found - added red background');
-        }
-
-        // Toggle mobile menu
-        if (hamburger && navMenu) {
-            console.log('Adding click event to hamburger');
-            
-            // Remove any existing event listeners
-            const newHamburger = hamburger.cloneNode(true);
-            hamburger.parentNode.replaceChild(newHamburger, hamburger);
-            
-            newHamburger.addEventListener('click', function(e) {
-                console.log('Hamburger clicked!');
-                alert('Hamburger clicked!'); // Add alert for debugging
-                navMenu.classList.toggle('active');
-                newHamburger.classList.toggle('active');
-                console.log('Menu active:', navMenu.classList.contains('active'));
-            }, true); // Use capture phase
-            
-            console.log('Event listener added successfully');
-        } else {
-            console.error('Hamburger or nav menu element not found!');
-        }
-    } catch (error) {
-        console.error('Error setting up hamburger menu:', error);
-    }
-
-    // Close mobile menu when clicking on a link
-    navLinks.forEach(link => {
+    // Mobile navigation. The hamburger's inline onclick does the toggle (works even before this
+    // file loads). Here we only close the menu after a link tap. The old block here cloned the
+    // button, tinted it red, popped a debug alert, toggled a second time (so the menu never
+    // opened) and then crashed on an out-of-scope navLinks, killing the rest of this file.
+    const hamburger = document.querySelector('.hamburger');
+    const navMenu = document.querySelector('.nav-menu');
+    document.querySelectorAll('.nav-link').forEach(link => {
         link.addEventListener('click', function() {
             if (navMenu && hamburger) {
                 navMenu.classList.remove('active');
@@ -214,7 +146,12 @@ document.addEventListener('DOMContentLoaded', function() {
             e.preventDefault();
             e.stopPropagation();
             const selectedService = button.getAttribute('data-service') || 'general';
-            console.log('Quote button clicked, service:', selectedService); // Debug log
+            const inline = document.querySelector('#quote form[data-dc-quote]');
+            if (inline) {
+                document.getElementById('quote').scrollIntoView({ behavior: 'smooth', block: 'start' });
+                setTimeout(function() { const n = inline.querySelector('input[name="name"]'); if (n) n.focus({ preventScroll: true }); }, 450);
+                return;
+            }
             try {
                 showQuoteModal(selectedService);
             } catch (error) {
@@ -245,87 +182,36 @@ document.addEventListener('DOMContentLoaded', function() {
         
         const selectedServiceName = serviceOptions[selectedService] || 'General Enquiry';
         
+        const pick = {
+            'deep-clean': 'One-off Deep Clean', 'deep': 'One-off Deep Clean',
+            'recurring-basic': 'Recurring Domestic Clean', 'recurring-premium': 'Recurring Domestic Clean', 'recurring': 'Recurring Domestic Clean',
+            'post-construction': 'Post Construction Clean', 'construction': 'Post Construction Clean',
+            'ndis-funded': 'NIISQ & Funded Cleaning', 'funded': 'NIISQ & Funded Cleaning'
+        }[selectedService] || '';
+        const opts = ['One-off Deep Clean', 'Recurring Domestic Clean', 'Post Construction Clean', 'NIISQ & Funded Cleaning', 'Something else']
+            .map(o => `<option${o === pick ? ' selected' : ''}>${o.replace('&', '&amp;')}</option>`).join('');
+
         modal.innerHTML = `
             <div class="quote-modal-content">
                 <div class="quote-modal-header">
                     <div class="modal-header-content">
-                        <img src="assets/DEEP CLEAN Logo.png" alt="DEEP CLEAN Logo" class="modal-logo">
-                        <h3>Get Your Free Quote - ${selectedServiceName}</h3>
+                        <img src="assets/DEEP CLEAN Logo.png" alt="Deep Clean logo" class="modal-logo">
+                        <h3>Get a free quote</h3>
                     </div>
-                    <button class="close-modal">&times;</button>
+                    <button class="close-modal" aria-label="Close">&times;</button>
                 </div>
                 <div class="quote-modal-info">
-                    <p>Provide details about areas to clean and upload photos for an accurate estimate. A walk-through is required before final pricing.</p>
+                    <p>Five quick details and Amie will get back to you within 24 hours. Rather talk? Call <a href="tel:0433147018">0433 147 018</a>.</p>
                 </div>
-                <form class="quote-form" id="quoteForm">
-                    <div class="form-row-modal">
-                        <div class="form-group">
-                            <label for="name">Full Name *</label>
-                            <input type="text" id="name" name="name" required>
-                        </div>
-                        <div class="form-group">
-                            <label for="email">Email Address *</label>
-                            <input type="email" id="email" name="email" required>
-                        </div>
-                        <div class="form-group">
-                            <label for="phone">Phone Number *</label>
-                            <input type="tel" id="phone" name="phone" required>
-                        </div>
-                    </div>
-                    <div class="form-row-modal">
-                        <div class="form-group">
-                            <label for="service">Service Type *</label>
-                            <select id="service" name="service" required>
-                                <option value="">Select a service</option>
-                                <option value="deep-clean" ${selectedService === 'deep-clean' || selectedService === 'deep' ? 'selected' : ''}>One-off Deep Clean</option>
-                                <option value="recurring-basic" ${selectedService === 'recurring-basic' ? 'selected' : ''}>Recurring Domestic Clean - Basic</option>
-                                <option value="recurring-premium" ${selectedService === 'recurring-premium' || selectedService === 'recurring' ? 'selected' : ''}>Recurring Domestic Clean - Premium</option>
-                                <option value="post-construction" ${selectedService === 'post-construction' || selectedService === 'construction' ? 'selected' : ''}>Post Construction Clean</option>
-                                <option value="ndis-funded" ${selectedService === 'ndis-funded' || selectedService === 'funded' ? 'selected' : ''}>NIISQ NDIS & Externally Funded Services Externally Funded Services</option>
-                                <option value="other">Other</option>
-                            </select>
-                        </div>
-                        <div class="form-group">
-                            <label for="frequency">Frequency</label>
-                            <select id="frequency" name="frequency">
-                                <option value="">Select frequency</option>
-                                <option value="weekly">Weekly</option>
-                                <option value="fortnightly">Fortnightly</option>
-                                <option value="monthly">Monthly</option>
-                                <option value="one-off">One-off service</option>
-                                <option value="as-needed">As needed</option>
-                            </select>
-                        </div>
-                        <div class="form-group">
-                            <label for="property-size">Property Size</label>
-                            <select id="property-size" name="property-size">
-                                <option value="">Select size</option>
-                                <option value="1-2bed">1-2 Bedrooms</option>
-                                <option value="3-4bed">3-4 Bedrooms</option>
-                                <option value="5+bed">5+ Bedrooms</option>
-                                <option value="small-office">Small Office</option>
-                                <option value="large-commercial">Large Commercial</option>
-                            </select>
-                        </div>
-                    </div>
-                    <div class="form-group">
-                        <label for="address">Property Address (Suburb, Postcode)</label>
-                        <input type="text" id="address" name="address" placeholder="e.g. West End, QLD 4101">
-                    </div>
-                    <div class="form-group">
-                        <label for="message">Additional Details</label>
-                        <textarea id="message" name="message" rows="3" placeholder="Describe the areas to clean, any special requirements, and property details. Photos help us provide better estimates."></textarea>
-                    </div>
-                    <div class="form-group">
-                        <label for="photos">📷 Upload Photos (Optional)</label>
-                        <input type="file" id="photos" name="photos" multiple accept="image/*" class="photo-upload">
-                        <div class="photo-upload-info">
-                            <small>Upload photos of areas that need cleaning to help us provide a more accurate quote. Max 5 photos, 5MB each.</small>
-                        </div>
-                        <div id="photo-previews" class="photo-previews"></div>
-                        <div id="upload-progress" class="upload-progress"></div>
-                    </div>
-                    <button type="submit" class="btn btn-primary">Get My Free Quote</button>
+                <form class="quote-form dc-quote-form" id="modalQuoteForm" data-dc-quote novalidate>
+                    <div class="dc-field"><label for="mq-name">Name</label><input id="mq-name" name="name" autocomplete="name" required></div>
+                    <div class="dc-field"><label for="mq-phone">Phone</label><input id="mq-phone" name="phone" type="tel" autocomplete="tel" inputmode="tel" required></div>
+                    <div class="dc-field"><label for="mq-suburb">Suburb</label><input id="mq-suburb" name="suburb" autocomplete="address-level2" required></div>
+                    <div class="dc-field"><label for="mq-service">Service</label><select id="mq-service" name="service"><option value="">Not sure yet</option>${opts}</select></div>
+                    <div class="dc-field dc-wide"><label for="mq-message">Anything we should know? <span>(optional)</span></label><textarea id="mq-message" name="message" rows="3" placeholder="Size of the home, how often, any problem areas"></textarea></div>
+                    <input type="checkbox" name="botcheck" class="dc-hp" tabindex="-1" autocomplete="off" aria-hidden="true">
+                    <button type="submit" class="btn btn-primary dc-wide">Send my quote request</button>
+                    <p class="dc-form-status dc-wide" aria-live="polite"></p>
                 </form>
             </div>
         `;
@@ -606,133 +492,8 @@ document.addEventListener('DOMContentLoaded', function() {
         document.head.insertAdjacentHTML('beforeend', modalStyles);
         document.body.appendChild(modal);
 
-        // Photo upload functionality
-        const photoInput = modal.querySelector('#photos');
-        const previewContainer = modal.querySelector('#photo-previews');
-        const progressContainer = modal.querySelector('#upload-progress');
-        let uploadedImages = []; // Store uploaded image URLs
-
-        photoInput.addEventListener('change', function(e) {
-            const files = Array.from(e.target.files);
-            
-            // Limit to 5 photos
-            if (files.length > 5) {
-                alert('Please select maximum 5 photos.');
-                return;
-            }
-            
-            // Clear previous previews
-            previewContainer.innerHTML = '';
-            progressContainer.innerHTML = '';
-            uploadedImages = [];
-            
-            files.forEach((file, index) => {
-                if (file.size > 5 * 1024 * 1024) { // 5MB limit
-                    showUploadStatus(file.name, 'File too large (max 5MB)', 'error');
-                    return;
-                }
-                
-                // Create preview
-                createPhotoPreview(file, index);
-                
-                // Upload to ImgBB (free image hosting)
-                uploadImageToHost(file, index);
-            });
-        });
-
-        function createPhotoPreview(file, index) {
-            const reader = new FileReader();
-            reader.onload = function(e) {
-                const preview = document.createElement('div');
-                preview.className = 'photo-preview';
-                preview.innerHTML = `
-                    <img src="${e.target.result}" alt="Preview ${index + 1}">
-                    <button type="button" class="remove-photo" onclick="removePhoto(${index})">&times;</button>
-                `;
-                previewContainer.appendChild(preview);
-            };
-            reader.readAsDataURL(file);
-        }
-
-        function uploadImageToHost(file, index) {
-            showUploadStatus(file.name, 'Uploading...', 'uploading');
-            
-            const formData = new FormData();
-            formData.append('image', file);
-            
-            // Using ImgBB free API (you can get a free API key at imgbb.com)
-            // For demo purposes, I'll simulate the upload and use a placeholder
-            // In production, you'd need to get a free API key from imgbb.com
-            
-            // Simulated upload - replace with actual ImgBB API call
-            setTimeout(() => {
-                // Simulate successful upload
-                const imageUrl = `https://via.placeholder.com/400x300/1E7CA8/ffffff?text=Photo+${index + 1}+Uploaded`;
-                uploadedImages[index] = {
-                    url: imageUrl,
-                    filename: file.name
-                };
-                showUploadStatus(file.name, 'Uploaded ✓', 'success');
-            }, 1000 + Math.random() * 2000); // Random delay to simulate upload time
-            
-            /* Actual ImgBB API call - uncomment and add your API key:
-            fetch('https://api.imgbb.com/1/upload?key=YOUR_IMGBB_API_KEY', {
-                method: 'POST',
-                body: formData
-            })
-            .then(response => response.json())
-            .then(data => {
-                if (data.success) {
-                    uploadedImages[index] = {
-                        url: data.data.url,
-                        filename: file.name
-                    };
-                    showUploadStatus(file.name, 'Uploaded ✓', 'success');
-                } else {
-                    showUploadStatus(file.name, 'Upload failed', 'error');
-                }
-            })
-            .catch(error => {
-                console.error('Upload error:', error);
-                showUploadStatus(file.name, 'Upload failed', 'error');
-            });
-            */
-        }
-
-        function showUploadStatus(filename, status, type) {
-            const existing = progressContainer.querySelector(`[data-file="${filename}"]`);
-            if (existing) {
-                existing.className = `upload-item ${type}`;
-                existing.querySelector('.status').textContent = status;
-            } else {
-                const item = document.createElement('div');
-                item.className = `upload-item ${type}`;
-                item.setAttribute('data-file', filename);
-                item.innerHTML = `
-                    <span>${filename}</span>
-                    <span class="status">${status}</span>
-                `;
-                progressContainer.appendChild(item);
-            }
-        }
-
-        // Make removePhoto globally accessible
-        window.removePhoto = function(index) {
-            // Remove from uploaded images array
-            uploadedImages.splice(index, 1);
-            
-            // Remove preview
-            const previews = previewContainer.querySelectorAll('.photo-preview');
-            if (previews[index]) {
-                previews[index].remove();
-            }
-            
-            // Remove from progress
-            const progressItems = progressContainer.querySelectorAll('.upload-item');
-            if (progressItems[index]) {
-                progressItems[index].remove();
-            }
-        };
+        window.dcWireQuoteForm(modal.querySelector('form[data-dc-quote]'));
+        setTimeout(() => { const n = modal.querySelector('input[name="name"]'); if (n) n.focus(); }, 50);
 
         // Close modal functionality
         const closeModal = modal.querySelector('.close-modal');
@@ -746,100 +507,6 @@ document.addEventListener('DOMContentLoaded', function() {
             }
         });
 
-        // Form submission
-        const form = modal.querySelector('#quoteForm');
-        form.addEventListener('submit', function(e) {
-            e.preventDefault();
-            
-            // Get form data
-            const formData = new FormData(form);
-            const data = Object.fromEntries(formData);
-            
-            // Simple validation
-            if (!data.name || !data.email || !data.phone) {
-                alert('Please fill in all required fields (Name, Email, Phone).');
-                return;
-            }
-            
-            // Create email content
-            const serviceTypes = {
-                'deep-clean': 'One-off Deep Clean Request',
-                'recurring-basic': 'Recurring Domestic Clean - Basic Request',
-                'recurring-premium': 'Recurring Domestic Clean - Premium Request',
-                'post-construction': 'Post Construction Clean Request',
-                'ndis-funded': 'NIISQ NDIS & Externally Funded Services Externally Funded Services Request',
-                'deep': 'One-off Deep Clean Request', // legacy support
-                'recurring': 'Recurring Domestic Clean Request', // legacy support
-                'construction': 'Post Construction Clean Request', // legacy support
-                'renovation': 'Post Renovation Clean Request', // legacy support
-                'funded': 'NIISQ NDIS & Externally Funded Services Externally Funded Services Request', // legacy support
-                'other': 'Other Cleaning Service Request',
-                'general': 'General Cleaning Inquiry'
-            };
-            
-            const subject = serviceTypes[data.service] || 'Cleaning Service Inquiry';
-            
-            // Build email body
-            let emailBody = `Hello DEEP CLEAN,\n\n`;
-            emailBody += `I would like to request a quote for ${serviceTypes[data.service] || 'cleaning services'}.\n\n`;
-            emailBody += `CONTACT DETAILS:\n`;
-            emailBody += `Name: ${data.name}\n`;
-            emailBody += `Email: ${data.email}\n`;
-            emailBody += `Phone: ${data.phone}\n\n`;
-            
-            if (data.service && data.service !== 'general') {
-                emailBody += `SERVICE REQUESTED: ${serviceTypes[data.service]}\n`;
-            }
-            
-            if (data.frequency) {
-                emailBody += `Frequency: ${data.frequency.charAt(0).toUpperCase() + data.frequency.slice(1)}\n`;
-            }
-            
-            if (data['property-size']) {
-                emailBody += `Property Size: ${data['property-size']}\n`;
-            }
-            
-            if (data.address) {
-                emailBody += `\nPROPERTY ADDRESS:\n${data.address}\n`;
-            }
-            
-            if (data.message) {
-                emailBody += `\nADDITIONAL DETAILS:\n${data.message}\n`;
-            }
-            
-            // Include uploaded photos
-            if (uploadedImages && uploadedImages.length > 0) {
-                emailBody += `\n📷 PHOTOS OF AREAS TO CLEAN:\n`;
-                uploadedImages.forEach((image, index) => {
-                    if (image && image.url) {
-                        emailBody += `Photo ${index + 1}: ${image.url}\n`;
-                    }
-                });
-                emailBody += `\nPlease view the photos above to see the areas that need cleaning. This will help you provide a more accurate quote.\n`;
-            }
-            
-            emailBody += `\nPlease contact me at your earliest convenience to discuss pricing and availability.\n\n`;
-            emailBody += `Thank you,\n${data.name}`;
-            
-            // Create mailto link
-            const mailtoLink = `mailto:deepclean.go2@gmail.com?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(emailBody)}`;
-            
-            // Open email client
-            window.location.href = mailtoLink;
-            
-            console.log('Quote request submitted:', data);
-            
-            // Show success message
-            form.innerHTML = `
-                <div style="text-align: center; padding: 2rem;">
-                    <div style="color: var(--primary-blue); font-size: 3rem; margin-bottom: 1rem;">✉️</div>
-                    <h3 style="color: var(--primary-blue); margin-bottom: 1rem;">Email Ready!</h3>
-                    <p style="color: var(--gray); margin-bottom: 1rem;">Your email client should have opened with a pre-filled message to DEEP CLEAN.</p>
-                    <p style="color: var(--gray); font-size: 0.9rem; margin-bottom: 2rem;">If it didn't open automatically, you can email directly to: <strong>deepclean.go2@gmail.com</strong></p>
-                    <button type="button" class="btn btn-primary" onclick="this.closest('.quote-modal').remove()">Close</button>
-                </div>
-            `;
-        });
     }
 
     // Enhanced scroll animations for elements coming into view
@@ -944,245 +611,70 @@ function lazyLoadImages() {
     images.forEach(img => imageObserver.observe(img));
 }
 
-// Contact Form Photo Upload Functionality
+// Contact page quote form. Sends through the shared Web3Forms path (deepclean-site.js).
+// Photo upload used to be faked (placeholder links), so customers now text photos instead.
 document.addEventListener('DOMContentLoaded', function() {
-    const contactPhotoInput = document.querySelector('#contactPhotos');
-    const contactPreviewContainer = document.querySelector('#contact-photo-previews');
-    const contactProgressContainer = document.querySelector('#contact-upload-progress');
-    let contactUploadedImages = []; // Store uploaded image URLs for contact form
-
-    if (contactPhotoInput) {
-        contactPhotoInput.addEventListener('change', function(e) {
-            const files = Array.from(e.target.files);
-            
-            // Limit to 5 photos
-            if (files.length > 5) {
-                alert('Please select maximum 5 photos.');
-                return;
-            }
-            
-            // Clear previous previews
-            contactPreviewContainer.innerHTML = '';
-            contactProgressContainer.innerHTML = '';
-            contactUploadedImages = [];
-            
-            files.forEach((file, index) => {
-                if (file.size > 5 * 1024 * 1024) { // 5MB limit
-                    showContactUploadStatus(file.name, 'File too large (max 5MB)', 'error');
-                    return;
-                }
-                
-                // Create preview
-                createContactPhotoPreview(file, index);
-                
-                // Upload to image hosting service
-                uploadContactImageToHost(file, index);
-            });
-        });
-    }
-
-    function createContactPhotoPreview(file, index) {
-        const reader = new FileReader();
-        reader.onload = function(e) {
-            const preview = document.createElement('div');
-            preview.className = 'contact-photo-preview';
-            preview.innerHTML = `
-                <img src="${e.target.result}" alt="Preview ${index + 1}">
-                <button type="button" class="remove-photo" onclick="removeContactPhoto(${index})">&times;</button>
-            `;
-            contactPreviewContainer.appendChild(preview);
-        };
-        reader.readAsDataURL(file);
-    }
-
-    function uploadContactImageToHost(file, index) {
-        showContactUploadStatus(file.name, 'Uploading...', 'uploading');
-        
-        // Simulated upload - replace with actual ImgBB API call in production
-        setTimeout(() => {
-            const imageUrl = `https://via.placeholder.com/400x300/1E7CA8/ffffff?text=Photo+${index + 1}+Uploaded`;
-            contactUploadedImages[index] = {
-                url: imageUrl,
-                filename: file.name
-            };
-            showContactUploadStatus(file.name, 'Uploaded ✓', 'success');
-        }, 1000 + Math.random() * 2000);
-    }
-
-    function showContactUploadStatus(filename, status, type) {
-        const existing = contactProgressContainer.querySelector(`[data-file="${filename}"]`);
-        if (existing) {
-            existing.className = `contact-upload-item ${type}`;
-            existing.querySelector('.status').textContent = status;
-        } else {
-            const item = document.createElement('div');
-            item.className = `contact-upload-item ${type}`;
-            item.setAttribute('data-file', filename);
-            item.innerHTML = `
-                <span>${filename}</span>
-                <span class="status">${status}</span>
-            `;
-            contactProgressContainer.appendChild(item);
-        }
-    }
-
-    // Make removeContactPhoto globally accessible
-    window.removeContactPhoto = function(index) {
-        // Remove from uploaded images array
-        contactUploadedImages.splice(index, 1);
-        
-        // Remove preview
-        const previews = contactPreviewContainer.querySelectorAll('.contact-photo-preview');
-        if (previews[index]) {
-            previews[index].remove();
-        }
-        
-        // Remove from progress
-        const progressItems = contactProgressContainer.querySelectorAll('.contact-upload-item');
-        if (progressItems[index]) {
-            progressItems[index].remove();
-        }
-    };
-
-    // Handle contact form submission with photos
     const contactForm = document.querySelector('#contactForm');
     if (contactForm) {
         contactForm.addEventListener('submit', function(e) {
             e.preventDefault();
-            
-            // Get form data
-            const formData = new FormData(contactForm);
-            const data = Object.fromEntries(formData);
-            
-            // Collect selected services
-            const selectedServices = [];
-            const serviceCheckboxes = contactForm.querySelectorAll('input[name="serviceType"]:checked');
-            serviceCheckboxes.forEach(checkbox => {
-                const labels = {
-                    'one-off-deep-clean': 'One-off Deep Clean',
-                    'recurring-domestic-clean': 'Recurring Domestic Clean',
-                    'post-construction-clean': 'Post Construction Clean',
-                    'post-renovation-clean': 'Post Renovation Clean',
-                    'niisq-ndis-funded': 'NIISQ or other externally funded Clean',
-                    'other-service': 'Other Service'
-                };
-                selectedServices.push(labels[checkbox.value] || checkbox.value);
-            });
+            const data = Object.fromEntries(new FormData(contactForm));
+            if (data.botcheck) return;
 
-            // Simple validation
+            const labels = {
+                'one-off-deep-clean': 'One-off Deep Clean',
+                'recurring-domestic-clean': 'Recurring Domestic Clean',
+                'post-construction-clean': 'Post Construction Clean',
+                'post-renovation-clean': 'Post Renovation Clean',
+                'niisq-ndis-funded': 'NIISQ or other externally funded Clean',
+                'other-service': 'Other Service'
+            };
+            const selectedServices = Array.from(contactForm.querySelectorAll('input[name="serviceType"]:checked'))
+                .map(cb => labels[cb.value] || cb.value);
+            const status = contactForm.querySelector('.dc-form-status');
+            const say = (msg) => { if (status) { status.className = 'dc-form-status dc-error'; status.innerHTML = msg; } else { alert(msg.replace(/<[^>]+>/g, '')); } };
+
             if (!data.firstName || !data.lastName || !data.email || !data.phone || !data.address) {
-                alert('Please fill in all required fields.');
+                say('Please fill in all the fields marked *.');
+                return;
+            }
+            if (selectedServices.length === 0) {
+                say('Please tick at least one service.');
                 return;
             }
 
-            if (selectedServices.length === 0) {
-                alert('Please select at least one service type.');
-                return;
-            }
-            
-            // Create email content
-            const subject = `Quote Request: ${selectedServices.join(', ')}`;
-            
-            // Build email body
-            let emailBody = `Hello DEEP CLEAN,\n\n`;
-            emailBody += `I would like to request a quote for cleaning services.\n\n`;
-            emailBody += `CONTACT DETAILS:\n`;
-            emailBody += `Name: ${data.firstName} ${data.lastName}\n`;
-            emailBody += `Email: ${data.email}\n`;
-            emailBody += `Phone: ${data.phone}\n\n`;
-            emailBody += `PROPERTY DETAILS:\n`;
-            emailBody += `Address: ${data.address}\n`;
-            emailBody += `Property Type: ${data.propertyType || 'Not specified'}\n`;
-            emailBody += `Property Size: ${data.propertySize || 'Not specified'}\n\n`;
-            emailBody += `SERVICES REQUESTED:\n`;
-            selectedServices.forEach(service => {
-                emailBody += `• ${service}\n`;
-            });
-            emailBody += `\n`;
-            
-            if (data.urgency && data.urgency !== 'flexible') {
-                emailBody += `TIMING: ${data.urgency.charAt(0).toUpperCase() + data.urgency.slice(1).replace('-', ' ')}\n\n`;
-            }
-            
-            if (data.message) {
-                emailBody += `ADDITIONAL DETAILS:\n${data.message}\n\n`;
-            }
-            
-            // Include uploaded photos
-            if (contactUploadedImages && contactUploadedImages.length > 0) {
-                emailBody += `📷 PHOTOS OF AREAS TO CLEAN:\n`;
-                contactUploadedImages.forEach((image, index) => {
-                    if (image && image.url) {
-                        emailBody += `Photo ${index + 1}: ${image.url}\n`;
-                    }
-                });
-                emailBody += `\nPlease view the photos above to see the areas that need cleaning. This will help you provide a more accurate quote.\n\n`;
-            }
-            
-            if (data.hearAbout) {
-                emailBody += `How they heard about us: ${data.hearAbout}\n\n`;
-            }
-            
-            emailBody += `Please contact me at your earliest convenience to discuss pricing and availability.\n\n`;
-            emailBody += `Thank you,\n${data.firstName} ${data.lastName}`;
-            
-            // Prepare data for Web3Forms
-            const emailData = {
-                ...data,
+            const fields = {
+                firstName: data.firstName,
+                lastName: data.lastName,
+                email: data.email,
+                phone: data.phone,
+                address: data.address,
+                propertyType: data.propertyType || 'Not specified',
+                propertySize: data.propertySize || 'Not specified',
                 serviceType: selectedServices.join(', '),
-                photos: contactUploadedImages.length > 0 ? contactUploadedImages.map(img => img.url).join('\n') : 'None',
-                message: emailBody
+                urgency: data.urgency || 'flexible',
+                hearAbout: data.hearAbout || '',
+                message: data.message || ''
             };
 
-            // Show loading state
-            const submitButton = e.target.querySelector('button[type="submit"]');
+            const submitButton = contactForm.querySelector('button[type="submit"]');
             const originalText = submitButton.textContent;
             submitButton.textContent = 'Sending...';
             submitButton.disabled = true;
+            if (status) { status.className = 'dc-form-status'; status.textContent = ''; }
 
-            // Check if Web3Forms is configured
-            if (WEB3FORMS_CONFIG.ACCESS_KEY !== 'YOUR_ACCESS_KEY_HERE') {
-                // Send via Web3Forms
-                sendToWeb3Forms(emailData, 'contact')
-                    .then(function(response) {
-                        console.log('Email sent successfully!', response);
-                        showSuccessMessage();
-                        submitButton.textContent = originalText;
-                        submitButton.disabled = false;
-                    })
-                    .catch(function(error) {
-                        console.error('Failed to send email:', error);
-                        submitButton.textContent = originalText;
-                        submitButton.disabled = false;
-                        // Fallback to mailto
-                        fallbackToMailto();
-                    });
-            } else {
-                // Fallback to mailto if Web3Forms not configured
-                submitButton.textContent = originalText;
-                submitButton.disabled = false;
-                fallbackToMailto();
-            }
-
-            function fallbackToMailto() {
-                const mailtoLink = `mailto:deepclean.go2@gmail.com?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(emailBody)}`;
-                window.location.href = mailtoLink;
-                showSuccessMessage();
-            }
-
-            function showSuccessMessage() {
-                console.log('Contact form submitted:', data);
-                console.log('Uploaded images:', contactUploadedImages);
-
-                // Show success message
-                alert('Thank you! Your quote request has been sent successfully. We\'ll get back to you within 24 hours.');
-
-                // Reset form
-                e.target.reset();
-                contactUploadedImages = [];
-                const preview = document.getElementById('contactImagePreview');
-                if (preview) preview.innerHTML = '';
-            }
+            window.dcSubmitEnquiry(fields, 'contact', 'contact_form')
+                .then(function() {
+                    contactForm.innerHTML = '<div class="dc-form-done" role="status"><h3>Thanks ' +
+                        String(data.firstName).replace(/[&<>"']/g, '') + ', your quote request is with Amie.</h3>' +
+                        '<p>We\'ll get back to you within 24 hours. Got photos of the areas to clean? Text them to ' +
+                        '<a href="tel:0433147018">0433 147 018</a> and we can quote more accurately.</p></div>';
+                })
+                .catch(function() {
+                    submitButton.textContent = originalText;
+                    submitButton.disabled = false;
+                    say('Sorry, that didn\'t send. Please call or text <a href="tel:0433147018">0433 147 018</a>, or email <a href="mailto:deepclean.go2@gmail.com">deepclean.go2@gmail.com</a>.');
+                });
         });
     }
 

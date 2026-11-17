@@ -34,7 +34,7 @@ SERVICES = {
     "deep-cleaning-brisbane": {
         "name": "One-off Deep Clean",
         "short": "Deep cleaning",
-        "title": "Deep Cleaning Services Brisbane | One-off Deep Clean | DEEP CLEAN",
+        "title": "Deep Cleaning Services Brisbane | One-off Deep Clean | Deep Clean",
         "desc": "One-off deep cleaning across Brisbane Bayside and south-east Brisbane. Boutique team, insured and police checked, every clean customised. Free quote: 0433 147 018.",
         "h1": "Deep Cleaning Services in Brisbane",
         "lede": "A one-off deep clean for the jobs a regular clean never gets to. Booked by Brisbane Bayside locals and homeowners across south-east Brisbane.",
@@ -76,7 +76,7 @@ SERVICES = {
     "recurring-house-cleaning": {
         "name": "Recurring Domestic Clean",
         "short": "Regular house cleaning",
-        "title": "Regular House Cleaning Brisbane Bayside | DEEP CLEAN",
+        "title": "Regular House Cleaning Brisbane Bayside | Deep Clean",
         "desc": "Weekly, fortnightly or monthly house cleaning in Birkdale and Brisbane Bayside. Same small team every visit, no lock-in contracts. Free quote: 0433 147 018.",
         "h1": "Regular House Cleaning in Brisbane Bayside",
         "lede": "Weekly, fortnightly or monthly cleaning from the same small, trusted team. Choose Basic for the essentials or Premium for extra detail every visit.",
@@ -116,7 +116,7 @@ SERVICES = {
     "post-construction-cleaning-brisbane": {
         "name": "Post Construction Clean",
         "short": "Builders cleans",
-        "title": "Post Construction & Builders Cleaning Brisbane | DEEP CLEAN",
+        "title": "Post Construction & Builders Cleaning Brisbane | Deep Clean",
         "desc": "Builders and post-construction cleaning in Brisbane. Three-phase clean that removes construction dust so new builds and renovations are handover-ready. Free quote.",
         "h1": "Post Construction & Builders Cleaning in Brisbane",
         "lede": "Handover-ready cleans for builders, renovators and homeowners. We make your client's forever home ready to move into.",
@@ -152,7 +152,7 @@ SERVICES = {
     "niisq-cleaning": {
         "name": "NIISQ & Funded Cleaning",
         "short": "NIISQ cleaning",
-        "title": "NIISQ Cleaning Brisbane Bayside | Funded Cleaning | DEEP CLEAN",
+        "title": "NIISQ Cleaning Brisbane Bayside | Funded Cleaning | Deep Clean",
         "desc": "Approved NIISQ cleaning provider in Brisbane Bayside. Careful, trustworthy home cleaning for NIISQ participants and externally funded clients. Call 0433 147 018.",
         "h1": "NIISQ & Funded Cleaning Services in Brisbane Bayside",
         "lede": "Approved cleaning provider for NIISQ participants and other externally funded programs across Brisbane Bayside and the Redlands.",
@@ -193,7 +193,7 @@ SERVICES = {
 SUBURBS = {
     "birkdale-cleaners": {
         "name": "Birkdale", "postcode": "4159",
-        "title": "House Cleaning Birkdale | Local Birkdale Cleaners | DEEP CLEAN",
+        "title": "House Cleaning Birkdale | Local Birkdale Cleaners | Deep Clean",
         "desc": "Birkdale's boutique cleaning company. Regular house cleaning, deep cleans and builders cleans from a small local team. Insured, police checked. Call 0433 147 018.",
         "h1": "House Cleaning in Birkdale",
         "lede": "Birkdale is home base for DEEP CLEAN. We're your local, boutique cleaning team, just around the corner.",
@@ -219,7 +219,7 @@ SUBURBS = {
     },
     "wellington-point-cleaners": {
         "name": "Wellington Point", "postcode": "4160",
-        "title": "House Cleaning Wellington Point | Local Cleaners | DEEP CLEAN",
+        "title": "House Cleaning Wellington Point | Local Cleaners | Deep Clean",
         "desc": "House cleaning, deep cleans and NIISQ cleaning in Wellington Point from a boutique Birkdale team. Insured, police checked, no lock-in contracts. Call 0433 147 018.",
         "h1": "House Cleaning in Wellington Point",
         "lede": "Careful, detailed cleaning for Wellington Point homes, from a boutique team based next door in Birkdale.",
@@ -245,7 +245,7 @@ SUBURBS = {
     },
     "cleveland-cleaners": {
         "name": "Cleveland", "postcode": "4163",
-        "title": "House Cleaning Cleveland QLD | Local Cleaners | DEEP CLEAN",
+        "title": "House Cleaning Cleveland QLD | Local Cleaners | Deep Clean",
         "desc": "Boutique house cleaning and deep cleaning in Cleveland QLD. Homes, units and canal properties cleaned in detail by a small local team. Call 0433 147 018.",
         "h1": "House Cleaning in Cleveland",
         "lede": "Detailed house cleaning for Cleveland homes, units and canal properties, from a small local team based in Birkdale.",
@@ -271,7 +271,7 @@ SUBURBS = {
     },
     "thornlands-cleaners": {
         "name": "Thornlands", "postcode": "4164",
-        "title": "House Cleaning Thornlands | Builders & Deep Cleans | DEEP CLEAN",
+        "title": "House Cleaning Thornlands | Builders & Deep Cleans | Deep Clean",
         "desc": "House cleaning, deep cleans and builders cleans in Thornlands. Boutique local team for family homes and new builds. Insured, police checked. Call 0433 147 018.",
         "h1": "House Cleaning in Thornlands",
         "lede": "Regular cleaning for busy Thornlands families, plus builders cleans for the new homes going up across the suburb.",
@@ -297,7 +297,7 @@ SUBURBS = {
     },
     "redland-bay-cleaners": {
         "name": "Redland Bay", "postcode": "4165",
-        "title": "House Cleaning Redland Bay | Local Cleaners | DEEP CLEAN",
+        "title": "House Cleaning Redland Bay | Local Cleaners | Deep Clean",
         "desc": "Boutique house cleaning and deep cleaning in Redland Bay. Acreage, family homes and new estates cleaned in detail. Insured, police checked. Call 0433 147 018.",
         "h1": "House Cleaning in Redland Bay",
         "lede": "Detailed cleaning for Redland Bay family homes, acreage properties and new estates.",
@@ -323,7 +323,7 @@ SUBURBS = {
     },
     "victoria-point-cleaners": {
         "name": "Victoria Point", "postcode": "4165",
-        "title": "House Cleaning Victoria Point | Local Cleaners | DEEP CLEAN",
+        "title": "House Cleaning Victoria Point | Local Cleaners | Deep Clean",
         "desc": "Trusted house cleaning and NIISQ cleaning in Victoria Point. Small boutique team, same cleaners every visit, no lock-in contracts. Call 0433 147 018.",
         "h1": "House Cleaning in Victoria Point",
         "lede": "Trusted, detailed cleaning for Victoria Point homes, from the same small team every visit.",

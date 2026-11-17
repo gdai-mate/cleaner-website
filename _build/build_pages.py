@@ -42,7 +42,8 @@ EXISTING = [
 BUSINESS = {
     "@type": "LocalBusiness",
     "@id": BIZ_ID,
-    "name": "DEEP CLEAN",
+    "name": "Deep Clean",
+    "alternateName": ["DEEP CLEAN", "deepclean", "Deep Clean Birkdale", "deepclean.au"],
     "description": "Boutique cleaning company based in Birkdale, providing high-end residential, deep and post-construction cleaning across Brisbane Bayside and south-east Brisbane.",
     "url": SITE + "/",
     "logo": LOGO,
@@ -107,7 +108,6 @@ HEADER = """    <header class="header">
                     <li><a href="about.html" class="nav-link">About</a></li>
                     <li><a href="gallery.html" class="nav-link">Gallery</a></li>
                     <li><a href="contact.html" class="nav-link">Contact</a></li>
-                    <li><a href="careers.html" class="nav-link">Careers</a></li>
                 </ul>
                 <div class="header-cta-buttons">
                     <a href="tel:0433147018" class="call-button">Call Now</a>
@@ -192,7 +192,7 @@ def head(title, desc, path, schema_nodes):
     <meta property="og:image" content="{OG}">
     <meta property="og:url" content="{url}">
     <meta property="og:type" content="website">
-    <meta property="og:site_name" content="DEEP CLEAN">
+    <meta property="og:site_name" content="Deep Clean">
     <meta property="og:locale" content="en_AU">
     <meta name="twitter:card" content="summary_large_image">
     <meta name="twitter:title" content="{E(title)}">
@@ -218,6 +218,47 @@ STARS = '<span class="sp-stars" aria-label="5 out of 5 stars">' + "".join(
     for _ in range(5)) + "</span>"
 
 
+SERVICE_CHOICES = ["One-off Deep Clean", "Recurring Domestic Clean", "Post Construction Clean", "NIISQ & Funded Cleaning", "Something else"]
+
+CALLBAR = """    <div class="dc-callbar" role="region" aria-label="Call or get a quote">
+        <a href="tel:0433147018" class="dc-callbar-call"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.8 19.8 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6A19.8 19.8 0 0 1 2.12 4.18 2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.13.96.36 1.9.7 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.9.34 1.85.57 2.81.7A2 2 0 0 1 22 16.92z"/></svg>Call 0433 147 018</a>
+        <a href="contact.html" class="dc-callbar-quote quote-trigger">Free quote</a>
+    </div>"""
+
+SITE_JS = '    <script src="deepclean-site.js"></script>'
+
+
+def quote_form_html(heading, sub, review_key, service=""):
+    """The short quote form + one real review. Sits straight under the hero on money pages."""
+    opts = "".join(f'<option{" selected" if o == service else ""}>{E(o)}</option>' for o in SERVICE_CHOICES)
+    text, name, title = QUOTES[review_key]
+    return f"""        <section class="dc-quote" id="quote">
+            <div class="container dc-quote-grid">
+                <div class="dc-quote-copy">
+                    <h2>{E(heading)}</h2>
+                    <p>{E(sub)}</p>
+                    <figure class="dc-review">
+                        {STARS}
+                        <blockquote>{E(text)}</blockquote>
+                        <figcaption><strong>{E(name)}</strong>, {E(title)}</figcaption>
+                    </figure>
+                    <p class="dc-quote-call">Rather talk? <a href="tel:0433147018" data-pos="quote_section">Call 0433 147 018</a>, Mon to Sat, 7am to 6pm.</p>
+                </div>
+                <form class="dc-quote-form" id="quickQuote" data-dc-quote novalidate>
+                    <div class="dc-field"><label for="qq-name">Name</label><input id="qq-name" name="name" autocomplete="name" required></div>
+                    <div class="dc-field"><label for="qq-phone">Phone</label><input id="qq-phone" name="phone" type="tel" autocomplete="tel" inputmode="tel" required></div>
+                    <div class="dc-field"><label for="qq-suburb">Suburb</label><input id="qq-suburb" name="suburb" autocomplete="address-level2" required></div>
+                    <div class="dc-field"><label for="qq-service">Service</label><select id="qq-service" name="service"><option value="">Not sure yet</option>{opts}</select></div>
+                    <div class="dc-field dc-wide"><label for="qq-message">Anything we should know? <span>(optional)</span></label><textarea id="qq-message" name="message" rows="3" placeholder="Size of the home, how often, any problem areas"></textarea></div>
+                    <input type="checkbox" name="botcheck" class="dc-hp" tabindex="-1" autocomplete="off" aria-hidden="true">
+                    <button type="submit" class="btn btn-primary dc-wide">Send my quote request</button>
+                    <p class="dc-form-status dc-wide" aria-live="polite"></p>
+                    <p class="dc-form-small dc-wide">Free and no obligation. Final pricing after a quick walk-through.</p>
+                </form>
+            </div>
+        </section>"""
+
+
 def crumbs_html(trail):
     parts = []
     for i, (href, name) in enumerate(trail):
@@ -236,7 +277,7 @@ def hero(trail, h1, lede):
                     <h1>{E(h1)}</h1>
                     <p class="sp-lede">{E(lede)}</p>
                     <div class="sp-hero-cta">
-                        <a href="contact.html" class="btn btn-primary">Get a Free Quote</a>
+                        <a href="#quote" class="btn btn-primary" data-quote-cta>Get a Free Quote</a>
                         <a href="tel:0433147018" class="btn btn-secondary">Call 0433 147 018</a>
                     </div>
                     <ul class="sp-trust">
@@ -331,6 +372,8 @@ def page(title, desc, path, schema, body, svc_active=False):
         "",
         footer_html(),
         "",
+        CALLBAR,
+        SITE_JS,
         '    <script src="script.js"></script>',
         "</body>",
         "</html>",
@@ -351,7 +394,7 @@ def build_service(slug, d):
             "serviceType": d["service_type"],
             "description": d["desc"],
             "url": f"{SITE}/{path}",
-            "provider": {"@id": BIZ_ID, "@type": "LocalBusiness", "name": "DEEP CLEAN", "url": SITE + "/", "telephone": "+61433147018"},
+            "provider": {"@id": BIZ_ID, "@type": "LocalBusiness", "name": "Deep Clean", "url": SITE + "/", "telephone": "+61433147018"},
             "areaServed": BUSINESS["areaServed"],
         },
         breadcrumbs(trail),
@@ -365,6 +408,7 @@ def build_service(slug, d):
     others = [(s, o["name"], o["lede"].split(".")[0] + ".") for s, o in SERVICES.items() if s != slug]
     body = "\n".join([
         hero(trail, d["h1"], d["lede"]),
+        quote_form_html(f"Get a free {d['short'].lower()} quote", "Five quick details and Amie will get back to you within 24 hours.", d["quote"], d["name"] if d["name"] in SERVICE_CHOICES else ""),
         f"""        <section class="sp-section">
             <div class="container sp-split">
                 <div class="sp-prose">
@@ -412,7 +456,7 @@ def build_suburb(slug, d):
             "serviceType": "House cleaning",
             "description": d["desc"],
             "url": f"{SITE}/{path}",
-            "provider": {"@id": BIZ_ID, "@type": "LocalBusiness", "name": "DEEP CLEAN", "url": SITE + "/", "telephone": "+61433147018"},
+            "provider": {"@id": BIZ_ID, "@type": "LocalBusiness", "name": "Deep Clean", "url": SITE + "/", "telephone": "+61433147018"},
             "areaServed": {"@type": "Place", "name": f"{d['name']} QLD {d['postcode']}"},
         },
         breadcrumbs(trail),
@@ -425,6 +469,7 @@ def build_suburb(slug, d):
     nearby = "\n".join(f'<a href="{s}.html" class="sp-chip">{ICON_PIN}{E(SUBURBS[s]["name"])}</a>' for s in d["nearby"])
     body = "\n".join([
         hero(trail, d["h1"], d["lede"]),
+        quote_form_html(f"Free quote for your {d['name']} home", "Five quick details and Amie will get back to you within 24 hours.", d["quotes"][0]),
         f"""        <section class="sp-section">
             <div class="container sp-split">
                 <div class="sp-prose">
@@ -503,18 +548,35 @@ AREA_STRIP = """        <section class="sp-section home-areas">
 """
 
 META = {
-    "index.html": ("Birkdale Cleaning Company | Brisbane Bayside Cleaners | DEEP CLEAN",
-                   "DEEP CLEAN is Birkdale's boutique cleaning company. House cleaning, deep cleans and builders cleans across Brisbane Bayside. Insured, police checked. Free quote."),
-    "services.html": ("Cleaning Services Brisbane Bayside & Birkdale | DEEP CLEAN",
+    "index.html": ("Deep Clean | Birkdale Cleaning Company, Brisbane Bayside",
+                   "Deep Clean is a boutique Birkdale cleaning company. Regular house cleans, deep cleans and builders cleans across Brisbane Bayside. Insured, police checked. Call 0433 147 018."),
+    "services.html": ("Cleaning Services Brisbane Bayside & Birkdale | Deep Clean",
                       "Deep cleans, weekly and fortnightly house cleaning, builders cleans and NIISQ cleaning across Brisbane Bayside. Boutique Birkdale team. Free quote."),
-    "brisbane-bayside-cleaning.html": ("Brisbane Bayside Cleaning Services | Redlands Cleaners | DEEP CLEAN",
-                                       "Local cleaners for Brisbane Bayside: Birkdale, Wellington Point, Cleveland, Thornlands, Redland Bay and Victoria Point. Insured, police checked. Free quote."),
-    "before-after-case-studies.html": ("Before & After Cleaning Transformations Brisbane | DEEP CLEAN", "Real before and after results from deep cleans, builders cleans and regular cleans across Brisbane Bayside and south-east Brisbane."),
+    "brisbane-bayside-cleaning.html": ("Bayside Boutique Cleaning Services | Deep Clean Brisbane",
+                                       "Boutique Bayside cleaning services from Deep Clean in Birkdale. House cleans, deep cleans and builders cleans in Wellington Point, Cleveland, Redland Bay and nearby. Free quote."),
+    "before-after-case-studies.html": ("Before & After Cleaning Transformations Brisbane | Deep Clean", "Real before and after results from deep cleans, builders cleans and regular cleans across Brisbane Bayside and south-east Brisbane."),
     "cleaning-tips-brisbane.html": (None, "How to keep a Brisbane home clean in humid weather: mould prevention, bathroom and wardrobe tips, and a seasonal routine from local Birkdale cleaners."),
     "spring-cleaning-guide-birkdale.html": (None, "A room-by-room spring cleaning guide for Birkdale and Brisbane homes, with a printable checklist from DEEP CLEAN's local team."),
-    "about.html": ("About DEEP CLEAN | Boutique Cleaners in Birkdale, Brisbane Bayside", None),
-    "gallery.html": ("Cleaning Gallery | Before & After Work in Brisbane | DEEP CLEAN", None),
+    "about.html": ("About Deep Clean | Boutique Cleaners in Birkdale, Brisbane Bayside", None),
+    "gallery.html": ("Cleaning Gallery | Before & After Work in Brisbane | Deep Clean", None),
 }
+
+
+CAREERS_NAV_RE = re.compile(r'\n[ \t]*<li><a href="careers\.html" class="nav-link[^"]*">Careers</a></li>')
+EMAILJS_RE = re.compile(r'[ \t]*<!-- EmailJS -->\s*<script[^>]*emailjs[^>]*></script>\s*<script[^>]*>.*?</script>\n', re.S)
+INLINE_MORE_RE = re.compile(r'((?: <a href="[a-z-]+\.html" class="sp-inline-more">[^<]+</a>))(?:\1)+')
+
+
+def shared_chrome(s):
+    """Idempotent: call bar, the shared include, careers out of the nav, no dead EmailJS."""
+    s = CAREERS_NAV_RE.sub("", s)
+    s = EMAILJS_RE.sub("", s)
+    if 'src="deepclean-site.js"' not in s:
+        s = s.replace('    <script src="script.js"></script>', SITE_JS + "\n" + '    <script src="script.js"></script>', 1)
+    if 'class="dc-callbar"' not in s:
+        s = s.replace(SITE_JS, CALLBAR + "\n" + SITE_JS, 1)
+    s = s.replace('<meta property="og:site_name" content="DEEP CLEAN">', '<meta property="og:site_name" content="Deep Clean">')
+    return s
 
 
 def patch_existing():
@@ -522,6 +584,7 @@ def patch_existing():
         fp = os.path.join(ROOT, path)
         s = open(fp, encoding="utf-8").read()
         s = ensure_canonical(s, path)
+        s = shared_chrome(s)
         if path in META:
             s = set_meta(s, *META[path])
         s = FOOTER_RE.sub(footer_html(), s, count=1)
@@ -531,7 +594,7 @@ def patch_existing():
         if path == "index.html":
             s = replace_first_ld(s, {"@context": "https://schema.org", "@graph": [
                 BUSINESS,
-                {"@type": "WebSite", "@id": SITE + "/#website", "url": SITE + "/", "name": "DEEP CLEAN", "publisher": {"@id": BIZ_ID}, "inLanguage": "en-AU"},
+                {"@type": "WebSite", "@id": SITE + "/#website", "url": SITE + "/", "name": "Deep Clean", "alternateName": ["DEEP CLEAN", "deepclean.au"], "publisher": {"@id": BIZ_ID}, "inLanguage": "en-AU"},
             ]})
             s = s.replace(
                 "Brisbane Bayside & Birkdale's boutique cleaning service providing high-end residential and post-construction cleaning with meticulous attention to detail.",
@@ -539,6 +602,14 @@ def patch_existing():
             # Hero image is above the fold: load it eagerly for LCP.
             s = s.replace('<img src="assets/images/hero/hero-1.jpg" alt="DEEP CLEAN team professional cleaning service" loading="lazy"',
                           '<img src="assets/images/hero/hero-1.jpg" alt="DEEP CLEAN team professional cleaning service" fetchpriority="high"')
+            if 'id="quote"' not in s:
+                s = re.sub(r'(<section id="home" class="hero">.*?</section>\n)',
+                           lambda m: m.group(1) + "\n" + quote_form_html(
+                               "Get a free quote from Birkdale's boutique cleaners",
+                               "Tell us a little about your home and Amie will get back to you within 24 hours.", "sarah") + "\n",
+                           s, count=1, flags=re.S)
+                s = s.replace('<div class="hero-cta">\n                    <a href="contact.html" class="btn btn-primary">Get Free Quote</a>',
+                              '<div class="hero-cta">\n                    <a href="#quote" class="btn btn-primary" data-quote-cta>Get Free Quote</a>', 1)
             if "home-areas" not in s:
                 chips = "\n".join(f'                    <a href="{sl}.html" class="sp-chip">{ICON_PIN}{E(n)}</a>' for sl, n in AREAS)
                 cards = "\n".join(
@@ -550,7 +621,7 @@ def patch_existing():
         if path == "brisbane-bayside-cleaning.html":
             s = replace_first_ld(s, {"@context": "https://schema.org", "@graph": [
                 {"@type": "Service", "@id": f"{SITE}/{path}#service", "name": "Brisbane Bayside Cleaning Services", "serviceType": "House cleaning",
-                 "url": f"{SITE}/{path}", "provider": {"@id": BIZ_ID, "@type": "LocalBusiness", "name": "DEEP CLEAN", "url": SITE + "/", "telephone": "+61433147018"},
+                 "url": f"{SITE}/{path}", "provider": {"@id": BIZ_ID, "@type": "LocalBusiness", "name": "Deep Clean", "url": SITE + "/", "telephone": "+61433147018"},
                  "areaServed": BUSINESS["areaServed"]},
                 breadcrumbs([("index.html", "Home"), (path, "Brisbane Bayside")]),
             ]})
@@ -558,8 +629,18 @@ def patch_existing():
                 n = d["name"]
                 s = re.sub(rf'(<div class="area-card">\s*)<h4>{n}</h4>',
                            rf'\1<h4><a href="{sl}.html">{n}</a></h4>', s)
-                s = re.sub(rf'(<h4><a href="{sl}.html">{n}</a></h4>\s*<p>.*?)(</p>)',
-                           rf'\1 <a href="{sl}.html" class="sp-inline-more">Cleaning in {n}</a>\2', s, count=1, flags=re.S)
+                if f'class="sp-inline-more">Cleaning in {n}</a>' not in s:
+                    s = re.sub(rf'(<h4><a href="{sl}.html">{n}</a></h4>\s*<p>.*?)(</p>)',
+                               rf'\1 <a href="{sl}.html" class="sp-inline-more">Cleaning in {n}</a>\2', s, count=1, flags=re.S)
+            s = INLINE_MORE_RE.sub(r"\1", s)
+            s = s.replace("<h1>Brisbane Bayside Cleaning Services</h1>", "<h1>Boutique Bayside Cleaning Services for Brisbane</h1>", 1)
+            if 'id="quote"' not in s:
+                s = re.sub(r'(<section class="page-hero">.*?</section>\n)',
+                           lambda m: m.group(1) + "\n" + quote_form_html(
+                               "Free quote for Bayside cleaning",
+                               "Birkdale, Wellington Point, Cleveland, Thornlands, Redland Bay or Victoria Point. Five quick details and Amie will get back to you within 24 hours.",
+                               "julie") + "\n",
+                           s, count=1, flags=re.S)
             s = s.replace('"url": "https://deepclean.au/brisbane-bayside-cleaning"', '"url": "https://deepclean.au/brisbane-bayside-cleaning.html"')
 
         if path == "services.html":
@@ -571,6 +652,8 @@ def patch_existing():
                     new = block.group(0).replace('<div class="service-cta">',
                         f'<div class="service-cta">\n                                <a href="{sl}.html" class="btn btn-outline">Learn more</a>')
                     s = s.replace(block.group(0), new, 1)
+            # the guard above can't see links it added last run; collapse repeats so re-runs are safe
+            s = re.sub(r'(\n[ \t]*<a href="[a-z-]+\.html" class="btn btn-outline">Learn more</a>)\1+', r"\1", s)
             if "services-areas" not in s:
                 chips = "\n".join(f'                    <a href="{sl}.html" class="sp-chip">{ICON_PIN}{E(n)}</a>' for sl, n in AREAS)
                 s = s.replace('        <section class="cta-section">',
@@ -598,6 +681,49 @@ def write_sitemap(generated):
     open(os.path.join(ROOT, "sitemap.xml"), "w").write("\n".join(out))
 
 
+def write_llms():
+    """/llms.txt for AI assistants. Built from the same content as the pages, so facts can't drift."""
+    svc = "\n".join(f"- [{d['name']}]({SITE}/md/{sl}.md): {d['lede']}" for sl, d in SERVICES.items())
+    areas = "\n".join(f"- [{d['name']} QLD {d['postcode']}]({SITE}/md/{sl}.md)" for sl, d in SUBURBS.items())
+    out = f"""# Deep Clean
+
+> Deep Clean (written DEEP CLEAN on the logo, website deepclean.au) is a boutique cleaning company based in Birkdale, QLD 4159. Founded and run by Amie Eckhardt. Regular house cleaning, one-off deep cleans, post-construction (builders) cleans and NIISQ / externally funded cleaning across Brisbane Bayside, the Redlands and south-east Brisbane. Insured and police checked.
+
+## Contact
+
+- Phone: 0433 147 018 (+61 433 147 018)
+- Email: deepclean.go2@gmail.com
+- Quote form: {SITE}/contact.html
+- Hours: Monday to Saturday, 7am to 6pm
+- Based in: Birkdale QLD 4159, Australia
+- ABN: 57 805 931 28
+- Facebook: {FB}
+
+## Services
+
+{svc}
+
+## Areas served
+
+{areas}
+- [All of Brisbane Bayside]({SITE}/md/brisbane-bayside-cleaning.md)
+
+## How quoting works
+
+Quotes are free. Tell us about the home (suburb, size, which service, how often) by phone or the quote form. Every quote is an estimate until a quick walk-through, then the final price is confirmed.
+
+## More
+
+- [Home]({SITE}/md/index.md)
+- [All services]({SITE}/md/services.md)
+- [About Deep Clean]({SITE}/md/about.md)
+- [Before and after case studies]({SITE}/md/before-after-case-studies.md)
+- [Cleaning tips for Brisbane homes]({SITE}/md/cleaning-tips-brisbane.md)
+- [Contact]({SITE}/md/contact.md)
+"""
+    open(os.path.join(ROOT, "llms.txt"), "w", encoding="utf-8").write(out)
+
+
 def main():
     generated = []
     for slug, d in SERVICES.items():
@@ -610,6 +736,7 @@ def main():
         generated.append(p)
     patch_existing()
     write_sitemap(generated)
+    write_llms()
     print("generated:", ", ".join(generated))
 
 

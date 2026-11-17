@@ -9,7 +9,7 @@
     <meta property="og:image" content="https://deepclean.au/assets/images/og-share.jpg">
     <meta property="og:url" content="https://deepclean.au/contact.html">
     <meta property="og:type" content="website">
-    <meta property="og:site_name" content="DEEP CLEAN">
+    <meta property="og:site_name" content="Deep Clean">
     <meta property="og:locale" content="en_AU">
     <meta name="twitter:card" content="summary_large_image">
     <meta name="twitter:title" content="Contact Us - Get Your Free Quote | DEEP CLEAN">
@@ -39,7 +39,6 @@
                     <li><a href="about.html" class="nav-link">About</a></li>
                     <li><a href="gallery.html" class="nav-link">Gallery</a></li>
                     <li><a href="contact.html" class="nav-link active">Contact</a></li>
-                    <li><a href="careers.html" class="nav-link">Careers</a></li>
                 </ul>
                 <div class="header-cta-buttons">
                     <a href="tel:0433147018" class="call-button">Call Now</a>
@@ -210,7 +209,7 @@
                             <h3>Request Your Free Quote</h3>
                             <p class="form-intro">Tell us about your cleaning needs and we'll provide a personalised quote.</p>
                             <div class="quote-info">
-                                <p>Please include as much detail as possible about the spaces you would like cleaned. Include images and descriptions - we will do our best to provide you with an accurate quote, but please be aware that this is just an estimate and we require a walk-through with you before we give an exact quote.</p>
+                                <p>Please include as much detail as possible about the spaces you would like cleaned. Describe each area (you can text photos after you send this). We will do our best to provide you with an accurate quote, but please be aware that this is just an estimate and we require a walk-through with you before we give an exact quote.</p>
                             </div>
 
                             <div class="form-row">
@@ -319,15 +318,8 @@
                                 <textarea id="message" name="message" rows="4" placeholder="Describe areas to clean, special requirements, and property details. Photos help provide better estimates."></textarea>
                             </div>
 
-                            <div class="form-group">
-                                <label for="contactPhotos">📷 Upload Photos (Optional)</label>
-                                <input type="file" id="contactPhotos" name="contactPhotos" multiple accept="image/*" class="photo-upload-contact">
-                                <div class="photo-upload-help">
-                                    <small>Upload photos of areas that need cleaning to help us provide a more accurate quote. Max 5 photos, 5MB each.</small>
-                                </div>
-                                <div id="contact-photo-previews" class="contact-photo-previews"></div>
-                                <div id="contact-upload-progress" class="contact-upload-progress"></div>
-                            </div>
+                            <p class="dc-photo-note">Got photos of the areas to clean? Send the form, then text them to <a href="tel:0433147018">0433 147 018</a>. It helps us quote more accurately.</p>
+                            <input type="checkbox" name="botcheck" class="dc-hp" tabindex="-1" autocomplete="off" aria-hidden="true">
 
                             <div class="form-group">
                                 <label for="hearAbout">How did you hear about us?</label>
@@ -351,6 +343,7 @@
                             </div>
 
                             <button type="submit" class="btn btn-primary btn-large">Send My Quote Request</button>
+                            <p class="dc-form-status" aria-live="polite"></p>
                         </form>
                     </div>
                 </div>
@@ -415,6 +408,11 @@
         </div>
     </footer>
 
+    <div class="dc-callbar" role="region" aria-label="Call or get a quote">
+        <a href="tel:0433147018" class="dc-callbar-call"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.8 19.8 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6A19.8 19.8 0 0 1 2.12 4.18 2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.13.96.36 1.9.7 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.9.34 1.85.57 2.81.7A2 2 0 0 1 22 16.92z"/></svg>Call 0433 147 018</a>
+        <a href="contact.html" class="dc-callbar-quote quote-trigger">Free quote</a>
+    </div>
+    <script src="deepclean-site.js"></script>
     <script src="script.js"></script>
 </body>
 </html>

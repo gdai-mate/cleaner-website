@@ -10,9 +10,10 @@ for f in *.html; do
   cp "$f" _site/
 done
 cp styles.css seo-pages.css testimonial-styles.css _site/
-cp script.js testimonial-script.js gallery-lightbox.js image-optimizer.js careers-modal-fix.js service-dropdown-fix.js _site/
-cp sitemap.xml robots.txt CNAME _site/
+cp deepclean-site.js script.js testimonial-script.js gallery-lightbox.js image-optimizer.js careers-modal-fix.js service-dropdown-fix.js _site/
+cp sitemap.xml robots.txt llms.txt CNAME _site/
 cp -R assets/images _site/assets/images
 cp "assets/DEEP CLEAN Logo.png" "assets/White and aqua architectural shapes .jpg" _site/assets/
+python3 -I _build/build_md.py _site
 touch _site/.nojekyll
 echo "staged $(find _site -type f | wc -l | tr -d ' ') files, $(du -sh _site | cut -f1)"

@@ -1,4 +1,12 @@
 User-agent: *
 Allow: /
 
+# /md/ holds plain-text copies of each page for AI assistants (see /llms.txt).
+# Search engines get the normal pages, so keep the copies out of their index.
+User-agent: Googlebot
+Disallow: /md/
+
+User-agent: Bingbot
+Disallow: /md/
+
 Sitemap: https://deepclean.au/sitemap.xml

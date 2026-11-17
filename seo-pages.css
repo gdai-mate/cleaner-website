@@ -90,3 +90,51 @@
 
 .hero-subtitle a { color: #1e7ca8; font-weight: 600; text-decoration: underline; text-decoration-color: rgba(30, 124, 168, 0.35); text-underline-offset: 3px; }
 .hero-subtitle a:hover { text-decoration-color: #1e7ca8; }
+
+/* ---------------------------------------------------------------- conversion pass (Nov 2026) */
+/* Short quote form, sits under the hero on money pages */
+.dc-quote { padding: 3.5rem 0; background: linear-gradient(180deg, #f6fafc 0%, #ffffff 100%); scroll-margin-top: 90px; }
+.dc-quote-grid { display: grid; grid-template-columns: 1fr 1.1fr; gap: 3rem; align-items: start; }
+.dc-quote-copy h2 { color: #1e5a7a; font-size: 1.9rem; line-height: 1.25; margin-bottom: 0.75rem; }
+.dc-quote-copy > p { color: #44525e; font-size: 1.08rem; line-height: 1.6; margin-bottom: 1.5rem; }
+.dc-review { margin: 0 0 1.25rem; background: #fff; border-radius: 16px; padding: 1.25rem 1.5rem; box-shadow: 0 8px 28px rgba(30, 90, 122, 0.09); border-left: 4px solid #1e7ca8; }
+.dc-review blockquote { margin: 0.25rem 0 0.6rem; font-size: 1rem; line-height: 1.6; color: #2c3e50; }
+.dc-review figcaption { font-size: 0.92rem; color: #6c757d; }
+.dc-review figcaption strong { color: #1e5a7a; }
+.dc-quote-call { color: #44525e; font-size: 1rem; }
+.dc-quote-call a { color: #1e7ca8; font-weight: 600; white-space: nowrap; }
+
+.dc-quote-form { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem 1.1rem; background: #fff; border-radius: 18px; padding: 1.75rem; box-shadow: 0 12px 40px rgba(30, 90, 122, 0.12); border-top: 4px solid #1e7ca8; }
+.quote-modal .dc-quote-form { box-shadow: none; border-top: 0; padding: 0; }
+.dc-field { display: flex; flex-direction: column; gap: 0.35rem; text-align: left; }
+.dc-wide { grid-column: 1 / -1; }
+.dc-field label { font-weight: 600; font-size: 0.95rem; color: #1e5a7a; }
+.dc-field label span { font-weight: 400; color: #6c757d; }
+.dc-field input, .dc-field select, .dc-field textarea { width: 100%; font: inherit; font-size: 16px; padding: 0.75rem 0.85rem; border: 1.5px solid #cfdde6; border-radius: 10px; background: #fff; color: #2c3e50; }
+.dc-field input:focus, .dc-field select:focus, .dc-field textarea:focus { outline: none; border-color: #1e7ca8; box-shadow: 0 0 0 3px rgba(30, 124, 168, 0.15); }
+.dc-quote-form .btn { width: 100%; justify-content: center; font-size: 1.05rem; padding: 0.95rem 1.5rem; }
+.dc-form-status { margin: 0; min-height: 0; font-size: 0.95rem; }
+.dc-form-status.dc-error { color: #a12a2a; font-weight: 500; }
+.dc-form-status a, .dc-form-done a { color: #1e7ca8; font-weight: 600; }
+.dc-form-small { margin: 0; font-size: 0.85rem; color: #6c757d; text-align: center; }
+.dc-form-done { grid-column: 1 / -1; padding: 1rem 0.25rem; }
+.dc-form-done h3 { color: #1e5a7a; font-size: 1.3rem; margin-bottom: 0.6rem; }
+.dc-form-done p { color: #44525e; line-height: 1.6; margin: 0; }
+.dc-hp { position: absolute !important; left: -9999px !important; width: 1px; height: 1px; opacity: 0; }
+.dc-photo-note { background: #f6fafc; border-radius: 10px; padding: 0.85rem 1rem; color: #44525e; font-size: 0.95rem; margin: 0 0 1.25rem; }
+.dc-photo-note a { color: #1e7ca8; font-weight: 600; }
+
+/* Sticky call bar, phones only */
+.dc-callbar { display: none; }
+@media (max-width: 768px) {
+    .dc-quote { padding: 2.5rem 0; }
+    .dc-quote-grid { grid-template-columns: 1fr; gap: 1.5rem; }
+    .dc-quote-form { grid-template-columns: 1fr; padding: 1.25rem; }
+    .dc-quote-copy h2 { font-size: 1.5rem; }
+    .dc-callbar { display: flex; position: fixed; left: 0; right: 0; bottom: 0; z-index: 900; gap: 0.5rem; padding: 0.6rem 0.75rem calc(0.6rem + env(safe-area-inset-bottom)); background: rgba(255, 255, 255, 0.97); box-shadow: 0 -4px 18px rgba(0, 0, 0, 0.12); }
+    .dc-callbar a { flex: 1; display: inline-flex; align-items: center; justify-content: center; gap: 0.45rem; min-height: 48px; border-radius: 12px; font-weight: 700; font-size: 1rem; text-decoration: none; }
+    .dc-callbar-call { background: #1e7ca8; color: #fff; flex: 1.4 !important; }
+    .dc-callbar-quote { background: #fff; color: #1e5a7a; border: 2px solid #1e7ca8; }
+    body { padding-bottom: calc(72px + env(safe-area-inset-bottom)); }
+    .quote-modal { z-index: 1000 !important; }
+}

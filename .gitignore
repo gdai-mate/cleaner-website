@@ -32,3 +32,4 @@ dist/
 build/
 .vercel
 _site/
+__pycache__/
