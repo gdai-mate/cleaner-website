@@ -27,8 +27,11 @@ jobs:
       - name: Setup Pages
         uses: actions/configure-pages@v4
 
-      - name: Stage public files only
+      - name: Stage public files only (also builds the AI mirror .md twins)
         run: bash _build/stage_site.sh
+
+      - name: Check AI mirror (every page has its .md twin and link tag, llms.txt lists them)
+        run: python3 -I _build/build_md.py _site --config _build/ai-mirror.json --check
 
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v3

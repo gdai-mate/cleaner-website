@@ -14,6 +14,6 @@ cp deepclean-site.js script.js testimonial-script.js gallery-lightbox.js image-o
 cp sitemap.xml robots.txt llms.txt CNAME _site/
 cp -R assets/images _site/assets/images
 cp "assets/DEEP CLEAN Logo.png" "assets/White and aqua architectural shapes .jpg" _site/assets/
-python3 -I _build/build_md.py _site
+python3 -I _build/build_md.py _site --config _build/ai-mirror.json
 touch _site/.nojekyll
 echo "staged $(find _site -type f | wc -l | tr -d ' ') files, $(du -sh _site | cut -f1)"

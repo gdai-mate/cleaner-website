@@ -1,0 +1,12 @@
+{
+  "site_url": "https://deepclean.au",
+  "contact": "Phone: 0433 147 018 | Email: deepclean.go2@gmail.com",
+  "roots": ["main", "footer"],
+  "skip_classes": ["dc-callbar", "hamburger", "header-cta-buttons", "carousel-btn", "sp-crumbs", "hero-images",
+                   "hero-logo-section", "hero-logo-mobile", "dc-quote-form", "quote-modal"],
+  "exclude": ["google*.html"],
+  "md_dir": "md",
+  "inject_links": true,
+  "llms": "llms.txt",
+  "llms_intro": "Every page on deepclean.au has a plain markdown copy with the same content, for AI assistants."
+}
