@@ -68,7 +68,7 @@ DEEP-CLEAN-WEBSITE/
 ### **✅ Contact Details Verified**
 - **Phone**: 0433 147 018
 - **Email**: deepclean.go2@gmail.com  
-- **ABN**: 57 805 931 28
+- **ABN**: 57 805 093 128
 - **Team**: Amie Eckhardt (Founder), Kath Duell Boardman (Specialist)
 
 ### **✅ Service Areas**
