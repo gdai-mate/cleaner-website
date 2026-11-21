@@ -18,8 +18,8 @@
         WEB3FORMS_KEY: '903713a9-09b9-4fc5-8088-05dc449eca97',  // existing key, emails deepclean.go2@gmail.com
         WEB3FORMS_URL: 'https://api.web3forms.com/submit',
         // OTS copy of each enquiry (Supabase edge function site-enquiry in the OTS repo).
-        // Deploy that function BEFORE this site goes live. Set to '' to switch the copy off.
-        OTS_URL: 'https://myffnovjpdnezazjxlhl.supabase.co/functions/v1/site-enquiry',
+        // OFF since 21 Nov 2026: Asgard wants Amie's customers out of his CRM. Enquiries go to Amie only.
+        OTS_URL: '',
         OTS_SITE_KEY: 'deepclean-web',
         PHONE: '0433 147 018',
         PHONE_TEL: 'tel:0433147018'
